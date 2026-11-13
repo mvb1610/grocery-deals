@@ -7,6 +7,7 @@ import vm from 'node:vm';
 const API = 'https://backflipp.wishabi.com/flipp/';
 const PCS = ['L2E6X5', 'L2R7C2', 'L3B3X4'];                      // Niagara Falls, St. Catharines, Welland
 const SKIP = /^(subway|president's choice|longos)$/i;
+const EXTRA = ['shoppers drug mart'];                             // non-grocery flyers the app includes by default
 const KEEP_WEEKS = 26;
 const get = async u => { const r = await fetch(u, { headers: { accept: 'application/json' } }); if (!r.ok) throw new Error('HTTP ' + r.status + ' ' + u); return r.json(); };
 
@@ -21,7 +22,7 @@ const seen = new Map();
 for (const pc of PCS) {
   try {
     const d = await get(API + 'flyers?locale=en-ca&postal_code=' + pc);
-    for (const f of d.flyers || []) { if (!(f.categories || []).includes('Groceries') || SKIP.test(f.merchant)) continue; const k = f.merchant + '|' + f.name; if (!seen.has(k)) seen.set(k, f); }
+    for (const f of d.flyers || []) { const cats = f.categories || [], added = EXTRA.includes(f.merchant.trim().toLowerCase()) && !cats.includes('Fashion'); if (!(cats.includes('Groceries') || added) || SKIP.test(f.merchant)) continue; const k = f.merchant + '|' + f.name; if (!seen.has(k)) seen.set(k, f); }
   } catch (e) { console.warn(String(e)); }
 }
 if (!seen.size) { console.error('No flyers reached — leaving data unchanged.'); process.exit(1); }

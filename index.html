@@ -223,9 +223,10 @@ const save = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } cat
 
 let S = Object.assign({ postals: 'L2E 6X5, L2R 7C2, L3B 3X4', hidden: ['Longos'],   // Longo's has no Niagara store; re-enable in Settings
   needs: ['chicken breast', 'ground beef', 'eggs', 'milk', 'butter', 'bread', 'potatoes', 'apples'],
+  extra: 'Shoppers Drug Mart',   // non-grocery flyers to include as well
   targets: {}, myMeals: [], hiddenMeals: [], pm: '', shop: false, apiKey: '', model: '', planNotes: '', plan: null }, load('ngd-settings', {}));
 let LIST = load('ngd-list', []);
-let ITEMS = [], FLYERS = [], BYID = new Map(), SCANNED = 0, scanning = false, ENRICHED = false;
+let ITEMS = [], FLYERS = [], BYID = new Map(), SCANNED = 0, scanning = false, ENRICHED = false, OTHERS = [];
 let V = { tab: 'deals', q: '', cat: 'all', store: '', sort: 'best', shown: 60 };
 
 /* ---------- categories ---------- */
@@ -296,7 +297,9 @@ const postals = () => (S.postals.toUpperCase().replace(/\s+/g, '').match(/[A-Z]\
 const tidy = n => { n = String(n).replace(/\s+/g, ' ').trim(); return n === n.toUpperCase() ? n.charAt(0) + n.slice(1).toLowerCase() : n; };
 function status(t, frac) { $('#status').textContent = t; $('#bar i').style.width = frac == null ? '0' : Math.round(frac * 100) + '%'; }
 function index() { BYID = new Map(); for (const it of ITEMS) { it.s = norm(it.n + ' ' + it.b); it.c = catOf(it.s); it.e = Date.parse(it.vt) || Infinity; delete it.up; BYID.set(it.id, it); } }
-const cache = () => save('ngd-cache', { t: SCANNED, pc: postals().join(), items: ITEMS.map(({ s, c, e, up, ...r }) => r), flyers: FLYERS, en: ENRICHED });
+const extras = () => (S.extra || '').split(',').map(x => x.trim().toLowerCase()).filter(Boolean);
+const ckey = () => postals().join() + '|' + extras().join();
+const cache = () => save('ngd-cache', { t: SCANNED, pc: ckey(), others: OTHERS, items: ITEMS.map(({ s, c, e, up, ...r }) => r), flyers: FLYERS, en: ENRICHED });
 function stamp() {
   const stores = new Set(visible().map(i => i.m)).size, d = new Date(SCANNED);
   status(`${visible().length.toLocaleString()} deals from ${FLYERS.length} flyers at ${stores} stores · scanned ${d.toLocaleDateString('en-CA', { weekday: 'short', month: 'short', day: 'numeric' })} ${d.toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit' })}`);
@@ -313,23 +316,25 @@ async function scan(force) {
   const pcs = postals();
   try {
     const c = force ? null : load('ngd-cache', null);
-    if (c && c.pc === pcs.join() && Date.now() - c.t < TTL && c.items.length) {
-      ITEMS = c.items; FLYERS = c.flyers; SCANNED = c.t; ENRICHED = !!c.en; index(); stamp(); renderAll(); if (!ENRICHED) enrich(pcs[0]); return;
+    if (c && c.pc === ckey() && Date.now() - c.t < TTL && c.items.length) {
+      OTHERS = c.others || []; ITEMS = c.items; FLYERS = c.flyers; SCANNED = c.t; ENRICHED = !!c.en; index(); stamp(); renderAll(); if (!ENRICHED) enrich(pcs[0]); return;
     }
     status('Finding this week\'s flyers…', 0.03);
-    const seen = new Map(); let reached = 0;
+    const seen = new Map(), other = new Set(), ex = extras(); let reached = 0;
     for (const pc of pcs) {
       try {
         const d = await getJSON(API + 'flyers?locale=en-ca&postal_code=' + pc); reached++;
         for (const f of d.flyers || []) {
-          if (!(f.categories || []).includes('Groceries') || SKIP.test(f.merchant)) continue;
+          const cats = f.categories || [], grocery = cats.includes('Groceries'), added = ex.includes(f.merchant.trim().toLowerCase()) && !cats.includes('Fashion');
+          if (!grocery && !added) other.add(f.merchant.trim());
+          if (!(grocery || added) || SKIP.test(f.merchant)) continue;
           const k = f.merchant + '|' + f.name;           // same chain, same flyer, different town → keep one
           if (!seen.has(k)) seen.set(k, { id: f.id, merchant: f.merchant, name: f.name, valid_from: f.valid_from, valid_to: f.valid_to });
         }
       } catch (e) { console.warn('flyers', pc, e); }
     }
     if (!reached) throw new Error('offline');
-    FLYERS = [...seen.values()]; ITEMS = []; let done = 0; const dup = new Set();
+    OTHERS = [...other].sort(); FLYERS = [...seen.values()]; ITEMS = []; let done = 0; const dup = new Set();
     await pool(FLYERS, 5, async f => {
       try {
         const d = await getJSON(API + 'flyers/' + f.id + '?locale=en-ca');
@@ -717,6 +722,8 @@ function settings() {
     <input type="text" id="pcIn" value="${esc(S.postals)}">
     <label>Stores I shop at</label><p>Untick a store to leave its deals out everywhere.</p>
     <div class="stores">${stores.map(s => `<label><input type="checkbox" value="${esc(s)}" ${S.hidden.includes(s) ? '' : 'checked'}> ${esc(s)}</label>`).join('')}</div>
+    <label>Other stores to include</label><p>Stores whose flyers aren't grocery flyers but carry staples, separated by commas.${OTHERS.length ? ' Available near you: ' + esc(OTHERS.join(', ')) + '.' : ''}</p>
+    <input type="text" id="extraIn" value="${esc(S.extra || '')}" autocomplete="off">
     <label>Shared shopping list</label>
     ${location.href.startsWith(APP_URL) ? (AUTH ? `<p>Signed in as <b>${esc(AUTH.email)}</b>. Shared with: ${esc((AUTH.members || []).filter(m => m !== AUTH.email).join(', ') || 'nobody yet')}. <span id="syncMsg">${esc(syncMsg)}</span></p>
     <div class="tools"><input type="text" id="shareIn" placeholder="Google email of the person to share with" autocomplete="off"><button class="btn" id="shareAdd">Share</button></div>
@@ -754,11 +761,11 @@ document.addEventListener('click', e => {
     case 'gear': settings(); break;
     case 'sCancel': $('#modal').classList.remove('on'); break;
     case 'sSave': {
-      const old = postals().join(); S.postals = $('#pcIn').value;
+      const old = ckey(); S.postals = $('#pcIn').value; S.extra = $('#extraIn').value;
       S.hidden = [...document.querySelectorAll('.stores input')].filter(c => !c.checked).map(c => c.value);
       S.apiKey = $('#keyIn').value.trim(); S.model = $('#modelIn').value; S.planNotes = $('#notesIn').value.trim();
       save('ngd-settings', S); $('#modal').classList.remove('on');
-      if (postals().join() !== old) scan(true); else { stamp(); renderAll(); } break; }
+      if (ckey() !== old) scan(true); else { stamp(); renderAll(); } break; }
     case 'needAdd': addNeed(); break;
     case 'freeAdd': addFree(); break;
     case 'mealAdd': addMeal(); break;
