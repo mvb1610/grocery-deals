@@ -346,6 +346,13 @@ async function scan(force) {
         }
       } finally { done++; status(`Scanning flyers… ${done} of ${FLYERS.length} (${f.merchant})`, done / FLYERS.length); }
     });
+    try {          // stores that are not on Flipp: their specials are read from the store's own website by the repo's daily scan
+      const x = await fetch('data/extra.json', { cache: 'no-cache' });
+      if (x.ok) for (const st of (await x.json()).stores || []) {
+        FLYERS.push({ id: st.m, merchant: st.m, name: 'Store website' });
+        for (const i of st.items || []) ITEMS.push({ id: i.id, f: st.m, m: st.m, n: i.n, b: i.b || '', p: i.p, d: 0, img: i.img || '', vt: i.vt, vf: i.vf, u: i.u || '', pre: '', st: '' });
+      }
+    } catch (e) {}
     SCANNED = Date.now(); ENRICHED = false; index(); stamp(); renderAll();
     cache();
     enrich(pcs[0]);

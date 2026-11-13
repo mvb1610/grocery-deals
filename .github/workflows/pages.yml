@@ -3,7 +3,7 @@ on:
   push:
     branches: [main]
   schedule:
-    - cron: '17 10 * * 4,6'     # Thursday and Saturday, about 5:17 am Toronto time
+    - cron: '17 10 * * *'       # every day, about 5:17 am Toronto time (Lococo's changes its specials three times a week)
   workflow_dispatch:
 permissions:
   contents: write

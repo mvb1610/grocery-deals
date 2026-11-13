@@ -1,5 +1,6 @@
 // Weekly flyer scan, run by GitHub Actions. Writes:
 //   data/history.json  price of every deal per week (last 26 weeks), read by the app for "lowest in N weeks"
+//   data/extra.json    specials read straight from the websites of stores that are not on Flipp (Lococo's)
 //   data/digest.json / data/digest.txt  this week's best prices for the staples in data/staples.json
 import fs from 'node:fs';
 import vm from 'node:vm';
@@ -37,7 +38,37 @@ for (const f of seen.values()) {
     }
   } catch (e) { console.warn(String(e)); }
 }
-console.log(`${items.length} deals from ${seen.size} flyers`);
+
+// 1b. Lococo's is not on Flipp: read the specials from its own website (plain text cards, updated three times a week)
+async function lococos() {
+  const r = await fetch('https://www.lococos.ca/specials', { headers: { 'user-agent': 'Mozilla/5.0 (compatible; grocery-deals personal daily scan)' } });
+  if (!r.ok) throw new Error('lococos.ca HTTP ' + r.status);
+  const html = await r.text();
+  const ent = t => t.replace(/&amp;/g, '&').replace(/&#0?39;|&rsquo;|&apos;/g, "'").replace(/&quot;/g, '"').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
+  const pick = (c, re) => { const m = re.exec(c); return m ? ent(m[1]) : ''; };
+  const MON = { jan: 0, feb: 1, mar: 2, apr: 3, may: 4, jun: 5, jul: 6, aug: 7, sep: 8, oct: 9, nov: 10, dec: 11 };
+  const date = (t, end) => {          // "Nov 13" has no year: take the one nearest to today
+    const m = /([A-Za-z]{3})[a-z]*\.?\s+(\d{1,2})/.exec(t || ''); if (!m || !(m[1].toLowerCase() in MON)) return '';
+    const now = new Date(), mo = MON[m[1].toLowerCase()]; let y = now.getFullYear(); if (mo - now.getMonth() > 6) y--; if (now.getMonth() - mo > 6) y++;
+    return `${y}-${String(mo + 1).padStart(2, '0')}-${m[2].padStart(2, '0')}T${end ? '23:59:59' : '00:00:00'}-05:00`;
+  };
+  const out = [];
+  for (const c of html.split('<div class="col">').slice(1)) {
+    const p = parseFloat(pick(c, /class="the-price">\s*([\d.]+)/)), name = pick(c, /class="product-name">([^<]*)</); if (!name || !(p > 0)) continue;
+    const size = pick(c, /class="the-size">([^<]*)</), desc = pick(c, /class="the-descriptor">([^<]*)</);
+    const rng = /\(([A-Za-z]{3,}\.?\s+\d+)\s+to\s+([A-Za-z]{3,}\.?\s+\d+)\)/.exec(c), unt = /UNTIL\s+([A-Za-z]{3,}\.?\s+\d+)/.exec(c), per = /^(lb|kg|ea|each)\b/i.exec(size);
+    let h = 0; for (const ch of name + '|' + size) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
+    out.push({ id: 9e12 + h, n: name + (desc ? ', ' + desc : '') + (size && !per ? ', ' + size : ''), b: pick(c, /class="the-brand">([^<]*)</), p,
+      u: per ? per[1].toLowerCase().replace('each', 'ea') : '', img: pick(c, /<img src="(https:\/\/portal\.lococos\.ca\/images\/flyer\/front\/[^"]+)"/),
+      vf: date(rng && rng[1], false), vt: date((rng && rng[2]) || (unt && unt[1]), true) });
+  }
+  return out;
+}
+fs.mkdirSync('data', { recursive: true });
+let extra = []; try { extra = await lococos(); } catch (e) { console.warn(String(e)); }
+if (extra.length) fs.writeFileSync('data/extra.json', JSON.stringify({ scanned: new Date().toISOString(), stores: [{ m: "Lococo's", source: 'https://www.lococos.ca/specials', items: extra }] }, null, 1));
+for (const x of extra) items.push({ id: x.id, m: "Lococo's", n: x.n, p: x.p, u: x.u, pre: '', s: ctx.norm(x.n + ' ' + x.b), e: Date.parse(x.vt) || Infinity, c: 'x' });
+console.log(`${items.length} deals from ${seen.size} flyers, including ${extra.length} from lococos.ca`);
 if (items.length < 200) { console.error('Too few deals — leaving data unchanged.'); process.exit(1); }
 
 // 2. history: one price per deal per flyer week (weeks start Thursday, Toronto time)

@@ -8,7 +8,8 @@ Scans this week's grocery flyers for the Niagara region and helps plan what to b
 
 ## Weekly scan
 
-`.github/workflows/pages.yml` runs `scripts/scan.mjs` on every push and every Thursday and Saturday morning. It saves
+`.github/workflows/pages.yml` runs `scripts/scan.mjs` on every push and every morning. It saves `data/extra.json` (specials read from lococos.ca,
+which is not on Flipp),
 `data/history.json` (each deal's price per week, last 26 weeks; the app uses it for "lowest in N weeks") and
 `data/digest.txt` (this week's best prices for the staples in `data/staples.json`), then deploys the site.
 
