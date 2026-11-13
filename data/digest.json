@@ -1,8 +1,8 @@
 {
  "week": "2026-11-12",
- "generated": "2026-11-13T18:42:06.761Z",
- "deals": 3989,
- "flyers": 25,
+ "generated": "2026-11-13T18:49:23.954Z",
+ "deals": 4412,
+ "flyers": 26,
  "lines": [
   {
    "q": "chicken breast",
@@ -60,6 +60,12 @@
    "hit": false,
    "deals": [
     {
+     "m": "Shoppers Drug Mart",
+     "n": "GRADE \"A\" LARGE WHITE EGGS",
+     "p": 3.49,
+     "u": "/ea"
+    },
+    {
      "m": "Sobeys",
      "n": "Large White Eggs",
      "p": 4.44,
@@ -70,12 +76,6 @@
      "n": "LIFE SMART EGG WHITES",
      "p": 4.99,
      "u": "/ea"
-    },
-    {
-     "m": "Food Basics",
-     "n": "BURNBRAE HARD BOILED PEELED EGGS",
-     "p": 4.99,
-     "u": ""
     }
    ]
   },
