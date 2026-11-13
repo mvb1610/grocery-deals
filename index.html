@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#1d6a43">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Grocery Deals">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" href="icon-192.png">
+<title>Niagara Grocery Deals</title>
+<style>
+:root{--bg:#f5f1e8;--card:#fff;--ink:#1c2921;--mut:#69746c;--line:#e2dccf;--green:#1d6a43;--green2:#e3efe7;--red:#c5362c;--yel:#ffd84d}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer}
+header{background:var(--green);color:#fff;padding:14px 20px 0;position:sticky;top:0;z-index:5}
+.top{display:flex;align-items:center;gap:12px;flex-wrap:wrap;max-width:1240px;margin:0 auto}
+h1{font-size:21px;margin:0;letter-spacing:-.01em}
+#status{margin:2px 0 0;font-size:12.5px;opacity:.85}
+.top .sp{flex:1}
+.hb{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);color:#fff;border-radius:8px;padding:7px 12px}
+.hb:hover{background:rgba(255,255,255,.25)}
+#bar{height:3px;background:rgba(255,255,255,.2);margin:10px -20px 0}
+#bar i{display:block;height:100%;width:0;background:var(--yel);transition:width .25s}
+nav{display:flex;gap:2px;max-width:1240px;margin:10px auto 0;overflow-x:auto}
+nav button{background:none;border:0;color:#fff;opacity:.75;padding:9px 14px;border-radius:9px 9px 0 0;white-space:nowrap;font-weight:600}
+nav button.on{background:var(--bg);color:var(--ink);opacity:1}
+nav b{background:var(--yel);color:#222;border-radius:10px;padding:0 7px;font-size:12px;margin-left:4px}
+main{max-width:1240px;margin:0 auto;padding:18px 20px 60px}
+section{display:none}section.on{display:block}
+.tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.tools input[type=search],.tools input[type=text]{flex:1;min-width:220px;padding:11px 14px;border:1.5px solid var(--line);border-radius:10px;background:#fff;font-size:16px}
+.tools input:focus{outline:2px solid var(--green);border-color:var(--green)}
+select{padding:10px;border:1.5px solid var(--line);border-radius:10px;background:#fff}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.chip{border:1.5px solid var(--line);background:#fff;border-radius:20px;padding:5px 12px;font-size:13.5px}
+.chip.on{background:var(--green);border-color:var(--green);color:#fff}
+.chip .x{margin-left:6px;opacity:.6}
+.count{color:var(--mut);font-size:13px;margin:6px 0 12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:12px}
+.deal{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.deal .img{height:120px;background:#fff;display:flex;align-items:center;justify-content:center;border-bottom:1px solid #f0ece2}
+.deal img{max-width:100%;max-height:112px;object-fit:contain}
+.deal .b{padding:9px 11px 11px;display:flex;flex-direction:column;gap:4px;flex:1}
+.store{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--green)}
+.deal h3{font-size:13.5px;font-weight:500;margin:0;flex:1;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.row{display:flex;align-items:center;justify-content:space-between;gap:6px}
+.price{font-size:20px;font-weight:800;letter-spacing:-.02em}
+.price small{font-size:12px;font-weight:600;color:var(--mut)}
+.add{border:1.5px solid var(--green);background:#fff;color:var(--green);border-radius:8px;padding:4px 9px;font-size:12.5px;font-weight:700;white-space:nowrap}
+.add.in{background:var(--green);color:#fff}
+.meta{font-size:11.5px;color:var(--mut)}
+.meta .soon{color:var(--red);font-weight:700}
+.tag{display:inline-block;background:var(--yel);border-radius:4px;padding:0 5px;font-weight:700;color:#222;margin-right:4px}
+.more{display:block;margin:18px auto 0;padding:10px 26px;border-radius:10px;border:1.5px solid var(--green);background:#fff;color:var(--green);font-weight:700}
+.empty{padding:40px 10px;text-align:center;color:var(--mut)}
+.need{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:10px}
+.need h3{margin:0 0 8px;font-size:15px;display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.need h3 a{font-size:12.5px;font-weight:500}
+a{color:var(--green);cursor:pointer;text-decoration:underline}
+.picks{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:8px}
+.pick{border:1px solid var(--line);border-radius:10px;padding:8px 10px;display:flex;gap:8px;align-items:center;background:#fdfcf9}
+.pick.best{border-color:var(--green);background:var(--green2)}
+.pick img{width:44px;height:44px;object-fit:contain;background:#fff;border-radius:6px;flex:none}
+.pick .t{flex:1;min-width:0}
+.pick .n{font-size:12.5px;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.pick .store{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pick .price{font-size:16px}
+.meal{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:6px}
+.meals{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:12px}
+.meal h3{margin:0;font-size:16px}
+.meal .sc{font-size:12.5px;color:var(--mut)}
+.meal ul{list-style:none;margin:4px 0;padding:0;font-size:13px;flex:1}
+.meal li{padding:4px 0;border-top:1px dashed var(--line);display:flex;gap:6px}
+.meal li .k{flex:none;width:16px;color:var(--green);font-weight:800}
+.meal li.no{color:var(--mut)}.meal li.no .k{color:#bbb}
+.meal li b{font-weight:700}
+.btn{border:0;background:var(--green);color:#fff;border-radius:9px;padding:9px 14px;font-weight:700}
+.btn.ghost{background:#fff;color:var(--green);border:1.5px solid var(--green)}
+.btn.warn{background:#fff;color:var(--red);border:1.5px solid var(--red)}
+.sl{background:var(--card);border:1px solid var(--line);border-radius:12px;margin-bottom:12px;overflow:hidden}
+.sl h3{margin:0;padding:10px 14px;background:var(--green2);font-size:15px;display:flex;justify-content:space-between}
+.li{display:flex;align-items:center;gap:10px;padding:8px 14px;border-top:1px solid #f0ece2}
+.li.done .n{text-decoration:line-through;color:var(--mut)}
+.li .n{flex:1;font-size:14px}
+.li input{width:18px;height:18px;accent-color:var(--green)}
+.qty{display:flex;align-items:center;gap:4px}
+.qty button{width:26px;height:26px;border-radius:7px;border:1px solid var(--line);background:#fff}
+.li .p{width:92px;text-align:right;font-weight:700}
+.li .rm{border:0;background:none;color:var(--mut);font-size:18px}
+.total{display:flex;justify-content:space-between;align-items:center;font-size:18px;font-weight:800;padding:6px 2px 14px}
+.total small{font-weight:500;color:var(--mut);font-size:12.5px;display:block}
+#modal{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:center;justify-content:center;z-index:9;padding:16px}
+#modal.on{display:flex}
+.dlg{background:#fff;border-radius:14px;padding:20px;max-width:560px;width:100%;max-height:88vh;overflow:auto}
+.dlg h2{margin:0 0 6px;font-size:18px}
+.dlg label{display:block;font-weight:700;margin:14px 0 4px}
+.dlg p{color:var(--mut);font-size:13px;margin:0 0 6px}
+.dlg input[type=text]{width:100%;padding:9px 12px;border:1.5px solid var(--line);border-radius:9px}
+.stores{display:grid;grid-template-columns:1fr 1fr;gap:4px 14px;font-size:13.5px}
+.stores label{font-weight:400;margin:0;display:flex;gap:6px;align-items:center}
+#toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:9px 16px;border-radius:20px;font-size:13.5px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:10}
+#toast.on{opacity:1}
+.sm{display:none}
+@media(max-width:640px){
+.lg{display:none}.sm{display:inline}
+header{padding:calc(10px + env(safe-area-inset-top)) 12px 0}
+.top{flex-wrap:nowrap;gap:8px}.top>div{flex:1;min-width:0}.top .sp{display:none}
+h1{font-size:17px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#status{font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hb{padding:7px 9px;font-size:13px}#bar{margin:8px -12px 0}
+nav{position:fixed;left:0;right:0;bottom:0;margin:0;max-width:none;background:var(--green);z-index:6;gap:0;padding:0 2px env(safe-area-inset-bottom);border-top:1px solid rgba(255,255,255,.25)}
+nav button{flex:1;padding:13px 2px 12px;border-radius:0;font-size:13px}
+nav button.on{background:rgba(255,255,255,.2);color:#fff}
+main{padding:12px 10px calc(84px + env(safe-area-inset-bottom))}
+.tools{gap:8px}.tools input[type=search]{flex-basis:100%}.tools select{flex:1;min-width:0;font-size:16px}
+.grid{grid-template-columns:repeat(2,1fr);gap:8px}.deal .img{height:96px}.deal img{max-height:90px}
+.deal .b{padding:8px 9px 9px}.row{flex-wrap:wrap}.price{font-size:18px}.add{padding:7px 10px;font-size:13px}
+.picks{grid-template-columns:1fr}.meals{grid-template-columns:1fr}.stores{grid-template-columns:1fr}
+.total{flex-direction:column;align-items:flex-start;gap:10px}
+.li{flex-wrap:wrap;padding:10px 12px;row-gap:6px}.li .n{flex:1 1 calc(100% - 40px)}.li .qty{margin-left:28px}.li .qty button{width:32px;height:32px}.li .p{margin-left:auto;width:auto}
+#toast{bottom:calc(74px + env(safe-area-inset-bottom))}
+}
+@media print{header,.tools,.noprint,#toast{display:none!important}section{display:none!important}#t-list{display:block!important}body{background:#fff}}
+</style>
+</head>
+<body>
+<header>
+  <div class="top">
+    <div><h1>Niagara Grocery Deals</h1><p id="status">Starting…</p></div>
+    <span class="sp"></span>
+    <button class="hb" id="rescan">Rescan<span class="lg"> flyers</span></button>
+    <button class="hb" id="gear">Settings</button>
+  </div>
+  <nav>
+    <button data-tab="deals" class="on"><span class="lg">All deals</span><span class="sm">Deals</span></button>
+    <button data-tab="needs"><span class="lg">Best price for what I need</span><span class="sm">My needs</span></button>
+    <button data-tab="meals"><span class="lg">What to cook</span><span class="sm">Cook</span></button>
+    <button data-tab="list"><span class="lg">Shopping list</span><span class="sm">List</span> <b id="lc">0</b></button>
+  </nav>
+  <div id="bar"><i></i></div>
+</header>
+<main>
+  <section id="t-deals" class="on">
+    <div class="tools">
+      <input type="search" id="q" placeholder="Search every flyer — chicken thighs, butter, coffee…" autocomplete="off">
+      <select id="store"></select>
+      <select id="sort">
+        <option value="best">Sort: recommended</option>
+        <option value="plow">Price: low to high</option>
+        <option value="phigh">Price: high to low</option>
+        <option value="off">Biggest % off</option>
+        <option value="store">Store A–Z</option>
+      </select>
+    </div>
+    <div class="chips" id="cats"></div>
+    <div class="count" id="count"></div>
+    <div class="grid" id="grid"></div>
+    <button class="more" id="more" hidden>Show more</button>
+  </section>
+
+  <section id="t-needs">
+    <div class="tools">
+      <input type="text" id="needIn" placeholder="Add something you need this week — e.g. salmon, cheddar, coffee" autocomplete="off">
+      <button class="btn" id="needAdd">Add</button>
+    </div>
+    <div class="chips" id="needChips"></div>
+    <div id="needOut"></div>
+  </section>
+
+  <section id="t-meals">
+    <p class="count">Dinner ideas ranked by how many of the main ingredients are in this week's flyers. Pantry basics (oil, salt, spices) aren't counted.</p>
+    <div class="meals" id="meals"></div>
+  </section>
+
+  <section id="t-list">
+    <div id="listOut"></div>
+  </section>
+</main>
+<div id="modal"><div class="dlg" id="dlg"></div></div>
+<div id="toast"></div>
+
+<script>
+const API = 'https://backflipp.wishabi.com/flipp/';
+const SKIP = /^(subway|president's choice)$/i;          // not weekly grocery flyers
+const TTL = 6 * 3600e3;                                   // rescan automatically after 6 hours
+const $ = s => document.querySelector(s);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const load = (k, d) => { try { const v = JSON.parse(localStorage.getItem(k)); return v == null ? d : v; } catch (e) { return d; } };
+const save = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
+
+let S = Object.assign({ postals: 'L2E 6X5, L2R 7C2, L3B 3X4', hidden: ['Longos'],   // Longo's has no Niagara store; re-enable in Settings
+  needs: ['chicken breast', 'ground beef', 'eggs', 'milk', 'butter', 'bread', 'potatoes', 'apples'] }, load('ngd-settings', {}));
+let LIST = load('ngd-list', []);
+let ITEMS = [], FLYERS = [], BYID = new Map(), SCANNED = 0, scanning = false;
+let V = { tab: 'deals', q: '', cat: 'all', store: '', sort: 'best', shown: 60 };
+
+/* ---------- categories ---------- */
+const CAT = {
+  meat: ['Meat & poultry', /\b(chicken|beef|pork|steaks?\b|ribs?\b|rib ?eye|sausage|bacon|ham\b|hams\b|turkey|lamb|veal|roast\b|burger|wings?\b|drumstick|thigh|tenderloin|sirloin|striploin|brisket|meatball|wiener|hot dog|chops?\b|kielbasa|salami|prosciutto|pepperoni|schnitzel|souvlaki|capon|duck\b)/],
+  seafood: ['Fish & seafood', /\b(salmon|shrimp|fish\b|cod\b|tilapia|haddock|tuna|scallop|lobster|crab\b|sole\b|trout|basa\b|pickerel|mussel|seafood|calamari|sardine|pollock)/],
+  produce: ['Fruit & veg', /\b(apples?\b|banana|oranges?\b|grapes?\b|berr(y|ies)|strawberr|blueberr|raspberr|blackberr|lettuce|tomato|potato|onions?\b|carrot|peppers?\b|cucumber|broccoli|cauliflower|spinach|mushroom|celery|avocado|lemons?\b|limes?\b|mango|pineapple|melon|pears?\b|peach|squash|zucchini|cabbage|kale\b|garlic\b|ginger\b|corn\b|asparagus|clementine|mandarin|salad|cilantro|parsley|kiwi|pomegranate|yams?\b|beets?\b|radish|eggplant|green beans|brussels|romaine|plums?\b|cherr|nectarine|leeks?\b|turnip|rutabaga|cranberr|vegetable|veggie|fruits?\b|bok choy|sprouts)/],
+  dairy: ['Dairy & eggs', /\b(milk|cheese|yogurt|yogourt|butter\b|cream\b|eggs?\b|margarine|cheddar|mozzarella|kefir|cottage|feta|parmesan|ricotta|brie|creamers?\b|dips?\b)/],
+  bakery: ['Bakery', /\b(bread|bagel|buns?\b|rolls?\b|tortilla|pita|croissant|muffin|cakes?\b|pies?\b|donut|baguette|naan|loaf|pastry|danish|strudel|tarts?\b|dessert|wafers?\b|pancake|biscotti|panettone)/],
+  pantry: ['Pantry', /\b(pasta|spaghetti|macaroni|lasagna|rice\b|sauce|soup|cereal|flour|sugar|oil\b|beans\b|canned|ketchup|mustard|mayo|peanut butter|jam\b|honey|spice|broth|noodle|oats|oatmeal|vinegar|salsa|dressing|syrup|lentil|chickpea|pickle|olives?\b|seasoning|gravy|stuffing|baking|kraft dinner|antipasto|baby formula|puree|cheerios|vermicelli|couscous|quinoa|bouillon|hummus)/],
+  frozen: ['Frozen', /\b(frozen|ice cream|pizza|fries\b|popsicle|waffle|perogies|pierogi|nugget|gelato|sorbet|hash ?browns?|pot pies?)/],
+  snacks: ['Snacks & sweets', /\b(chips|cracker|chocolate|candy|cand(y|ies)|cookie|popcorn|nuts\b|almonds|cashews|peanuts|granola|bars\b|pretzel|snack|gum\b|biscuit|clusters|advent calendar|trail mix|jerky)/],
+  drinks: ['Drinks', /\b(juice|coffee|tea\b|water\b|pop\b|soda|cola|pepsi|coke\b|coca|drink|beverage|kombucha|beer|wine\b|k-cup|k cup|pods\b|lemonade|gatorade|sparkling)/],
+  household: ['Household & care', /\b(detergent|towels?\b|tissue|bathroom|toilet|soap|shampoo|conditioner|toothpaste|toothbrush|diaper|cleaner|laundry|deodorant|garbage|foil|batter(y|ies)|vitamin|lotion|dog food|cat food|dog treat|cat treat|pet food|purina|pedigree|whiskas|friskies|litter|razor|wipes|bleach|dishwasher|softener|candle|pads\b|mouthwash|body wash|supplement|protein powder|scent beads|washer fluid|parchment|probiotic|melatonin|softgels|capsules|tablets\b|boots|toys?\b|cardigan|pyjama|socks)/],
+  other: ['Everything else', /.^/]
+};
+const DETECT = ['household', 'drinks', 'snacks', 'frozen', 'pantry', 'bakery', 'dairy', 'seafood', 'meat', 'produce'];
+const ORDER = Object.keys(CAT);
+const PRE = [[/\b(chocolate milk|cream cheese|cottage cheese|sour cream|whipping cream)/, 'dairy'], [/\b(hot dog buns?|hamburger buns?|garlic bread|sausage rolls?)/, 'bakery'],
+  [/\bpeanut butter/, 'pantry'], [/\b(ice cream|frozen)/, 'frozen']];
+const catOf = s => { const p = PRE.find(x => x[0].test(s)); return p ? p[1] : DETECT.find(c => CAT[c][1].test(s)) || 'other'; };
+
+/* ---------- matching ---------- */
+const norm = s => ' ' + String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
+const forms = w => { const f = [w];                      // singular/plural forms of a search word
+  if (/ies$/.test(w) && w.length > 4) f.push(w.slice(0, -3) + 'y'); else if (/oes$/.test(w)) f.push(w.slice(0, -2));
+  else if (/[^s]s$/.test(w) && w.length > 3) f.push(w.slice(0, -1)); else if (/[^aeiou]y$/.test(w)) f.push(w.slice(0, -1) + 'ies');
+  return f; };
+// words that usually mean "not the thing you meant" when shopping for a staple
+const NEG = {
+  milk: ['chocolate', 'coconut', 'almond', 'oat ', 'evaporated', 'condensed', 'shake', 'bone', 'candy', ' bar', 'lotion', 'soap', 'powder', 'frother'],
+  egg: ['plant', 'eggo', 'nog', 'noodle', 'chocolate', ' roll', 'kinder', 'creme', 'cooker', 'pasta', 'salad', 'bites'],
+  butter: ['peanut', 'cookie', 'tart', 'chicken', 'popcorn', 'croissant', 'almond', 'body', 'shea', 'cracker', 'nut', 'not butter', 'granola', 'biscuit', 'margarine', 'buttermilk', 'bean', 'vegan', 'flavoured'],
+  bread: ['crumb', 'garlic', 'stick', 'pudding'],
+  apple: ['juice', 'sauce', 'pie', 'cider', 'drink', 'strudel', 'cereal', 'snack', 'pineapple', 'turnover'],
+  potato: ['chip', 'salad', 'crisp', 'frozen', 'fries', 'sweet'],
+  chicken: ['soup', 'broth', 'noodle', ' cat', ' dog food', 'flavour', 'bouillon', 'stock', 'oven roasted', 'sliced', 'breaded', 'cooked', 'nugget', ' pie', 'sikorski', 'salad'],
+  beef: ['broth', 'jerky', 'soup', ' dog', ' cat', 'bouillon', 'stock', 'gravy'],
+  rice: ['cracker', 'cake', 'krispie', 'pudding', 'crisp', 'chip', 'drink', 'snack', 'shumai', 'shirataki', 'pizza', 'vinegar', 'noodle', 'paper'],
+  cheese: ['cake', 'cracker', 'puff', 'macaroni', 'pizza', 'burger', 'snack', 'cheezie'],
+  cheddar: ['cracker', 'chip', 'popcorn', 'snack', 'biscuit', ' mac ', 'puff', 'hippeas', 'goldfish'],
+  onion: ['ring', 'soup', 'dip', 'chip', 'bagel', 'cracker'],
+  tomato: ['soup', 'sauce', 'ketchup', 'paste', 'juice', 'pasta'],
+  garlic: ['bread', 'sauce', 'sausage', 'naan', 'shrimp', 'toast', 'chicken', 'dip', 'hummus', 'chip', 'rib', 'wing'],
+  lemon: ['juice', 'soda', 'tea', 'drink', 'cake', 'cookie', 'dish', 'cleaner', 'loaf', 'water', 'pie'],
+  pepper: ['pepperoni', 'sauce', 'steak', 'salami', 'pepperette', 'chip', 'cheese', 'dr '],
+  corn: ['chip', 'flake', 'dog', 'pop', 'syrup', 'starch', 'bread', 'beef'],
+  ham: ['hamburger', 'burger'], salmon: [' cat', ' dog', 'milk bone', 'treat', 'tuna'], bun: ['bundle', 'bunch'], mushroom: ['soup', 'sauce', 'pizza'],
+  pasta: ['sauce'], carrot: ['cake', 'juice', 'muffin'], coffee: ['maker', 'cream', 'mate', 'filter', 'mug', 'table', 'whitener', 'enhancer', 'cake'],
+  banana: ['pepper', 'novelt', 'saba', 'bread', 'chip', 'muffin', 'loaf'], bacon: ['bits', 'flavour', 'chip', 'burger', 'wrapped', 'pizza'],
+  spaghetti: ['squash'], whole: ['wing', 'breast', 'thigh', 'leg', 'grain', 'wheat', 'bean', 'milk'],
+  lettuce: ['wrap'], sausage: ['roll', 'pizza'], soup: ['bowl', 'ladle'], broth: [], steak: ['sauce', 'spice', 'knife', 'knives', 'fries', 'seasoning', 'ham', 'basa', 'tuna', 'salmon', 'cauliflower'], shrimp: ['basa', 'chip', 'cracker']
+};
+const visible = () => { const now = Date.now(); return ITEMS.filter(i => !S.hidden.includes(i.m) && i.e > now); };
+function find(q, strict, pool) {
+  const qn = norm(q), ws = qn.trim().split(' ').filter(Boolean).map(forms), flat = ws.flat();
+  if (!ws.length) return [];
+  const neg = [];
+  if (strict) for (const w of flat) for (const n of NEG[w] || []) if (!qn.includes(n.trim())) neg.push(n);
+  return (pool || visible()).filter(it => ws.every(fs => fs.some(f => it.s.includes(' ' + f))) && !neg.some(n => it.s.includes(n))
+    && !(strict === 'food' && (it.c === 'household' || it.c === 'other')));
+}
+
+/* ---------- scanning Flipp ---------- */
+async function getJSON(u) { const r = await fetch(u); if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }
+async function pool(arr, n, fn) { let i = 0; await Promise.all(Array.from({ length: n }, async () => { while (i < arr.length) { const k = i++; try { await fn(arr[k]); } catch (e) { console.warn('scan', e); } } })); }
+const postals = () => (S.postals.toUpperCase().replace(/\s+/g, '').match(/[A-Z]\d[A-Z]\d[A-Z]\d/g) || ['L2E6X5']);
+const tidy = n => { n = String(n).replace(/\s+/g, ' ').trim(); return n === n.toUpperCase() ? n.charAt(0) + n.slice(1).toLowerCase() : n; };
+function status(t, frac) { $('#status').textContent = t; $('#bar i').style.width = frac == null ? '0' : Math.round(frac * 100) + '%'; }
+function index() { BYID = new Map(); for (const it of ITEMS) { it.s = norm(it.n + ' ' + it.b); it.c = catOf(it.s); it.e = Date.parse(it.vt) || Infinity; BYID.set(it.id, it); } }
+const cache = () => save('ngd-cache', { t: SCANNED, pc: postals().join(), items: ITEMS.map(({ s, c, e, ...r }) => r), flyers: FLYERS });
+function stamp() {
+  const stores = new Set(visible().map(i => i.m)).size, d = new Date(SCANNED);
+  status(`${visible().length.toLocaleString()} deals from ${FLYERS.length} flyers at ${stores} stores · scanned ${d.toLocaleDateString('en-CA', { weekday: 'short', month: 'short', day: 'numeric' })} ${d.toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit' })}`);
+}
+function applySearch(d) {
+  let n = 0;
+  for (const x of d.items || []) { const it = BYID.get(x.flyer_item_id || x.id); if (!it) continue; n++;
+    if (x.post_price_text) it.u = x.post_price_text; if (x.pre_price_text) it.pre = x.pre_price_text;
+    if (x.sale_story) it.st = x.sale_story; if (x.original_price) it.o = +x.original_price; }
+  return n;
+}
+async function scan(force) {
+  if (scanning) return; scanning = true;
+  const pcs = postals();
+  try {
+    const c = force ? null : load('ngd-cache', null);
+    if (c && c.pc === pcs.join() && Date.now() - c.t < TTL && c.items.length) {
+      ITEMS = c.items; FLYERS = c.flyers; SCANNED = c.t; index(); stamp(); renderAll(); return;
+    }
+    status('Finding this week\'s flyers…', 0.03);
+    const seen = new Map(); let reached = 0;
+    for (const pc of pcs) {
+      try {
+        const d = await getJSON(API + 'flyers?locale=en-ca&postal_code=' + pc); reached++;
+        for (const f of d.flyers || []) {
+          if (!(f.categories || []).includes('Groceries') || SKIP.test(f.merchant)) continue;
+          const k = f.merchant + '|' + f.name;           // same chain, same flyer, different town → keep one
+          if (!seen.has(k)) seen.set(k, { id: f.id, merchant: f.merchant, name: f.name, valid_from: f.valid_from, valid_to: f.valid_to });
+        }
+      } catch (e) { console.warn('flyers', pc, e); }
+    }
+    if (!reached) throw new Error('offline');
+    FLYERS = [...seen.values()]; ITEMS = []; let done = 0; const dup = new Set();
+    await pool(FLYERS, 5, async f => {
+      try {
+        const d = await getJSON(API + 'flyers/' + f.id + '?locale=en-ca');
+        for (const i of d.items || []) {
+          const p = parseFloat(i.price); if (!i.name || !(p > 0)) continue;
+          const n = tidy(i.name), k = f.merchant + '|' + n.toLowerCase() + '|' + p; if (dup.has(k)) continue; dup.add(k);
+          ITEMS.push({ id: i.id, f: f.id, m: f.merchant, n, b: i.brand || '', p, d: +i.discount > 0 && +i.discount <= 75 ? +i.discount : 0,
+            img: (i.cutout_image_url || '').replace(/^http:/, 'https:'), vt: i.valid_to || f.valid_to, vf: i.valid_from || f.valid_from, u: '', pre: '', st: '' });
+        }
+      } finally { done++; status(`Scanning flyers… ${done} of ${FLYERS.length} (${f.merchant})`, done / FLYERS.length); }
+    });
+    SCANNED = Date.now(); index(); stamp(); renderAll();
+    cache();
+    enrich(pcs[0]);
+  } catch (e) {
+    status('Could not reach the flyer service. Check your internet connection and press “Rescan flyers”.');
+    $('#grid').innerHTML = '<div class="empty">No flyer data loaded yet.</div>';
+  } finally { scanning = false; }
+}
+// second pass: Flipp's search results carry the unit ("/lb", "each", "2/") that the flyer listing leaves out
+async function enrich(pc) {
+  const terms = [...new Set(ITEMS.map(i => i.m))].concat(('chicken,beef,pork,steak,ribs,sausage,bacon,ham,turkey,salmon,shrimp,fish,apples,bananas,oranges,grapes,berries,' +
+    'lettuce,tomatoes,potatoes,onions,carrots,peppers,cucumber,broccoli,mushrooms,avocado,lemon,squash,cabbage,milk,cheese,yogurt,butter,eggs,cream,bread,buns,' +
+    'thighs,drumsticks,wings,breast,ground,roast,loin,chops,tenderloin,lamb,veal,deli,cod,grapes,pears,clementines,peaches,melon,pineapple,mango,celery,cauliflower,spinach,zucchini,garlic,cheddar,mozzarella,bagels,tortilla,pasta,rice,sauce,soup,cereal,flour,oil,beans,frozen,pizza,chips,crackers,chocolate,cookies,juice,coffee,tea,water,pop').split(','));
+  let done = 0;
+  await pool(terms, 4, async q => {
+    applySearch(await getJSON(API + 'items/search?locale=en-ca&postal_code=' + pc + '&q=' + encodeURIComponent(q)));
+    done++; $('#bar i').style.width = Math.round(done / terms.length * 100) + '%';
+  });
+  $('#bar i').style.width = '0';
+  cache();
+  renderAll();
+}
+
+/* ---------- formatting ---------- */
+function eff(it) { let p = it.p; const m = /^(\d+)\s*(\/|for)/i.exec(it.pre || ''); if (m && +m[1] > 1) p /= +m[1]; return /100 ?g/i.test(it.u || '') ? p * 4.536 : p; }
+function price(it) {
+  let u = (it.u || '').trim().toLowerCase().replace(/\b(each|ea|ca)\b\.?/g, 'ea').replace(/ rewards sale|\*/g, '').trim().slice(0, 30);
+  if (u) u = (/^\//.test(u) ? u : /^(lb|kg|ea|each|100|pkg|pk|bunch|dozen|l\b)/.test(u) ? '/' + u : ' ' + u).replace(/each/g, 'ea');
+  return `${/^(\d+\s*(\/|for)|from)/i.test(it.pre || '') ? esc(it.pre.trim()) + ' ' : ''}$${it.p.toFixed(2)}<small>${esc(u)}</small>`;
+}
+function until(it) {
+  if (!it.vt) return '';
+  const now = Date.now(), t = Date.parse(it.vt), f = Date.parse(it.vf || 0);
+  const day = d => new Date(d).toLocaleDateString('en-CA', { weekday: 'short', month: 'short', day: 'numeric' });
+  if (f > now) return 'starts ' + day(f);
+  const hrs = (t - now) / 3600e3;
+  if (hrs < 24) return '<span class="soon">ends today</span>';
+  if (hrs < 48) return '<span class="soon">ends tomorrow</span>';
+  return 'until ' + day(t);
+}
+const inList = id => LIST.some(l => l.id === id);
+const addBtn = it => `<button class="add ${inList(it.id) ? 'in' : ''}" data-add="${it.id}">${inList(it.id) ? '✓ On list' : '+ List'}</button>`;
+const img = it => it.img ? `<img loading="lazy" alt="" src="${esc(it.img)}" onerror="this.style.visibility='hidden'">` : '';
+function card(it) {
+  const tags = (it.d ? `<span class="tag">${it.d}% off</span>` : '') + (it.st ? `<span class="tag">${esc(it.st.slice(0, 28))}</span>` : '');
+  return `<article class="deal"><div class="img">${img(it)}</div><div class="b"><div class="store">${esc(it.m)}</div>
+    <h3 title="${esc(it.n)}">${esc(it.n)}</h3><div class="row"><span class="price">${price(it)}</span>${addBtn(it)}</div>
+    <div class="meta">${tags}${until(it)}</div></div></article>`;
+}
+
+/* ---------- views ---------- */
+function renderDeals() {
+  let rows = V.q ? find(V.q) : visible();
+  const stores = [...new Set(visible().map(i => i.m))].sort();
+  $('#store').innerHTML = `<option value="">All ${stores.length} stores</option>` + stores.map(s => `<option ${s === V.store ? 'selected' : ''}>${esc(s)}</option>`).join('');
+  if (V.store) rows = rows.filter(i => i.m === V.store);
+  const per = {}; rows.forEach(i => per[i.c] = (per[i.c] || 0) + 1);
+  $('#cats').innerHTML = `<button class="chip ${V.cat === 'all' ? 'on' : ''}" data-cat="all">All</button>` +
+    ORDER.filter(c => per[c]).map(c => `<button class="chip ${V.cat === c ? 'on' : ''}" data-cat="${c}">${CAT[c][0]} · ${per[c]}</button>`).join('');
+  if (V.cat !== 'all') rows = rows.filter(i => i.c === V.cat);
+  const qf = norm(V.q).trim().split(' ').filter(Boolean).map(forms);   // whole-word hits rank above prefix hits (eggs before eggplant)
+  const whole = it => qf.filter(fs => fs.some(f => (it.s + ' ').includes(' ' + f + ' '))).length;
+  const by = { plow: (a, b) => eff(a) - eff(b), phigh: (a, b) => eff(b) - eff(a), off: (a, b) => b.d - a.d || eff(a) - eff(b), store: (a, b) => a.m.localeCompare(b.m) || eff(a) - eff(b),
+    best: V.q ? (a, b) => whole(b) - whole(a) || eff(a) - eff(b) : (a, b) => ORDER.indexOf(a.c) - ORDER.indexOf(b.c) || b.d - a.d || eff(a) - eff(b) };
+  rows.sort(by[V.sort]);
+  $('#count').textContent = ITEMS.length ? `${rows.length.toLocaleString()} deal${rows.length === 1 ? '' : 's'} at ${new Set(rows.map(i => i.m)).size} store${new Set(rows.map(i => i.m)).size === 1 ? '' : 's'}${V.q ? ` matching “${V.q}”` : ''}` : '';
+  $('#grid').innerHTML = rows.slice(0, V.shown).map(card).join('') || (ITEMS.length ? '<div class="empty">Nothing in this week\'s flyers matches that.</div>' : '');
+  $('#more').hidden = rows.length <= V.shown;
+  $('#more').textContent = `Show more (${(rows.length - V.shown).toLocaleString()} left)`;
+}
+function renderNeeds() {
+  $('#needChips').innerHTML = S.needs.map((n, i) => `<button class="chip" data-rmneed="${i}">${esc(n)}<span class="x">✕</span></button>`).join('');
+  $('#needOut').innerHTML = S.needs.map(n => {
+    const m = find(n, true).sort((a, b) => eff(a) - eff(b)), stores = new Set(m.map(i => i.m)).size;
+    if (!m.length) return `<div class="need"><h3>${esc(n)} <span class="meta">not in any flyer this week</span></h3></div>`;
+    return `<div class="need"><h3>${esc(n)} <span class="meta">${m.length} deal${m.length > 1 ? 's' : ''} at ${stores} store${stores > 1 ? 's' : ''}</span> <a data-q="${esc(n)}">see all</a></h3>
+      <div class="picks">${m.slice(0, 4).map((it, k) => `<div class="pick ${k ? '' : 'best'}">${img(it)}<div class="t"><div class="store">${esc(it.m)}</div>
+      <div class="n" title="${esc(it.n)}">${esc(it.n)}</div><span class="price">${price(it)}</span></div>${addBtn(it)}</div>`).join('')}</div></div>`;
+  }).join('') || '<div class="empty">Add the things you need and the cheapest flyer price for each shows up here.</div>';
+}
+const MEALS = [
+  ['Sheet-pan chicken & potatoes', ['chicken thighs|chicken legs|drumsticks|chicken leg quarters'], ['potatoes'], ['carrots|broccoli'], ['lemon']],
+  ['Chicken stir-fry', ['chicken breast'], ['peppers|broccoli'], ['rice'], ['stir fry sauce|soy sauce|teriyaki']],
+  ['Spaghetti bolognese', ['ground beef'], ['spaghetti|pasta'], ['pasta sauce|crushed tomatoes|tomato sauce'], ['onions']],
+  ['Taco night', ['ground beef|ground turkey|ground chicken'], ['tortillas|taco'], ['cheese'], ['salsa|tomatoes'], ['avocado|lettuce']],
+  ['Pork chops, apples & mash', ['pork chops|pork loin'], ['apples'], ['potatoes']],
+  ['Pulled pork sandwiches', ['pork shoulder|pork butt|pork roast'], ['buns'], ['coleslaw|cabbage'], ['bbq sauce']],
+  ['Salmon, rice & greens', ['salmon'], ['rice'], ['asparagus|broccoli|green beans']],
+  ['Garlic shrimp pasta', ['shrimp'], ['linguine|spaghetti|pasta'], ['garlic'], ['lemon']],
+  ['Beef stew', ['stewing beef|beef roast|blade roast|chuck'], ['potatoes'], ['carrots'], ['onions'], ['beef broth|broth']],
+  ['Roast chicken dinner', ['whole chicken|roasting chicken'], ['potatoes'], ['carrots'], ['stuffing|gravy']],
+  ['Burgers', ['ground beef|beef burgers'], ['buns'], ['cheese'], ['tomatoes|lettuce']],
+  ['Sausage & peppers', ['sausage'], ['peppers'], ['onions'], ['buns|pasta']],
+  ['Chili', ['ground beef'], ['kidney beans|beans'], ['diced tomatoes|tomatoes'], ['onions'], ['peppers']],
+  ['Steak night', ['steak|striploin|rib eye|sirloin'], ['potatoes'], ['mushrooms'], ['salad|asparagus']],
+  ['Breakfast for dinner', ['eggs'], ['bacon|breakfast sausage'], ['bread|bagels'], ['potatoes|hash browns']],
+  ['Homemade pizza', ['pizza dough|pizza crust|naan'], ['mozzarella|cheese'], ['pepperoni'], ['pizza sauce|pasta sauce'], ['mushrooms|peppers']],
+  ['Chicken Caesar wraps', ['chicken breast|chicken strips'], ['tortillas|wraps'], ['romaine|lettuce|caesar salad'], ['parmesan|caesar dressing']],
+  ['Fish & chips', ['cod|haddock|tilapia|basa|fish fillets'], ['potatoes|fries'], ['coleslaw|cabbage'], ['lemon']],
+  ['Butter chicken', ['chicken thighs|chicken breast'], ['butter chicken sauce|curry sauce|cooking sauce'], ['basmati|rice'], ['naan']],
+  ['Mac & cheese with ham', ['macaroni|pasta'], ['cheddar|cheese'], ['ham'], ['milk']],
+  ['Ribs & corn', ['back ribs|side ribs|ribs'], ['bbq sauce'], ['corn'], ['potatoes|coleslaw']],
+  ['Meatball subs', ['meatballs|ground turkey|ground pork'], ['pasta sauce'], ['buns'], ['mozzarella']],
+  ['Lasagna', ['ground beef|italian sausage'], ['lasagna'], ['ricotta|cottage cheese|mozzarella'], ['pasta sauce']],
+  ['Greek chicken bowls', ['chicken breast|chicken thighs'], ['cucumber'], ['tomatoes'], ['feta'], ['rice|pita']],
+  ['Perogies & kielbasa', ['perogies|pierogies'], ['kielbasa|sausage'], ['onions'], ['sour cream']],
+  ['Grilled cheese & tomato soup', ['bread'], ['cheddar|cheese'], ['tomato soup|soup'], ['butter']]
+];
+function renderMeals() {
+  if (!ITEMS.length) { $('#meals').innerHTML = ''; return; }
+  const food = visible();
+  const rows = MEALS.map(([name, ...ings]) => {
+    const parts = ings.map(a => {
+      const alts = a[0].split('|'); let best = null, label = alts[0];
+      for (const q of alts) { const m = find(q, 'food', food).sort((x, y) => eff(x) - eff(y))[0]; if (m && (!best || eff(m) < eff(best))) { best = m; label = q; } }
+      return { label, best };
+    });
+    const hit = parts.filter(p => p.best).length;
+    return { name, parts, hit, main: parts[0].best, cost: parts.reduce((s, p) => s + (p.best ? p.best.p : 0), 0) };
+  }).sort((a, b) => (b.main ? 1 : 0) - (a.main ? 1 : 0) || b.hit / b.parts.length - a.hit / a.parts.length || a.cost - b.cost);
+  $('#meals').innerHTML = rows.map((m, k) => `<div class="meal"><h3>${esc(m.name)}</h3>
+    <div class="sc">${m.hit} of ${m.parts.length} ingredients on sale${m.hit ? ` · about $${m.cost.toFixed(2)} at flyer prices` : ''}</div>
+    <ul>${m.parts.map(p => p.best ? `<li><span class="k">✓</span><span><a data-q="${esc(p.label)}">${esc(p.label)}</a> — ${esc(p.best.n.slice(0, 46))} <b>${price(p.best)}</b> at ${esc(p.best.m)}</span></li>`
+      : `<li class="no"><span class="k">–</span><span>${esc(p.label)} — no deal this week</span></li>`).join('')}</ul>
+    ${m.hit ? `<button class="btn ghost" data-meal="${m.parts.filter(p => p.best).map(p => p.best.id).join(',')}">Add ${m.hit} ingredient${m.hit > 1 ? 's' : ''} to list</button>` : ''}</div>`).join('');
+}
+function renderList() {
+  $('#lc').textContent = LIST.length;
+  if (!LIST.length) { $('#listOut').innerHTML = '<div class="empty">Your list is empty. Tap “+ List” on any deal.</div>'; return; }
+  const by = {}; LIST.forEach(l => (by[l.m] = by[l.m] || []).push(l));
+  const sum = a => a.reduce((s, l) => s + l.p * l.qty, 0);
+  $('#listOut').innerHTML = `<div class="total"><span>Estimated total $${sum(LIST).toFixed(2)}<small>${LIST.length} item${LIST.length === 1 ? '' : 's'} at ${Object.keys(by).length} store${Object.keys(by).length === 1 ? '' : 's'} · per-lb items counted as 1 lb each</small></span>
+    <span class="noprint"><button class="btn" id="share">Send list</button> <button class="btn ghost" id="copy">Copy list</button> <button class="btn ghost" id="print">Print</button> <button class="btn warn" id="clear">Clear</button></span></div>` +
+    Object.keys(by).sort((a, b) => sum(by[b]) - sum(by[a])).map(m => `<div class="sl"><h3><span>${esc(m)}</span><span>$${sum(by[m]).toFixed(2)}</span></h3>
+      ${by[m].map(l => `<div class="li ${l.done ? 'done' : ''}"><input type="checkbox" data-done="${l.id}" ${l.done ? 'checked' : ''}><span class="n">${esc(l.n)}</span>
+      <span class="qty noprint"><button data-qty="${l.id}" data-by="-1">−</button><b>${l.qty}</b><button data-qty="${l.id}" data-by="1">+</button></span>
+      <span class="p">${price(l)}</span><button class="rm noprint" data-add="${l.id}" title="Remove">✕</button></div>`).join('')}</div>`).join('');
+}
+function listText() {
+  const by = {}; LIST.forEach(l => (by[l.m] = by[l.m] || []).push(l));
+  return Object.keys(by).map(m => m.toUpperCase() + '\n' + by[m].map(l => `${l.done ? '✓' : '-'} ${l.qty > 1 ? l.qty + ' × ' : ''}${l.n} ($${l.p.toFixed(2)}${l.u ? ' ' + l.u.toLowerCase() : ''})`).join('\n')).join('\n\n');
+}
+function renderAll() { renderDeals(); renderNeeds(); renderMeals(); renderList(); }
+function toast(t) { const e = $('#toast'); e.textContent = t; e.classList.add('on'); clearTimeout(toast.t); toast.t = setTimeout(() => e.classList.remove('on'), 1800); }
+function toggle(id, onlyAdd) {
+  const k = LIST.findIndex(l => l.id === id);
+  if (k >= 0) { if (onlyAdd) return; LIST.splice(k, 1); toast('Removed from list'); }
+  else { const it = BYID.get(id); if (!it) return; LIST.push({ id: it.id, n: it.n, m: it.m, p: it.p, u: it.u, pre: it.pre, qty: 1, done: false }); if (!onlyAdd) toast('Added — ' + it.m); }
+  save('ngd-list', LIST);
+}
+function show(tab) {
+  V.tab = tab;
+  document.querySelectorAll('nav button').forEach(b => b.classList.toggle('on', b.dataset.tab === tab));
+  document.querySelectorAll('section').forEach(s => s.classList.toggle('on', s.id === 't-' + tab));
+  window.scrollTo(0, 0);
+}
+function settings() {
+  const stores = [...new Set(ITEMS.map(i => i.m))].sort();
+  $('#dlg').innerHTML = `<h2>Settings</h2>
+    <label>Postal codes to scan</label><p>Flyers are pulled for each code and merged, so stores anywhere in Niagara are covered. Put your own first.</p>
+    <input type="text" id="pcIn" value="${esc(S.postals)}">
+    <label>Stores I shop at</label><p>Untick a store to leave its deals out everywhere.</p>
+    <div class="stores">${stores.map(s => `<label><input type="checkbox" value="${esc(s)}" ${S.hidden.includes(s) ? '' : 'checked'}> ${esc(s)}</label>`).join('')}</div>
+    <p style="margin-top:16px">Prices come from the public Flipp flyer feed. Always check the shelf tag — flyers can have errors and limits.</p>
+    <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:14px"><button class="btn ghost" id="sCancel">Cancel</button><button class="btn" id="sSave">Save</button></div>`;
+  $('#modal').classList.add('on');
+}
+
+/* ---------- events ---------- */
+document.addEventListener('click', e => {
+  const t = e.target.closest('[data-tab],[data-cat],[data-add],[data-q],[data-rmneed],[data-meal],[data-qty],button[id],#modal');
+  if (!t) return;
+  const d = t.dataset;
+  if (d.tab) return show(d.tab);
+  if (d.cat) { V.cat = d.cat; V.shown = 60; return renderDeals(); }
+  if (d.add) { toggle(+d.add); return renderAll(); }
+  if (d.q) { V.q = d.q; V.cat = 'all'; V.store = ''; V.shown = 60; $('#q').value = d.q; renderDeals(); return show('deals'); }
+  if (d.rmneed) { S.needs.splice(+d.rmneed, 1); save('ngd-settings', S); return renderNeeds(); }
+  if (d.meal) { const ids = d.meal.split(',').map(Number); ids.forEach(i => toggle(i, true)); toast(`Added ${ids.length} ingredients to your list`); return renderAll(); }
+  if (d.qty) { const l = LIST.find(x => x.id === +d.qty); if (l) { l.qty = Math.max(1, l.qty + +d.by); save('ngd-list', LIST); renderList(); } return; }
+  switch (t.id) {
+    case 'modal': if (e.target === t) t.classList.remove('on'); break;
+    case 'more': V.shown += 120; renderDeals(); break;
+    case 'rescan': scan(true); break;
+    case 'gear': settings(); break;
+    case 'sCancel': $('#modal').classList.remove('on'); break;
+    case 'sSave': {
+      const old = postals().join(); S.postals = $('#pcIn').value;
+      S.hidden = [...document.querySelectorAll('.stores input')].filter(c => !c.checked).map(c => c.value);
+      save('ngd-settings', S); $('#modal').classList.remove('on');
+      if (postals().join() !== old) scan(true); else { stamp(); renderAll(); } break; }
+    case 'needAdd': addNeed(); break;
+    case 'print': try { window.print(); } catch (x) {} break;
+    case 'clear': if (t.dataset.sure) { LIST = []; save('ngd-list', LIST); renderAll(); } else { t.dataset.sure = 1; t.textContent = 'Tap again to clear'; } break;
+    case 'share': if (navigator.share) { navigator.share({ title: 'Grocery list', text: listText() }).catch(() => {}); break; }   // no share sheet → fall through to copy
+    case 'copy': (navigator.clipboard ? navigator.clipboard.writeText(listText()) : Promise.reject()).then(() => toast('List copied'), () => toast('Copy not available here — use Print')); break;
+  }
+});
+document.addEventListener('change', e => {
+  const t = e.target;
+  if (t.id === 'store') { V.store = t.value; V.shown = 60; renderDeals(); }
+  if (t.id === 'sort') { V.sort = t.value; renderDeals(); }
+  if (t.dataset.done) { const l = LIST.find(x => x.id === +t.dataset.done); if (l) { l.done = t.checked; save('ngd-list', LIST); renderList(); } }
+});
+let deb;
+$('#q').addEventListener('input', e => {
+  V.q = e.target.value.trim(); V.shown = 60; renderDeals();
+  clearTimeout(deb); const q = V.q;                     // also ask Flipp's own search so results pick up their units
+  if (q.length > 2) deb = setTimeout(async () => { try { if (applySearch(await getJSON(API + 'items/search?locale=en-ca&postal_code=' + postals()[0] + '&q=' + encodeURIComponent(q))) && V.q === q) renderDeals(); } catch (x) {} }, 600);
+});
+function addNeed() { const v = $('#needIn').value.trim(); if (!v) return; v.split(',').map(s => s.trim()).filter(Boolean).forEach(n => { if (!S.needs.includes(n)) S.needs.push(n); }); $('#needIn').value = ''; save('ngd-settings', S); renderNeeds(); }
+$('#needIn').addEventListener('keydown', e => { if (e.key === 'Enter') addNeed(); });
+
+renderList();
+scan(false);
+</script>
+</body>
+</html>
