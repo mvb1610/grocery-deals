@@ -195,7 +195,7 @@ const save = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } cat
 let S = Object.assign({ postals: 'L2E 6X5, L2R 7C2, L3B 3X4', hidden: ['Longos'],   // Longo's has no Niagara store; re-enable in Settings
   needs: ['chicken breast', 'ground beef', 'eggs', 'milk', 'butter', 'bread', 'potatoes', 'apples'] }, load('ngd-settings', {}));
 let LIST = load('ngd-list', []);
-let ITEMS = [], FLYERS = [], BYID = new Map(), SCANNED = 0, scanning = false;
+let ITEMS = [], FLYERS = [], BYID = new Map(), SCANNED = 0, scanning = false, ENRICHED = false;
 let V = { tab: 'deals', q: '', cat: 'all', store: '', sort: 'best', shown: 60 };
 
 /* ---------- categories ---------- */
@@ -266,7 +266,7 @@ const postals = () => (S.postals.toUpperCase().replace(/\s+/g, '').match(/[A-Z]\
 const tidy = n => { n = String(n).replace(/\s+/g, ' ').trim(); return n === n.toUpperCase() ? n.charAt(0) + n.slice(1).toLowerCase() : n; };
 function status(t, frac) { $('#status').textContent = t; $('#bar i').style.width = frac == null ? '0' : Math.round(frac * 100) + '%'; }
 function index() { BYID = new Map(); for (const it of ITEMS) { it.s = norm(it.n + ' ' + it.b); it.c = catOf(it.s); it.e = Date.parse(it.vt) || Infinity; BYID.set(it.id, it); } }
-const cache = () => save('ngd-cache', { t: SCANNED, pc: postals().join(), items: ITEMS.map(({ s, c, e, ...r }) => r), flyers: FLYERS });
+const cache = () => save('ngd-cache', { t: SCANNED, pc: postals().join(), items: ITEMS.map(({ s, c, e, ...r }) => r), flyers: FLYERS, en: ENRICHED });
 function stamp() {
   const stores = new Set(visible().map(i => i.m)).size, d = new Date(SCANNED);
   status(`${visible().length.toLocaleString()} deals from ${FLYERS.length} flyers at ${stores} stores · scanned ${d.toLocaleDateString('en-CA', { weekday: 'short', month: 'short', day: 'numeric' })} ${d.toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit' })}`);
@@ -284,7 +284,7 @@ async function scan(force) {
   try {
     const c = force ? null : load('ngd-cache', null);
     if (c && c.pc === pcs.join() && Date.now() - c.t < TTL && c.items.length) {
-      ITEMS = c.items; FLYERS = c.flyers; SCANNED = c.t; index(); stamp(); renderAll(); return;
+      ITEMS = c.items; FLYERS = c.flyers; SCANNED = c.t; ENRICHED = !!c.en; index(); stamp(); renderAll(); if (!ENRICHED) enrich(pcs[0]); return;
     }
     status('Finding this week\'s flyers…', 0.03);
     const seen = new Map(); let reached = 0;
@@ -311,7 +311,7 @@ async function scan(force) {
         }
       } finally { done++; status(`Scanning flyers… ${done} of ${FLYERS.length} (${f.merchant})`, done / FLYERS.length); }
     });
-    SCANNED = Date.now(); index(); stamp(); renderAll();
+    SCANNED = Date.now(); ENRICHED = false; index(); stamp(); renderAll();
     cache();
     enrich(pcs[0]);
   } catch (e) {
@@ -330,7 +330,7 @@ async function enrich(pc) {
     done++; $('#bar i').style.width = Math.round(done / terms.length * 100) + '%';
   });
   $('#bar i').style.width = '0';
-  cache();
+  ENRICHED = true; cache();
   renderAll();
 }
 
@@ -351,7 +351,9 @@ function until(it) {
   if (hrs < 48) return '<span class="soon">ends tomorrow</span>';
   return 'until ' + day(t);
 }
-const inList = id => LIST.some(l => l.id === id);
+const live = () => LIST.filter(l => !l.del);
+const inList = id => live().some(l => l.id === id);
+function saveList() { save('ngd-list', LIST); clearTimeout(syncTimer); syncTimer = setTimeout(syncNow, 500); }
 const addBtn = it => `<button class="add ${inList(it.id) ? 'in' : ''}" data-add="${it.id}">${inList(it.id) ? '✓ On list' : '+ List'}</button>`;
 const img = it => it.img ? `<img loading="lazy" alt="" src="${esc(it.img)}" onerror="this.style.visibility='hidden'">` : '';
 function card(it) {
@@ -359,6 +361,82 @@ function card(it) {
   return `<article class="deal"><div class="img">${img(it)}</div><div class="b"><div class="store">${esc(it.m)}</div>
     <h3 title="${esc(it.n)}">${esc(it.n)}</h3><div class="row"><span class="price">${price(it)}</span>${addBtn(it)}</div>
     <div class="meta">${tags}${until(it)}</div></div></article>`;
+}
+
+/* ---------- shared list: Google sign-in + Firestore (same Firebase project as Plate Ledger) ---------- */
+const PROJECT = 'plate-ledger-8007d', API_KEY = 'AIzaSyDcRdTEzGJa6YfFgesaefw90mHZZrTvaQo';   // public web key
+const GOOGLE_CLIENT_ID = '697214158009-bbkc4g24jr4kjharq5da3i5t26b9nfng.apps.googleusercontent.com';
+const APP_URL = 'https://mvb1610.github.io/grocery-deals/';
+const FS = `https://firestore.googleapis.com/v1/projects/${PROJECT}/databases/(default)/documents`;
+let AUTH = load('ngd-auth', null), syncTimer, syncing = false, syncMsg = '', listChecked = false;
+async function token() {
+  if (!AUTH) throw new Error('signed out');
+  if (AUTH.idToken && AUTH.exp - 120000 > Date.now()) return AUTH.idToken;
+  const r = await fetch(`https://securetoken.googleapis.com/v1/token?key=${API_KEY}`, { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: 'grant_type=refresh_token&refresh_token=' + encodeURIComponent(AUTH.refreshToken) });
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok) { if (/TOKEN_EXPIRED|INVALID_REFRESH_TOKEN|USER_DISABLED|USER_NOT_FOUND|INVALID_GRANT/.test((j.error && j.error.message) || '')) { AUTH = null; save('ngd-auth', AUTH); } throw new Error('sign-in expired — sign in again in Settings'); }
+  AUTH.idToken = j.id_token; if (j.refresh_token) AUTH.refreshToken = j.refresh_token; AUTH.exp = Date.now() + (+j.expires_in || 3600) * 1000; save('ngd-auth', AUTH);
+  return AUTH.idToken;
+}
+async function fs(method, path, body) {
+  const r = await fetch(FS + path, { method, headers: { Authorization: 'Bearer ' + await token(), 'Content-Type': 'application/json' }, body: body ? JSON.stringify(body) : undefined });
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error((j.error && (j.error.status || j.error.message)) || 'HTTP ' + r.status);
+  return j;
+}
+const fsMembers = m => ({ arrayValue: { values: m.map(x => ({ stringValue: x })) } });
+const fsItems = items => ({ items: { stringValue: JSON.stringify(items) }, u: { integerValue: String(Date.now()) } });
+const readDoc = d => ({ id: d.name.split('/').pop(), members: ((d.fields.members.arrayValue || {}).values || []).map(v => v.stringValue), items: JSON.parse((d.fields.items || {}).stringValue || '[]') });
+const listKey = a => JSON.stringify(a.map(l => [l.id, l.t || 0, !!l.del, l.qty, !!l.done]).sort());
+function merge(remote) {        // newest change to each item wins; removed items stay as markers for a week so they don't come back
+  const by = new Map(); for (const l of remote.concat(LIST)) { const c = by.get(l.id); if (!c || (l.t || 0) > (c.t || 0)) by.set(l.id, l); }
+  const cut = Date.now() - 7 * 864e5; return [...by.values()].filter(l => !l.del || (l.t || 0) > cut);
+}
+async function syncNow() {
+  if (!AUTH || syncing) return; syncing = true;
+  try {
+    if (!AUTH.listId || !listChecked) {      // find the list this account belongs to (prefer one that is shared), or start one
+      const q = await fs('POST', ':runQuery', { structuredQuery: { from: [{ collectionId: 'grocery' }], where: { fieldFilter: { field: { fieldPath: 'members' }, op: 'ARRAY_CONTAINS', value: { stringValue: AUTH.email } } }, limit: 10 } });
+      const docs = q.filter(x => x.document).map(x => readDoc(x.document)).sort((a, b) => b.members.length - a.members.length);
+      const d = docs[0] || readDoc(await fs('POST', '/grocery', { fields: Object.assign({ members: fsMembers([AUTH.email]) }, fsItems(LIST)) }));
+      AUTH.listId = d.id; AUTH.members = d.members; listChecked = true; save('ngd-auth', AUTH);
+    }
+    const d = readDoc(await fs('GET', '/grocery/' + AUTH.listId));
+    AUTH.members = d.members; save('ngd-auth', AUTH);
+    const merged = merge(d.items), changedHere = listKey(merged) !== listKey(LIST);
+    if (listKey(merged) !== listKey(d.items)) await fs('PATCH', '/grocery/' + AUTH.listId + '?updateMask.fieldPaths=items&updateMask.fieldPaths=u', { fields: fsItems(merged) });
+    if (changedHere) { LIST = merged; save('ngd-list', LIST); renderAll(); }
+    syncMsg = 'Shared list is up to date.';
+  } catch (e) {
+    syncMsg = 'Sync problem: ' + (e.message || e);
+    if (/NOT_FOUND|PERMISSION_DENIED/.test(syncMsg) && AUTH) { AUTH.listId = null; listChecked = false; save('ngd-auth', AUTH); }
+  } finally { syncing = false; const el = $('#syncMsg'); if (el) el.textContent = syncMsg; }
+}
+async function addMember(email) {
+  email = email.trim().toLowerCase();
+  if (!/^\S+@\S+\.\S+$/.test(email)) throw new Error('that does not look like an email address');
+  if (!AUTH || !AUTH.listId) throw new Error('sign in first');
+  const members = [...new Set([...(AUTH.members || []), email])];
+  await fs('PATCH', '/grocery/' + AUTH.listId + '?updateMask.fieldPaths=members', { fields: { members: fsMembers(members) } });
+  AUTH.members = members; save('ngd-auth', AUTH);
+}
+function signIn() {
+  const st = Math.random().toString(36).slice(2); save('ngd-oauth', st);
+  const u = new URL('https://accounts.google.com/o/oauth2/v2/auth');
+  u.searchParams.set('client_id', GOOGLE_CLIENT_ID); u.searchParams.set('redirect_uri', APP_URL); u.searchParams.set('response_type', 'token');
+  u.searchParams.set('scope', 'openid email profile'); u.searchParams.set('state', st); u.searchParams.set('prompt', 'select_account');
+  location.href = u.toString();
+}
+async function oauthReturn() {
+  const p = new URLSearchParams(location.hash.slice(1)), tok = p.get('access_token'); if (!tok) return;
+  const st = load('ngd-oauth', null); save('ngd-oauth', null); history.replaceState(null, '', location.pathname);
+  if (st && p.get('state') !== st) return toast('Sign-in could not be completed — try again');
+  try {
+    const r = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithIdp?key=${API_KEY}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ postBody: 'access_token=' + encodeURIComponent(tok) + '&providerId=google.com', requestUri: 'http://localhost', returnSecureToken: true }) });
+    const j = await r.json().catch(() => ({})); if (!r.ok || !j.idToken) throw new Error((j.error && j.error.message) || 'HTTP ' + r.status);
+    AUTH = { email: (j.email || '').toLowerCase(), idToken: j.idToken, refreshToken: j.refreshToken, exp: Date.now() + (+j.expiresIn || 3600) * 1000, listId: null, members: [] }; save('ngd-auth', AUTH);
+    toast('Signed in — your list now syncs'); renderList(); syncNow();
+  } catch (e) { toast('Sign-in failed: ' + (e.message || e)); }
 }
 
 /* ---------- views ---------- */
@@ -438,11 +516,12 @@ function renderMeals() {
     ${m.hit ? `<button class="btn ghost" data-meal="${m.parts.filter(p => p.best).map(p => p.best.id).join(',')}">Add ${m.hit} ingredient${m.hit > 1 ? 's' : ''} to list</button>` : ''}</div>`).join('');
 }
 function renderList() {
-  $('#lc').textContent = LIST.length;
-  if (!LIST.length) { $('#listOut').innerHTML = '<div class="empty">Your list is empty. Tap “+ List” on any deal.</div>'; return; }
-  const by = {}; LIST.forEach(l => (by[l.m] = by[l.m] || []).push(l));
+  const L = live();
+  $('#lc').textContent = L.length;
+  if (!L.length) { $('#listOut').innerHTML = '<div class="empty">Your list is empty. Tap “+ List” on any deal.</div>'; return; }
+  const by = {}; L.forEach(l => (by[l.m] = by[l.m] || []).push(l));
   const sum = a => a.reduce((s, l) => s + l.p * l.qty, 0);
-  $('#listOut').innerHTML = `<div class="total"><span>Estimated total $${sum(LIST).toFixed(2)}<small>${LIST.length} item${LIST.length === 1 ? '' : 's'} at ${Object.keys(by).length} store${Object.keys(by).length === 1 ? '' : 's'} · per-lb items counted as 1 lb each</small></span>
+  $('#listOut').innerHTML = `<div class="total"><span>Estimated total $${sum(L).toFixed(2)}<small>${L.length} item${L.length === 1 ? '' : 's'} at ${Object.keys(by).length} store${Object.keys(by).length === 1 ? '' : 's'} · per-lb items counted as 1 lb each · ${AUTH ? 'shared list' : 'on this device only'}</small></span>
     <span class="noprint"><button class="btn" id="share">Send list</button> <button class="btn ghost" id="copy">Copy list</button> <button class="btn ghost" id="print">Print</button> <button class="btn warn" id="clear">Clear</button></span></div>` +
     Object.keys(by).sort((a, b) => sum(by[b]) - sum(by[a])).map(m => `<div class="sl"><h3><span>${esc(m)}</span><span>$${sum(by[m]).toFixed(2)}</span></h3>
       ${by[m].map(l => `<div class="li ${l.done ? 'done' : ''}"><input type="checkbox" data-done="${l.id}" ${l.done ? 'checked' : ''}><span class="n">${esc(l.n)}</span>
@@ -450,16 +529,21 @@ function renderList() {
       <span class="p">${price(l)}</span><button class="rm noprint" data-add="${l.id}" title="Remove">✕</button></div>`).join('')}</div>`).join('');
 }
 function listText() {
-  const by = {}; LIST.forEach(l => (by[l.m] = by[l.m] || []).push(l));
+  const by = {}; live().forEach(l => (by[l.m] = by[l.m] || []).push(l));
   return Object.keys(by).map(m => m.toUpperCase() + '\n' + by[m].map(l => `${l.done ? '✓' : '-'} ${l.qty > 1 ? l.qty + ' × ' : ''}${l.n} ($${l.p.toFixed(2)}${l.u ? ' ' + l.u.toLowerCase() : ''})`).join('\n')).join('\n\n');
 }
 function renderAll() { renderDeals(); renderNeeds(); renderMeals(); renderList(); }
 function toast(t) { const e = $('#toast'); e.textContent = t; e.classList.add('on'); clearTimeout(toast.t); toast.t = setTimeout(() => e.classList.remove('on'), 1800); }
 function toggle(id, onlyAdd) {
-  const k = LIST.findIndex(l => l.id === id);
-  if (k >= 0) { if (onlyAdd) return; LIST.splice(k, 1); toast('Removed from list'); }
-  else { const it = BYID.get(id); if (!it) return; LIST.push({ id: it.id, n: it.n, m: it.m, p: it.p, u: it.u, pre: it.pre, qty: 1, done: false }); if (!onlyAdd) toast('Added — ' + it.m); }
-  save('ngd-list', LIST);
+  const cur = LIST.find(l => l.id === id);
+  if (cur && !cur.del) { if (onlyAdd) return; cur.del = true; cur.t = Date.now(); toast('Removed from list'); }
+  else {
+    const it = BYID.get(id); if (!it) return;
+    const e = { id: it.id, n: it.n, m: it.m, p: it.p, u: it.u, pre: it.pre, qty: 1, done: false, del: false, t: Date.now() };
+    if (cur) Object.assign(cur, e); else LIST.push(e);
+    if (!onlyAdd) toast('Added — ' + it.m);
+  }
+  saveList();
 }
 function show(tab) {
   V.tab = tab;
@@ -474,6 +558,12 @@ function settings() {
     <input type="text" id="pcIn" value="${esc(S.postals)}">
     <label>Stores I shop at</label><p>Untick a store to leave its deals out everywhere.</p>
     <div class="stores">${stores.map(s => `<label><input type="checkbox" value="${esc(s)}" ${S.hidden.includes(s) ? '' : 'checked'}> ${esc(s)}</label>`).join('')}</div>
+    <label>Shared shopping list</label>
+    ${location.href.startsWith(APP_URL) ? (AUTH ? `<p>Signed in as <b>${esc(AUTH.email)}</b>. Shared with: ${esc((AUTH.members || []).filter(m => m !== AUTH.email).join(', ') || 'nobody yet')}. <span id="syncMsg">${esc(syncMsg)}</span></p>
+    <div class="tools"><input type="text" id="shareIn" placeholder="Google email of the person to share with" autocomplete="off"><button class="btn" id="shareAdd">Share</button></div>
+    <p style="margin-top:8px"><a id="signOut">Sign out on this device</a></p>`
+      : `<p>Sign in with Google on each phone to keep one live list between you. Then add the other person's Google email here once.</p><button class="btn" id="signIn">Sign in with Google</button>`)
+      : `<p>The shared list works in the hosted app: ${APP_URL}</p>`}
     <p style="margin-top:16px">Prices come from the public Flipp flyer feed. Always check the shelf tag — flyers can have errors and limits.</p>
     <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:14px"><button class="btn ghost" id="sCancel">Cancel</button><button class="btn" id="sSave">Save</button></div>`;
   $('#modal').classList.add('on');
@@ -481,7 +571,7 @@ function settings() {
 
 /* ---------- events ---------- */
 document.addEventListener('click', e => {
-  const t = e.target.closest('[data-tab],[data-cat],[data-add],[data-q],[data-rmneed],[data-meal],[data-qty],button[id],#modal');
+  const t = e.target.closest('[data-tab],[data-cat],[data-add],[data-q],[data-rmneed],[data-meal],[data-qty],button[id],a[id],#modal');
   if (!t) return;
   const d = t.dataset;
   if (d.tab) return show(d.tab);
@@ -490,7 +580,7 @@ document.addEventListener('click', e => {
   if (d.q) { V.q = d.q; V.cat = 'all'; V.store = ''; V.shown = 60; $('#q').value = d.q; renderDeals(); return show('deals'); }
   if (d.rmneed) { S.needs.splice(+d.rmneed, 1); save('ngd-settings', S); return renderNeeds(); }
   if (d.meal) { const ids = d.meal.split(',').map(Number); ids.forEach(i => toggle(i, true)); toast(`Added ${ids.length} ingredients to your list`); return renderAll(); }
-  if (d.qty) { const l = LIST.find(x => x.id === +d.qty); if (l) { l.qty = Math.max(1, l.qty + +d.by); save('ngd-list', LIST); renderList(); } return; }
+  if (d.qty) { const l = LIST.find(x => x.id === +d.qty); if (l) { l.qty = Math.max(1, l.qty + +d.by); l.t = Date.now(); saveList(); renderList(); } return; }
   switch (t.id) {
     case 'modal': if (e.target === t) t.classList.remove('on'); break;
     case 'more': V.shown += 120; renderDeals(); break;
@@ -503,8 +593,11 @@ document.addEventListener('click', e => {
       save('ngd-settings', S); $('#modal').classList.remove('on');
       if (postals().join() !== old) scan(true); else { stamp(); renderAll(); } break; }
     case 'needAdd': addNeed(); break;
+    case 'signIn': signIn(); break;
+    case 'signOut': AUTH = null; save('ngd-auth', AUTH); settings(); renderList(); break;
+    case 'shareAdd': addMember($('#shareIn').value).then(() => { toast('List shared'); settings(); }, e => toast('Could not share: ' + (e.message || e))); break;
     case 'print': try { window.print(); } catch (x) {} break;
-    case 'clear': if (t.dataset.sure) { LIST = []; save('ngd-list', LIST); renderAll(); } else { t.dataset.sure = 1; t.textContent = 'Tap again to clear'; } break;
+    case 'clear': if (t.dataset.sure) { LIST.forEach(l => { if (!l.del) { l.del = true; l.t = Date.now(); } }); saveList(); renderAll(); } else { t.dataset.sure = 1; t.textContent = 'Tap again to clear'; } break;
     case 'share': if (navigator.share) { navigator.share({ title: 'Grocery list', text: listText() }).catch(() => {}); break; }   // no share sheet → fall through to copy
     case 'copy': (navigator.clipboard ? navigator.clipboard.writeText(listText()) : Promise.reject()).then(() => toast('List copied'), () => toast('Copy not available here — use Print')); break;
   }
@@ -513,7 +606,7 @@ document.addEventListener('change', e => {
   const t = e.target;
   if (t.id === 'store') { V.store = t.value; V.shown = 60; renderDeals(); }
   if (t.id === 'sort') { V.sort = t.value; renderDeals(); }
-  if (t.dataset.done) { const l = LIST.find(x => x.id === +t.dataset.done); if (l) { l.done = t.checked; save('ngd-list', LIST); renderList(); } }
+  if (t.dataset.done) { const l = LIST.find(x => x.id === +t.dataset.done); if (l) { l.done = t.checked; l.t = Date.now(); saveList(); renderList(); } }
 });
 let deb;
 $('#q').addEventListener('input', e => {
@@ -526,6 +619,9 @@ $('#needIn').addEventListener('keydown', e => { if (e.key === 'Enter') addNeed()
 
 renderList();
 scan(false);
+oauthReturn(); syncNow();
+setInterval(() => { if (AUTH && document.visibilityState === 'visible') syncNow(); }, 6000);
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') syncNow(); });
 </script>
 </body>
 </html>
