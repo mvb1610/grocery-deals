@@ -1,0 +1,208 @@
+{
+ "week": "2026-11-12",
+ "generated": "2026-11-13T18:42:06.761Z",
+ "deals": 3989,
+ "flyers": 25,
+ "lines": [
+  {
+   "q": "chicken breast",
+   "max": null,
+   "hit": false,
+   "deals": [
+    {
+     "m": "Real Canadian Superstore",
+     "n": "HALAL CHICKEN BREAST",
+     "p": 4.88,
+     "u": "/lb"
+    },
+    {
+     "m": "Zehrs",
+     "n": "CHICKEN BREASTS",
+     "p": 4.88,
+     "u": "/lb"
+    },
+    {
+     "m": "Food Basics",
+     "n": "PRIME, MINA, FRESH FROM THE FARM OR ZABIHA HALAL FRESH BONELESS SKINLESS CHICKEN BREAST FAMILY PACK",
+     "p": 4.98,
+     "u": "/lb"
+    }
+   ]
+  },
+  {
+   "q": "ground beef",
+   "max": null,
+   "hit": false,
+   "deals": [
+    {
+     "m": "Metro",
+     "n": "LEAN GROUND BEEF VALUE PACK, HALAL LEAN GROUND BEEF OR LIFE SMART EXTRA LEAN GROUND CHICKEN OR TURKEY",
+     "p": 5.44,
+     "u": ""
+    },
+    {
+     "m": "Your Independent Grocer",
+     "n": "MEDIUM GROUND BEEF",
+     "p": 5.88,
+     "u": "/lb"
+    },
+    {
+     "m": "Walmart",
+     "n": "Our Promise lean ground beef",
+     "p": 5.98,
+     "u": ""
+    }
+   ]
+  },
+  {
+   "q": "eggs",
+   "max": null,
+   "hit": false,
+   "deals": [
+    {
+     "m": "Sobeys",
+     "n": "Large White Eggs",
+     "p": 4.44,
+     "u": ""
+    },
+    {
+     "m": "Metro",
+     "n": "LIFE SMART EGG WHITES",
+     "p": 4.99,
+     "u": "/ea"
+    },
+    {
+     "m": "Food Basics",
+     "n": "BURNBRAE HARD BOILED PEELED EGGS",
+     "p": 4.99,
+     "u": ""
+    }
+   ]
+  },
+  {
+   "q": "milk",
+   "max": null,
+   "hit": false,
+   "deals": [
+    {
+     "m": "No Frills",
+     "n": "NEILSON FLAVoured MILK, 1 L",
+     "p": 2,
+     "u": ""
+    },
+    {
+     "m": "Wholesale Club and Club Entrepôt",
+     "n": "ULTRAFILTERED MILK, 1 L",
+     "p": 3.99,
+     "u": ""
+    },
+    {
+     "m": "No Frills",
+     "n": "NEILSON ULTRAFILTERED MILK, 1 L",
+     "p": 4.25,
+     "u": ""
+    }
+   ]
+  },
+  {
+   "q": "butter",
+   "max": null,
+   "hit": false,
+   "deals": [
+    {
+     "m": "Walmart",
+     "n": "Gay Lea salted or unsalted butter 454 g",
+     "p": 4.97,
+     "u": ""
+    },
+    {
+     "m": "Real Canadian Superstore",
+     "n": "LACTANTIA BUTTER, 454 G",
+     "p": 4.97,
+     "u": ""
+    },
+    {
+     "m": "Commisso's Fresh Foods",
+     "n": "Lactantia Lactose Free or European Style Butter",
+     "p": 4.99,
+     "u": ""
+    }
+   ]
+  },
+  {
+   "q": "bread",
+   "max": null,
+   "hit": false,
+   "deals": [
+    {
+     "m": "Real Canadian Superstore",
+     "n": "CEDAR PITA BREAD, 330 G",
+     "p": 1.5,
+     "u": ""
+    },
+    {
+     "m": "Real Canadian Superstore",
+     "n": "FRENCH OR ITALIAN BREAD, 370-568 G",
+     "p": 1.5,
+     "u": ""
+    },
+    {
+     "m": "Foodland",
+     "n": "Half Loaf White or Whole Wheat Bread",
+     "p": 1.99,
+     "u": ""
+    }
+   ]
+  },
+  {
+   "q": "potatoes",
+   "max": null,
+   "hit": false,
+   "deals": [
+    {
+     "m": "Metro",
+     "n": "BABY RUSSET POTATOES 1 LB PRODUCT OF CANADA GARLIC 5 PK PRODUCT OF CHINA",
+     "p": 0.99,
+     "u": "/ea"
+    },
+    {
+     "m": "Metro",
+     "n": "BABY RUSSET POTATOES OR GARLIC",
+     "p": 0.99,
+     "u": "/ea"
+    },
+    {
+     "m": "Food Basics",
+     "n": "AURORA POTATO GNOCCHI",
+     "p": 1.49,
+     "u": ""
+    }
+   ]
+  },
+  {
+   "q": "apples",
+   "max": null,
+   "hit": false,
+   "deals": [
+    {
+     "m": "Pupo's Food Market",
+     "n": "AMBROSIA APPLES",
+     "p": 1,
+     "u": ""
+    },
+    {
+     "m": "Farm Boy",
+     "n": "Cortland, Empire, McIntosh, or Spartan Apples",
+     "p": 1.49,
+     "u": "/lb 3.28/kg"
+    },
+    {
+     "m": "FreshCo",
+     "n": "Ambrosia or Red Delicious Apples",
+     "p": 1.79,
+     "u": "/lb"
+    }
+   ]
+  }
+ ]
+}
