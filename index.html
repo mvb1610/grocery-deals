@@ -105,6 +105,22 @@ a{color:var(--green);cursor:pointer;text-decoration:underline}
 .stores label{font-weight:400;margin:0;display:flex;gap:6px;align-items:center}
 #toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:9px 16px;border-radius:20px;font-size:13.5px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:10}
 #toast.on{opacity:1}
+.up{font-size:11.5px;color:var(--mut)}
+.tag.ok{background:var(--green2);color:var(--green)}
+.tgt{font-size:12.5px;font-weight:400;color:var(--mut);margin-left:auto;display:flex;align-items:center;gap:4px}
+.tgt input{width:72px;padding:4px 6px;border:1.5px solid var(--line);border-radius:7px;font-size:16px;background:#fff}
+.banner{background:var(--green2);border:1px solid var(--green);border-radius:10px;padding:9px 12px;margin:10px 0;font-size:13.5px}
+.li .n small{display:block;color:var(--mut);font-size:12px;font-weight:400;text-decoration:none}
+.pmimg{width:54px;height:54px;object-fit:contain;background:#fff;border:1px solid var(--line);border-radius:6px;flex:none;cursor:pointer}
+.plan{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:12px 0}
+.plan h3{margin:0 0 4px;font-size:15px}
+.opt{display:flex;gap:10px;align-items:center;padding:8px 0;border-top:1px dashed var(--line);font-size:13.5px}.opt span{flex:1}
+.meal .x{float:right;border:0;background:none;color:var(--mut);font-size:16px;padding:0 0 0 8px}
+.total .btns{display:flex;gap:6px;flex-wrap:wrap}
+.dlg textarea,.dlg input[type=password],.dlg select{width:100%;padding:9px 12px;border:1.5px solid var(--line);border-radius:9px;font:inherit;font-size:16px;margin-top:6px}
+.dlg textarea{min-height:64px}
+.proof img{max-width:100%;max-height:52vh;display:block;margin:10px auto}
+body.shop .li{padding:14px}body.shop .li .n{font-size:17px}body.shop .li input{width:24px;height:24px}body.shop .li .qty,body.shop .li .rm,body.shop #listOut .plan{display:none}
 .sm{display:none}
 @media(max-width:640px){
 .lg{display:none}.sm{display:inline}
@@ -121,7 +137,7 @@ main{padding:12px 10px calc(84px + env(safe-area-inset-bottom))}
 .deal .b{padding:8px 9px 9px}.row{flex-wrap:wrap}.price{font-size:18px}.add{padding:7px 10px;font-size:13px}
 .picks{grid-template-columns:1fr}.meals{grid-template-columns:1fr}.stores{grid-template-columns:1fr}
 .total{flex-direction:column;align-items:flex-start;gap:10px}
-.li{flex-wrap:wrap;padding:10px 12px;row-gap:6px}.li .n{flex:1 1 calc(100% - 40px)}.li .qty{margin-left:28px}.li .qty button{width:32px;height:32px}.li .p{margin-left:auto;width:auto}
+.li{flex-wrap:wrap;padding:10px 12px;row-gap:6px}.li .n{flex:1 1 calc(100% - 40px)}.li .pmimg+.n{flex-basis:calc(100% - 110px)}.li .qty{margin-left:28px}.li .qty button{width:32px;height:32px}.li .p{margin-left:auto;width:auto}
 #toast{bottom:calc(74px + env(safe-area-inset-bottom))}
 }
 @media print{header,.tools,.noprint,#toast{display:none!important}section{display:none!important}#t-list{display:block!important}body{background:#fff}}
@@ -153,6 +169,7 @@ main{padding:12px 10px calc(84px + env(safe-area-inset-bottom))}
         <option value="plow">Price: low to high</option>
         <option value="phigh">Price: high to low</option>
         <option value="off">Biggest % off</option>
+        <option value="unit">Unit price: low to high</option>
         <option value="store">Store A–Z</option>
       </select>
     </div>
@@ -172,8 +189,20 @@ main{padding:12px 10px calc(84px + env(safe-area-inset-bottom))}
   </section>
 
   <section id="t-meals">
+    <div class="plan">
+      <h3>Plan the week with Claude</h3>
+      <p class="count" style="margin:0 0 8px">Claude picks five dinners from this week's best deals. It uses your own Anthropic API key (add it in Settings).</p>
+      <button class="btn" id="planGo">Plan 5 dinners</button> <span class="meta" id="planMsg"></span>
+      <div id="planOut"></div>
+    </div>
+    <div class="tools">
+      <input type="text" id="mealName" placeholder="Add your own meal — name" autocomplete="off">
+      <input type="text" id="mealIngs" placeholder="Main ingredients, comma separated (use / for either-or)" autocomplete="off">
+      <button class="btn" id="mealAdd">Add meal</button>
+    </div>
     <p class="count">Dinner ideas ranked by how many of the main ingredients are in this week's flyers. Pantry basics (oil, salt, spices) aren't counted.</p>
     <div class="meals" id="meals"></div>
+    <p class="count" id="mealHidden"></p>
   </section>
 
   <section id="t-list">
@@ -193,7 +222,8 @@ const load = (k, d) => { try { const v = JSON.parse(localStorage.getItem(k)); re
 const save = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
 
 let S = Object.assign({ postals: 'L2E 6X5, L2R 7C2, L3B 3X4', hidden: ['Longos'],   // Longo's has no Niagara store; re-enable in Settings
-  needs: ['chicken breast', 'ground beef', 'eggs', 'milk', 'butter', 'bread', 'potatoes', 'apples'] }, load('ngd-settings', {}));
+  needs: ['chicken breast', 'ground beef', 'eggs', 'milk', 'butter', 'bread', 'potatoes', 'apples'],
+  targets: {}, myMeals: [], hiddenMeals: [], pm: '', shop: false, apiKey: '', model: '', planNotes: '', plan: null }, load('ngd-settings', {}));
 let LIST = load('ngd-list', []);
 let ITEMS = [], FLYERS = [], BYID = new Map(), SCANNED = 0, scanning = false, ENRICHED = false;
 let V = { tab: 'deals', q: '', cat: 'all', store: '', sort: 'best', shown: 60 };
@@ -265,8 +295,8 @@ async function pool(arr, n, fn) { let i = 0; await Promise.all(Array.from({ leng
 const postals = () => (S.postals.toUpperCase().replace(/\s+/g, '').match(/[A-Z]\d[A-Z]\d[A-Z]\d/g) || ['L2E6X5']);
 const tidy = n => { n = String(n).replace(/\s+/g, ' ').trim(); return n === n.toUpperCase() ? n.charAt(0) + n.slice(1).toLowerCase() : n; };
 function status(t, frac) { $('#status').textContent = t; $('#bar i').style.width = frac == null ? '0' : Math.round(frac * 100) + '%'; }
-function index() { BYID = new Map(); for (const it of ITEMS) { it.s = norm(it.n + ' ' + it.b); it.c = catOf(it.s); it.e = Date.parse(it.vt) || Infinity; BYID.set(it.id, it); } }
-const cache = () => save('ngd-cache', { t: SCANNED, pc: postals().join(), items: ITEMS.map(({ s, c, e, ...r }) => r), flyers: FLYERS, en: ENRICHED });
+function index() { BYID = new Map(); for (const it of ITEMS) { it.s = norm(it.n + ' ' + it.b); it.c = catOf(it.s); it.e = Date.parse(it.vt) || Infinity; delete it.up; BYID.set(it.id, it); } }
+const cache = () => save('ngd-cache', { t: SCANNED, pc: postals().join(), items: ITEMS.map(({ s, c, e, up, ...r }) => r), flyers: FLYERS, en: ENRICHED });
 function stamp() {
   const stores = new Set(visible().map(i => i.m)).size, d = new Date(SCANNED);
   status(`${visible().length.toLocaleString()} deals from ${FLYERS.length} flyers at ${stores} stores · scanned ${d.toLocaleDateString('en-CA', { weekday: 'short', month: 'short', day: 'numeric' })} ${d.toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit' })}`);
@@ -274,7 +304,7 @@ function stamp() {
 function applySearch(d) {
   let n = 0;
   for (const x of d.items || []) { const it = BYID.get(x.flyer_item_id || x.id); if (!it) continue; n++;
-    if (x.post_price_text) it.u = x.post_price_text; if (x.pre_price_text) it.pre = x.pre_price_text;
+    if (x.post_price_text) { it.u = x.post_price_text; delete it.up; } if (x.pre_price_text) { it.pre = x.pre_price_text; delete it.up; }
     if (x.sale_story) it.st = x.sale_story; if (x.original_price) it.o = +x.original_price; }
   return n;
 }
@@ -354,13 +384,37 @@ function until(it) {
 const live = () => LIST.filter(l => !l.del);
 const inList = id => live().some(l => l.id === id);
 function saveList() { save('ngd-list', LIST); clearTimeout(syncTimer); syncTimer = setTimeout(syncNow, 500); }
-const addBtn = it => `<button class="add ${inList(it.id) ? 'in' : ''}" data-add="${it.id}">${inList(it.id) ? '✓ On list' : '+ List'}</button>`;
+const addBtn = (it, need) => `<button class="add ${inList(it.id) ? 'in' : ''}" data-add="${it.id}" data-need="${esc(need || '')}">${inList(it.id) ? '✓ On list' : '+ List'}</button>`;
+function unitPrice(it) {        // price per 100 g or 100 ml, from the per-lb / per-kg unit or the pack size in the name
+  if (it.up !== undefined) return it.up;
+  let per = it.p, r = null; const mb = /^(\d+)\s*(\/|for)/i.exec(it.pre || ''); if (mb && +mb[1] > 1) per /= +mb[1];
+  const u = (it.u || '').toLowerCase();
+  if (/100 ?g/.test(u)) r = [per, 'g']; else if (/\blb\b/.test(u) && !/\bea/.test(u)) r = [per / 4.536, 'g']; else if (/\bkg\b/.test(u)) r = [per / 10, 'g'];
+  else {
+    const m = /(?:(\d+)\s*[x×]\s*)?(\d+(?:\.\d+)?)\s*(?:-\s*\d+(?:\.\d+)?\s*)?(kg|g|lb|ml|l|oz)\b/.exec(it.n.toLowerCase().replace(/,/g, '.'));
+    if (m) { const k = { kg: [1000, 'g'], g: [1, 'g'], lb: [453.6, 'g'], oz: [28.35, 'g'], l: [1000, 'ml'], ml: [1, 'ml'] }[m[3]], q = +(m[1] || 1) * +m[2] * k[0]; if (q >= 20) r = [per / q * 100, k[1]]; }
+  }
+  return it.up = r;
+}
+const upTxt = it => { const u = unitPrice(it); return u ? `$${u[0].toFixed(2)}/100 ${u[1]}` : ''; };
+let HIST = null;                // weekly price history collected by the repo's scheduled scan (data/history.json)
+const wkDate = i => Date.parse(HIST.weeks[i] + 'T12:00:00');
+function histNote(it) {
+  if (!HIST || !HIST.items) return {}; const h = HIST.items[it.m + '|' + norm(it.n).trim()]; if (!h) return {};
+  const cut = Date.now() - 5 * 864e5, past = h.filter(e => wkDate(e[0]) < cut); if (!past.length) return {};
+  const low = Math.min(...past.map(e => e[1])), wks = Math.max(1, Math.round((Date.now() - wkDate(past[0][0])) / (7 * 864e5))), span = `${wks} wk${wks > 1 ? 's' : ''}`;
+  if (it.p < low - 0.005) return { tag: 'lowest in ' + span };
+  if (it.p > low + 0.005) { const e = past.find(x => x[1] === low); return { note: `was $${low.toFixed(2)} ${new Date(wkDate(e[0])).toLocaleDateString('en-CA', { month: 'short', day: 'numeric' })}` }; }
+  return { note: 'matches its best price in ' + span };
+}
+async function loadHist() { try { const r = await fetch('data/history.json', { cache: 'no-cache' }); if (r.ok) { HIST = await r.json(); if (ITEMS.length) renderAll(); } } catch (e) {} }
 const img = it => it.img ? `<img loading="lazy" alt="" src="${esc(it.img)}" onerror="this.style.visibility='hidden'">` : '';
 function card(it) {
-  const tags = (it.d ? `<span class="tag">${it.d}% off</span>` : '') + (it.st ? `<span class="tag">${esc(it.st.slice(0, 28))}</span>` : '');
+  const h = histNote(it), up = upTxt(it);
+  const tags = (it.d ? `<span class="tag">${it.d}% off</span>` : '') + (it.st ? `<span class="tag">${esc(it.st.slice(0, 28))}</span>` : '') + (h.tag ? `<span class="tag ok">${h.tag}</span>` : '');
   return `<article class="deal"><div class="img">${img(it)}</div><div class="b"><div class="store">${esc(it.m)}</div>
     <h3 title="${esc(it.n)}">${esc(it.n)}</h3><div class="row"><span class="price">${price(it)}</span>${addBtn(it)}</div>
-    <div class="meta">${tags}${until(it)}</div></div></article>`;
+    <div class="meta">${tags}${until(it)}${up ? ' · ' + up : ''}${h.note ? ' · ' + h.note : ''}</div></div></article>`;
 }
 
 /* ---------- shared list: Google sign-in + Firestore (same Firebase project as Plate Ledger) ---------- */
@@ -452,6 +506,7 @@ function renderDeals() {
   const qf = norm(V.q).trim().split(' ').filter(Boolean).map(forms);   // whole-word hits rank above prefix hits (eggs before eggplant)
   const whole = it => qf.filter(fs => fs.some(f => (it.s + ' ').includes(' ' + f + ' '))).length;
   const by = { plow: (a, b) => eff(a) - eff(b), phigh: (a, b) => eff(b) - eff(a), off: (a, b) => b.d - a.d || eff(a) - eff(b), store: (a, b) => a.m.localeCompare(b.m) || eff(a) - eff(b),
+    unit: (a, b) => (unitPrice(a) || [1e9])[0] - (unitPrice(b) || [1e9])[0],
     best: V.q ? (a, b) => whole(b) - whole(a) || eff(a) - eff(b) : (a, b) => ORDER.indexOf(a.c) - ORDER.indexOf(b.c) || b.d - a.d || eff(a) - eff(b) };
   rows.sort(by[V.sort]);
   $('#count').textContent = ITEMS.length ? `${rows.length.toLocaleString()} deal${rows.length === 1 ? '' : 's'} at ${new Set(rows.map(i => i.m)).size} store${new Set(rows.map(i => i.m)).size === 1 ? '' : 's'}${V.q ? ` matching “${V.q}”` : ''}` : '';
@@ -461,13 +516,18 @@ function renderDeals() {
 }
 function renderNeeds() {
   $('#needChips').innerHTML = S.needs.map((n, i) => `<button class="chip" data-rmneed="${i}">${esc(n)}<span class="x">✕</span></button>`).join('');
-  $('#needOut').innerHTML = S.needs.map(n => {
-    const m = find(n, true).sort((a, b) => eff(a) - eff(b)), stores = new Set(m.map(i => i.m)).size;
-    if (!m.length) return `<div class="need"><h3>${esc(n)} <span class="meta">not in any flyer this week</span></h3></div>`;
-    return `<div class="need"><h3>${esc(n)} <span class="meta">${m.length} deal${m.length > 1 ? 's' : ''} at ${stores} store${stores > 1 ? 's' : ''}</span> <a data-q="${esc(n)}">see all</a></h3>
+  let hits = 0, set = 0;
+  const html = S.needs.map(n => {
+    const m = find(n, true).sort((a, b) => eff(a) - eff(b)), stores = new Set(m.map(i => i.m)).size, tg = +S.targets[n] || 0;
+    const hit = tg > 0 && m.length > 0 && eff(m[0]) <= tg + 0.005; if (tg) set++; if (hit) hits++;
+    const tgt = `<label class="tgt">Buy at $<input type="number" inputmode="decimal" step="0.01" min="0" data-target="${esc(n)}" value="${tg || ''}" placeholder="–"> or less</label>`;
+    if (!m.length) return `<div class="need"><h3>${esc(n)} <span class="meta">not in any flyer this week</span>${tgt}</h3></div>`;
+    return `<div class="need"><h3>${esc(n)} <span class="meta">${m.length} deal${m.length > 1 ? 's' : ''} at ${stores} store${stores > 1 ? 's' : ''}</span> <a data-q="${esc(n)}">see all</a>${hit ? ' <span class="tag ok">at your buy price</span>' : ''}${tgt}</h3>
       <div class="picks">${m.slice(0, 4).map((it, k) => `<div class="pick ${k ? '' : 'best'}">${img(it)}<div class="t"><div class="store">${esc(it.m)}</div>
-      <div class="n" title="${esc(it.n)}">${esc(it.n)}</div><span class="price">${price(it)}</span></div>${addBtn(it)}</div>`).join('')}</div></div>`;
-  }).join('') || '<div class="empty">Add the things you need and the cheapest flyer price for each shows up here.</div>';
+      <div class="n" title="${esc(it.n)}">${esc(it.n)}</div><span class="price">${price(it)}</span><div class="up">${[upTxt(it), histNote(it).tag || histNote(it).note || ''].filter(Boolean).join(' · ')}</div></div>${addBtn(it, n)}</div>`).join('')}</div></div>`;
+  }).join('');
+  $('#needOut').innerHTML = (set ? `<div class="banner">${hits} of ${set} staple${set > 1 ? 's' : ''} with a buy price ${hits === 1 ? 'is' : 'are'} at or under it this week.</div>` : '')
+    + (html || '<div class="empty">Add the things you need and the cheapest flyer price for each shows up here.</div>');
 }
 const MEALS = [
   ['Sheet-pan chicken & potatoes', ['chicken thighs|chicken legs|drumsticks|chicken leg quarters'], ['potatoes'], ['carrots|broccoli'], ['lemon']],
@@ -497,49 +557,148 @@ const MEALS = [
   ['Perogies & kielbasa', ['perogies|pierogies'], ['kielbasa|sausage'], ['onions'], ['sour cream']],
   ['Grilled cheese & tomato soup', ['bread'], ['cheddar|cheese'], ['tomato soup|soup'], ['butter']]
 ];
+const mealList = () => MEALS.filter(m => !S.hiddenMeals.includes(m[0])).concat(S.myMeals.map(m => [m.name, ...m.ings.map(i => [i])]));
 function renderMeals() {
   if (!ITEMS.length) { $('#meals').innerHTML = ''; return; }
-  const food = visible();
-  const rows = MEALS.map(([name, ...ings]) => {
+  const food = visible(), mine = new Set(S.myMeals.map(m => m.name));
+  const rows = mealList().map(([name, ...ings]) => {
     const parts = ings.map(a => {
       const alts = a[0].split('|'); let best = null, label = alts[0];
       for (const q of alts) { const m = find(q, 'food', food).sort((x, y) => eff(x) - eff(y))[0]; if (m && (!best || eff(m) < eff(best))) { best = m; label = q; } }
       return { label, best };
     });
     const hit = parts.filter(p => p.best).length;
-    return { name, parts, hit, main: parts[0].best, cost: parts.reduce((s, p) => s + (p.best ? p.best.p : 0), 0) };
+    return { name, parts, hit, main: parts[0] && parts[0].best, cost: parts.reduce((s, p) => s + (p.best ? p.best.p : 0), 0) };
   }).sort((a, b) => (b.main ? 1 : 0) - (a.main ? 1 : 0) || b.hit / b.parts.length - a.hit / a.parts.length || a.cost - b.cost);
-  $('#meals').innerHTML = rows.map((m, k) => `<div class="meal"><h3>${esc(m.name)}</h3>
+  $('#meals').innerHTML = rows.map(m => { const on = m.parts.filter(p => p.best); return `<div class="meal"><h3><button class="x" data-rmmeal="${esc(m.name)}" title="${mine.has(m.name) ? 'Delete this meal' : 'Hide this meal'}">✕</button>${esc(m.name)}${mine.has(m.name) ? ' <span class="tag ok">yours</span>' : ''}</h3>
     <div class="sc">${m.hit} of ${m.parts.length} ingredients on sale${m.hit ? ` · about $${m.cost.toFixed(2)} at flyer prices` : ''}</div>
     <ul>${m.parts.map(p => p.best ? `<li><span class="k">✓</span><span><a data-q="${esc(p.label)}">${esc(p.label)}</a> — ${esc(p.best.n.slice(0, 46))} <b>${price(p.best)}</b> at ${esc(p.best.m)}</span></li>`
       : `<li class="no"><span class="k">–</span><span>${esc(p.label)} — no deal this week</span></li>`).join('')}</ul>
-    ${m.hit ? `<button class="btn ghost" data-meal="${m.parts.filter(p => p.best).map(p => p.best.id).join(',')}">Add ${m.hit} ingredient${m.hit > 1 ? 's' : ''} to list</button>` : ''}</div>`).join('');
+    ${m.hit ? `<button class="btn ghost" data-meal="${on.map(p => p.best.id).join(',')}" data-needs="${esc(on.map(p => p.label).join('|'))}">Add ${m.hit} ingredient${m.hit > 1 ? 's' : ''} to list</button>` : ''}</div>`; }).join('');
+  $('#mealHidden').innerHTML = S.hiddenMeals.length ? `<a id="mealRestore">Show the ${S.hiddenMeals.length} meal${S.hiddenMeals.length > 1 ? 's' : ''} you hid</a>` : '';
+  renderPlan();
+}
+function addMeal() {
+  const name = $('#mealName').value.trim(), ings = $('#mealIngs').value.split(',').map(x => x.trim().replace(/\s*\/\s*/g, '|')).filter(Boolean);
+  if (!name || !ings.length) return toast('Give the meal a name and at least one ingredient');
+  S.myMeals = S.myMeals.filter(m => m.name !== name).concat([{ name, ings }]); save('ngd-settings', S);
+  $('#mealName').value = ''; $('#mealIngs').value = ''; renderMeals(); toast('Meal added');
+}
+/* ---------- dinner planner (Claude, with the user's own API key) ---------- */
+const MODELS = [['claude-sonnet-5-5', 'Claude Sonnet 5.5 (best plans)'], ['claude-haiku-5-5', 'Claude Haiku 5.5 (faster, cheaper)']];
+async function askClaude(prompt) {
+  const call = model => fetch('https://api.anthropic.com/v1/messages', { method: 'POST',
+    headers: { 'content-type': 'application/json', 'x-api-key': S.apiKey.trim(), 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' },
+    body: JSON.stringify({ model, max_tokens: 2500, messages: [{ role: 'user', content: prompt }] }) });
+  let r = await call(S.model || MODELS[0][0]);
+  if (r.status === 404) r = await call('claude-sonnet-5');        // model name Plate Ledger uses, in case the newer one is not on this key
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error((j.error && j.error.message) || 'HTTP ' + r.status);
+  return (j.content || []).map(c => c.text || '').join('');
+}
+async function planWithClaude() {
+  if (!(S.apiKey || '').trim()) { $('#planMsg').textContent = 'Add your Anthropic API key in Settings first.'; return; }
+  const top = (c, n) => visible().filter(i => i.c === c).sort((a, b) => b.d - a.d || eff(a) - eff(b)).slice(0, n);
+  const deals = [...top('meat', 70), ...top('seafood', 20), ...top('produce', 60), ...top('dairy', 30), ...top('pantry', 40), ...top('bakery', 15), ...top('frozen', 15)];
+  const own = S.myMeals.map(m => m.name).join(', ');
+  const prompt = 'You are planning dinners for a household in Niagara, Ontario from this week\'s grocery flyer deals.\n'
+    + (S.planNotes ? 'Household notes: ' + S.planNotes + '\n' : '') + (own ? 'Meals this household already likes: ' + own + '\n' : '')
+    + 'Pick 5 different dinners built around the best-value deals below, favouring as few stores as possible. Use only deal ids from the list.\n'
+    + 'Reply with JSON only, no other text: {"dinners":[{"name":"","why":"one short sentence on the saving","deals":[deal ids as numbers],"also":["other ingredients needed"],"method":"two or three short sentences"}]}\n\n'
+    + 'Deals (id | store | item | price):\n' + deals.map(i => `${i.id} | ${i.m} | ${i.n.slice(0, 70)} | $${i.p.toFixed(2)}${i.u ? ' ' + i.u.toLowerCase() : ''}`).join('\n');
+  $('#planMsg').textContent = 'Asking Claude…'; $('#planGo').disabled = true;
+  try {
+    const txt = await askClaude(prompt), j = JSON.parse(txt.slice(txt.indexOf('{'), txt.lastIndexOf('}') + 1));
+    S.plan = { t: Date.now(), dinners: (j.dinners || []).slice(0, 7) }; save('ngd-settings', S); $('#planMsg').textContent = '';
+  } catch (e) { $('#planMsg').textContent = 'Could not get a plan: ' + (e.message || e); }
+  $('#planGo').disabled = false; renderPlan();
+}
+function renderPlan() {
+  const p = S.plan; if (!p || !p.dinners || !p.dinners.length) { $('#planOut').innerHTML = ''; return; }
+  $('#planOut').innerHTML = `<p class="count" style="margin:10px 0 6px">Planned ${new Date(p.t).toLocaleDateString('en-CA', { weekday: 'long', month: 'short', day: 'numeric' })}. Deals that have since ended are left out.</p><div class="meals">` + p.dinners.map(d => {
+    const its = (Array.isArray(d.deals) ? d.deals : []).map(id => BYID.get(+id)).filter(Boolean);
+    return `<div class="meal"><h3>${esc(d.name)}</h3><div class="sc">${esc(d.why || '')}</div><ul>${its.map(it => `<li><span class="k">✓</span><span>${esc(it.n.slice(0, 50))} <b>${price(it)}</b> at ${esc(it.m)}</span></li>`).join('')}
+      ${Array.isArray(d.also) && d.also.length ? `<li class="no"><span class="k">+</span><span>${esc(d.also.join(', '))}</span></li>` : ''}</ul><div class="sc">${esc(d.method || '')}</div>
+      ${its.length ? `<button class="btn ghost" data-meal="${its.map(i => i.id).join(',')}">Add ${its.length} deal${its.length > 1 ? 's' : ''} to list</button>` : ''}</div>`; }).join('') + '</div>';
+}
+const PM_STORES = ['No Frills', 'Food Basics', 'Real Canadian Superstore', 'FreshCo', 'Giant Tiger'];   // chains that price match flyers
+let PLANS = [], wake = null;
+const who = () => AUTH ? AUTH.email.split('@')[0] : '';
+function tripPlans(L) {          // for each item that names a need, find the cheapest deal at every store, then score one-store and two-store trips
+  const needs = L.filter(l => l.q).map(l => ({ l, by: {} }));
+  for (const n of needs) for (const it of find(n.l.q, true)) { const c = n.by[it.m]; if (!c || eff(it) < eff(c)) n.by[it.m] = it; }
+  const fixed = L.filter(l => !l.q && l.m), stores = [...new Set(needs.flatMap(n => Object.keys(n.by)).concat(fixed.map(l => l.m)))];
+  const score = set => { let cost = 0, got = 0; const pick = [];
+    for (const n of needs) { let b = null; for (const s of set) { const it = n.by[s]; if (it && (!b || eff(it) < eff(b))) b = it; } if (b) { got++; cost += b.p * n.l.qty; pick.push([n.l.id, b.id]); } }
+    for (const l of fixed) if (set.includes(l.m)) { got++; cost += l.p * l.qty; }
+    return { set, got, cost, pick }; };
+  const better = (a, b) => b.got - a.got || a.cost - b.cost;
+  const one = stores.map(s => score([s])).sort(better)[0]; let two = null;
+  for (let i = 0; i < stores.length; i++) for (let j = i + 1; j < stores.length; j++) { const r = score([stores[i], stores[j]]); if (!two || better(r, two) < 0) two = r; }
+  return { total: needs.length + fixed.length, opts: [one, two && one && two.got > one.got ? two : (two && one && two.cost < one.cost - 0.005 ? two : null)].filter(Boolean) };
+}
+function usePlan(k) {
+  const o = PLANS[k]; if (!o) return;
+  for (const [lid, did] of o.pick) {
+    if (lid === did) continue; const old = LIST.find(l => l.id === lid); if (!old || !BYID.get(did)) continue;
+    const qty = old.qty, q = old.q; old.del = true; old.t = Date.now(); toggle(did, true, q); const nw = LIST.find(l => l.id === did); if (nw) nw.qty = qty;
+  }
+  saveList(); toast('List switched to ' + o.set.join(' + ')); renderAll();
+}
+function addFree() {
+  const f = $('#freeIn'), v = f ? f.value.trim() : ''; if (!v) return;
+  v.split(',').map(x => x.trim()).filter(Boolean).forEach((n, k) => LIST.push({ id: -(Date.now() * 100 + k), n, m: '', p: 0, u: '', pre: '', qty: 1, done: false, del: false, t: Date.now(), c: catOf(norm(n)), q: n, by: who(), img: '', vt: '' }));
+  saveList(); renderList(); const g = $('#freeIn'); if (g) g.focus();
+}
+function proof(id) {
+  const l = LIST.find(x => x.id === id); if (!l) return;
+  $('#dlg').innerHTML = `<div class="proof"><h2>${esc(l.m)} flyer</h2><img alt="" src="${esc(l.img)}"><p><b>${esc(l.n)}</b> — ${price(l)}${l.vt ? ', ' + until(l) : ''}</p><div style="text-align:right"><button class="btn" id="sCancel">Close</button></div></div>`;
+  $('#modal').classList.add('on');
+}
+async function setWake() {      // keep the phone screen on while shopping
+  try { if (S.shop && document.visibilityState === 'visible' && navigator.wakeLock) wake = await navigator.wakeLock.request('screen'); else if (!S.shop && wake) { await wake.release(); wake = null; } } catch (e) {}
 }
 function renderList() {
-  const L = live();
-  $('#lc').textContent = L.length;
-  if (!L.length) { $('#listOut').innerHTML = '<div class="empty">Your list is empty. Tap “+ List” on any deal.</div>'; return; }
-  const by = {}; L.forEach(l => (by[l.m] = by[l.m] || []).push(l));
-  const sum = a => a.reduce((s, l) => s + l.p * l.qty, 0);
-  $('#listOut').innerHTML = `<div class="total"><span>Estimated total $${sum(L).toFixed(2)}<small>${L.length} item${L.length === 1 ? '' : 's'} at ${Object.keys(by).length} store${Object.keys(by).length === 1 ? '' : 's'} · per-lb items counted as 1 lb each · ${AUTH ? 'shared list' : 'on this device only'}</small></span>
-    <span class="noprint"><button class="btn" id="share">Send list</button> <button class="btn ghost" id="copy">Copy list</button> <button class="btn ghost" id="print">Print</button> <button class="btn warn" id="clear">Clear</button></span></div>` +
-    Object.keys(by).sort((a, b) => sum(by[b]) - sum(by[a])).map(m => `<div class="sl"><h3><span>${esc(m)}</span><span>$${sum(by[m]).toFixed(2)}</span></h3>
-      ${by[m].map(l => `<div class="li ${l.done ? 'done' : ''}"><input type="checkbox" data-done="${l.id}" ${l.done ? 'checked' : ''}><span class="n">${esc(l.n)}</span>
+  const L = live(); $('#lc').textContent = L.length; document.body.classList.toggle('shop', !!S.shop);
+  const add = `<div class="tools noprint"><input type="text" id="freeIn" placeholder="Add anything — dish soap, bananas, candles" autocomplete="off"><button class="btn" id="freeAdd">Add</button></div>`;
+  if (!L.length) { $('#listOut').innerHTML = add + '<div class="empty">Your list is empty. Type an item above, or tap “+ List” on any deal.</div>'; return; }
+  const sum = a => a.reduce((s, l) => s + l.p * l.qty, 0), pm = PM_STORES.includes(S.pm) && L.some(l => l.m) ? S.pm : '', PMG = 'Price match at ' + pm, NONE = 'No store yet';
+  const by = {}; L.forEach(l => { const g = !l.m ? NONE : pm ? (l.m === pm ? pm : PMG) : l.m; (by[g] = by[g] || []).push(l); });
+  const rank = g => g === NONE ? 2 : pm && g === PMG ? 1 : 0, dept = l => { const k = ORDER.indexOf(l.c || 'other'); return k < 0 ? 99 : k; };
+  const groups = Object.keys(by).sort((a, b) => rank(a) - rank(b) || sum(by[b]) - sum(by[a]));
+  const row = (l, g) => {
+    const bits = [];
+    if (S.shop && CAT[l.c]) bits.push(CAT[l.c][0]);
+    if (!l.m) { const m = l.q ? find(l.q, true).sort((a, b) => eff(a) - eff(b)) : []; bits.push(m.length ? `<a data-q="${esc(l.q)}">${m.length} flyer deal${m.length > 1 ? 's' : ''}, from $${m[0].p.toFixed(2)} at ${esc(m[0].m)}</a>` : 'no flyer deal this week'); }
+    else if (pm && g === PMG) bits.push(`show the ${esc(l.m)} flyer at checkout`);
+    if (AUTH && l.by) bits.push('added by ' + esc(l.by));
+    return `<div class="li ${l.done ? 'done' : ''}"><input type="checkbox" data-done="${l.id}" ${l.done ? 'checked' : ''}>${l.img && (S.shop || (pm && g === PMG)) ? `<img class="pmimg" data-proof="${l.id}" alt="" src="${esc(l.img)}">` : ''}
+      <span class="n">${esc(l.n)}${bits.length ? `<small>${bits.join(' · ')}</small>` : ''}</span>
       <span class="qty noprint"><button data-qty="${l.id}" data-by="-1">−</button><b>${l.qty}</b><button data-qty="${l.id}" data-by="1">+</button></span>
-      <span class="p">${price(l)}</span><button class="rm noprint" data-add="${l.id}" title="Remove">✕</button></div>`).join('')}</div>`).join('');
+      <span class="p">${l.p ? price(l) : ''}</span><button class="rm noprint" data-add="${l.id}" title="Remove">✕</button></div>`;
+  };
+  const plan = tripPlans(L); PLANS = plan.opts; const nStores = new Set(L.filter(l => l.m).map(l => l.m)).size;
+  $('#listOut').innerHTML = add + `<div class="total"><span>Estimated total $${sum(L).toFixed(2)}<small>${L.length} item${L.length === 1 ? '' : 's'} · ${pm ? 'all at ' + esc(pm) + ' if the price matches are accepted' : nStores + ' store' + (nStores === 1 ? '' : 's')} · per-lb items counted as 1 lb each · ${AUTH ? 'shared list' : 'on this device only'}</small></span>
+    <span class="btns noprint"><button class="btn" id="shopBtn">${S.shop ? 'Leave shopping mode' : 'Shopping mode'}</button><button class="btn ghost" id="share">Send list</button><button class="btn ghost" id="copy">Copy</button><button class="btn ghost" id="print">Print</button><button class="btn warn" id="clear">Clear</button></span></div>
+    <div class="plan noprint"><h3>Cheapest way to shop this list</h3>
+      ${PLANS.map((o, k) => `<div class="opt"><span><b>${o.set.length > 1 ? 'Two stops' : 'One stop'} — ${esc(o.set.join(' + '))}</b>: ${o.got} of ${plan.total} item${plan.total === 1 ? '' : 's'} on sale there, about $${o.cost.toFixed(2)}</span><button class="btn ghost" data-plan="${k}">Use</button></div>`).join('')}
+      <div class="opt"><span><b>Price match</b>: buy it all at one store and show the other flyers at checkout</span><select id="pmSel"><option value="">Off</option>${PM_STORES.map(x => `<option ${x === S.pm ? 'selected' : ''}>${x}</option>`).join('')}</select></div>
+      ${pm ? '<p class="count" style="margin:6px 0 0">Price matching is up to each store: usually the same brand and size, from a local competitor’s current flyer, with limits. Tap a picture to show the flyer item.</p>' : ''}</div>`
+    + groups.map(g => { const rows = S.shop ? by[g].slice().sort((a, b) => a.done - b.done || dept(a) - dept(b) || a.n.localeCompare(b.n)) : by[g];
+      return `<div class="sl"><h3><span>${esc(g)}</span><span>${sum(by[g]) ? '$' + sum(by[g]).toFixed(2) : ''}</span></h3>${rows.map(l => row(l, g)).join('')}</div>`; }).join('');
 }
 function listText() {
-  const by = {}; live().forEach(l => (by[l.m] = by[l.m] || []).push(l));
-  return Object.keys(by).map(m => m.toUpperCase() + '\n' + by[m].map(l => `${l.done ? '✓' : '-'} ${l.qty > 1 ? l.qty + ' × ' : ''}${l.n} ($${l.p.toFixed(2)}${l.u ? ' ' + l.u.toLowerCase() : ''})`).join('\n')).join('\n\n');
+  const by = {}; live().forEach(l => (by[l.m || 'Anywhere'] = by[l.m || 'Anywhere'] || []).push(l));
+  return Object.keys(by).map(m => m.toUpperCase() + '\n' + by[m].map(l => `${l.done ? '✓' : '-'} ${l.qty > 1 ? l.qty + ' × ' : ''}${l.n}${l.p ? ` ($${l.p.toFixed(2)}${l.u ? ' ' + l.u.toLowerCase() : ''})` : ''}`).join('\n')).join('\n\n');
 }
 function renderAll() { renderDeals(); renderNeeds(); renderMeals(); renderList(); }
 function toast(t) { const e = $('#toast'); e.textContent = t; e.classList.add('on'); clearTimeout(toast.t); toast.t = setTimeout(() => e.classList.remove('on'), 1800); }
-function toggle(id, onlyAdd) {
+function toggle(id, onlyAdd, need) {
   const cur = LIST.find(l => l.id === id);
   if (cur && !cur.del) { if (onlyAdd) return; cur.del = true; cur.t = Date.now(); toast('Removed from list'); }
   else {
     const it = BYID.get(id); if (!it) return;
-    const e = { id: it.id, n: it.n, m: it.m, p: it.p, u: it.u, pre: it.pre, qty: 1, done: false, del: false, t: Date.now() };
+    const e = { id: it.id, n: it.n, m: it.m, p: it.p, u: it.u, pre: it.pre, qty: 1, done: false, del: false, t: Date.now(), c: it.c, q: need || '', by: who(), img: it.img, vt: it.vt };
     if (cur) Object.assign(cur, e); else LIST.push(e);
     if (!onlyAdd) toast('Added — ' + it.m);
   }
@@ -564,6 +723,10 @@ function settings() {
     <p style="margin-top:8px"><a id="signOut">Sign out on this device</a></p>`
       : `<p>Sign in with Google on each phone to keep one live list between you. Then add the other person's Google email here once.</p><button class="btn" id="signIn">Sign in with Google</button>`)
       : `<p>The shared list works in the hosted app: ${APP_URL}</p>`}
+    <label>Dinner planner (Claude)</label><p>Your own Anthropic API key, kept only on this device. A plan costs a cent or two.</p>
+    <input type="password" id="keyIn" placeholder="sk-ant-…" autocomplete="off" value="${esc(S.apiKey || '')}">
+    <select id="modelIn">${MODELS.map(([v, l]) => `<option value="${v}" ${(S.model || MODELS[0][0]) === v ? 'selected' : ''}>${l}</option>`).join('')}</select>
+    <textarea id="notesIn" placeholder="Notes for the planner — e.g. four people, two big eaters, no shellfish, one meatless night">${esc(S.planNotes || '')}</textarea>
     <p style="margin-top:16px">Prices come from the public Flipp flyer feed. Always check the shelf tag — flyers can have errors and limits.</p>
     <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:14px"><button class="btn ghost" id="sCancel">Cancel</button><button class="btn" id="sSave">Save</button></div>`;
   $('#modal').classList.add('on');
@@ -571,15 +734,18 @@ function settings() {
 
 /* ---------- events ---------- */
 document.addEventListener('click', e => {
-  const t = e.target.closest('[data-tab],[data-cat],[data-add],[data-q],[data-rmneed],[data-meal],[data-qty],button[id],a[id],#modal');
+  const t = e.target.closest('[data-tab],[data-cat],[data-add],[data-q],[data-rmneed],[data-meal],[data-qty],[data-plan],[data-proof],[data-rmmeal],button[id],a[id],#modal');
   if (!t) return;
   const d = t.dataset;
   if (d.tab) return show(d.tab);
   if (d.cat) { V.cat = d.cat; V.shown = 60; return renderDeals(); }
-  if (d.add) { toggle(+d.add); return renderAll(); }
+  if (d.add) { toggle(+d.add, false, d.need); return renderAll(); }
+  if (d.plan) return usePlan(+d.plan);
+  if (d.proof) return proof(+d.proof);
+  if (d.rmmeal) { if (S.myMeals.some(m => m.name === d.rmmeal)) S.myMeals = S.myMeals.filter(m => m.name !== d.rmmeal); else S.hiddenMeals.push(d.rmmeal); save('ngd-settings', S); return renderMeals(); }
   if (d.q) { V.q = d.q; V.cat = 'all'; V.store = ''; V.shown = 60; $('#q').value = d.q; renderDeals(); return show('deals'); }
   if (d.rmneed) { S.needs.splice(+d.rmneed, 1); save('ngd-settings', S); return renderNeeds(); }
-  if (d.meal) { const ids = d.meal.split(',').map(Number); ids.forEach(i => toggle(i, true)); toast(`Added ${ids.length} ingredients to your list`); return renderAll(); }
+  if (d.meal) { const ids = d.meal.split(',').map(Number), ns = (d.needs || '').split('|'); ids.forEach((i, k) => toggle(i, true, ns[k] || '')); toast(`Added ${ids.length} ingredients to your list`); return renderAll(); }
   if (d.qty) { const l = LIST.find(x => x.id === +d.qty); if (l) { l.qty = Math.max(1, l.qty + +d.by); l.t = Date.now(); saveList(); renderList(); } return; }
   switch (t.id) {
     case 'modal': if (e.target === t) t.classList.remove('on'); break;
@@ -590,9 +756,15 @@ document.addEventListener('click', e => {
     case 'sSave': {
       const old = postals().join(); S.postals = $('#pcIn').value;
       S.hidden = [...document.querySelectorAll('.stores input')].filter(c => !c.checked).map(c => c.value);
+      S.apiKey = $('#keyIn').value.trim(); S.model = $('#modelIn').value; S.planNotes = $('#notesIn').value.trim();
       save('ngd-settings', S); $('#modal').classList.remove('on');
       if (postals().join() !== old) scan(true); else { stamp(); renderAll(); } break; }
     case 'needAdd': addNeed(); break;
+    case 'freeAdd': addFree(); break;
+    case 'mealAdd': addMeal(); break;
+    case 'mealRestore': S.hiddenMeals = []; save('ngd-settings', S); renderMeals(); break;
+    case 'planGo': planWithClaude(); break;
+    case 'shopBtn': S.shop = !S.shop; save('ngd-settings', S); setWake(); renderList(); window.scrollTo(0, 0); break;
     case 'signIn': signIn(); break;
     case 'signOut': AUTH = null; save('ngd-auth', AUTH); settings(); renderList(); break;
     case 'shareAdd': addMember($('#shareIn').value).then(() => { toast('List shared'); settings(); }, e => toast('Could not share: ' + (e.message || e))); break;
@@ -606,6 +778,8 @@ document.addEventListener('change', e => {
   const t = e.target;
   if (t.id === 'store') { V.store = t.value; V.shown = 60; renderDeals(); }
   if (t.id === 'sort') { V.sort = t.value; renderDeals(); }
+  if (t.id === 'pmSel') { S.pm = t.value; save('ngd-settings', S); renderList(); }
+  if (t.dataset.target !== undefined) { const v = +t.value; if (v > 0) S.targets[t.dataset.target] = v; else delete S.targets[t.dataset.target]; save('ngd-settings', S); renderNeeds(); }
   if (t.dataset.done) { const l = LIST.find(x => x.id === +t.dataset.done); if (l) { l.done = t.checked; l.t = Date.now(); saveList(); renderList(); } }
 });
 let deb;
@@ -616,12 +790,13 @@ $('#q').addEventListener('input', e => {
 });
 function addNeed() { const v = $('#needIn').value.trim(); if (!v) return; v.split(',').map(s => s.trim()).filter(Boolean).forEach(n => { if (!S.needs.includes(n)) S.needs.push(n); }); $('#needIn').value = ''; save('ngd-settings', S); renderNeeds(); }
 $('#needIn').addEventListener('keydown', e => { if (e.key === 'Enter') addNeed(); });
+document.addEventListener('keydown', e => { if (e.key !== 'Enter') return; if (e.target.id === 'freeIn') addFree(); if (e.target.id === 'mealIngs' || e.target.id === 'mealName') addMeal(); });
 
 renderList();
 scan(false);
-oauthReturn(); syncNow();
+oauthReturn(); syncNow(); loadHist(); setWake();
 setInterval(() => { if (AUTH && document.visibilityState === 'visible') syncNow(); }, 6000);
-document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') syncNow(); });
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') { syncNow(); setWake(); } });
 </script>
 </body>
 </html>
