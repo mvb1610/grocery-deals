@@ -1,7 +1,7 @@
 {
  "week": "2026-11-12",
- "generated": "2026-11-13T18:49:23.954Z",
- "deals": 4412,
+ "generated": "2026-11-13T18:56:06.371Z",
+ "deals": 4442,
  "flyers": 26,
  "lines": [
   {
@@ -185,6 +185,12 @@
    "hit": false,
    "deals": [
     {
+     "m": "Lococo's",
+     "n": "Mutsu Apples",
+     "p": 0.99,
+     "u": "/lb"
+    },
+    {
      "m": "Pupo's Food Market",
      "n": "AMBROSIA APPLES",
      "p": 1,
@@ -195,12 +201,6 @@
      "n": "Cortland, Empire, McIntosh, or Spartan Apples",
      "p": 1.49,
      "u": "/lb 3.28/kg"
-    },
-    {
-     "m": "FreshCo",
-     "n": "Ambrosia or Red Delicious Apples",
-     "p": 1.79,
-     "u": "/lb"
     }
    ]
   }
