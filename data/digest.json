@@ -1,6 +1,6 @@
 {
  "week": "2026-11-12",
- "generated": "2026-11-13T18:56:06.371Z",
+ "generated": "2026-11-14T16:36:52.662Z",
  "deals": 4442,
  "flyers": 26,
  "lines": [
@@ -10,14 +10,14 @@
    "hit": false,
    "deals": [
     {
-     "m": "Real Canadian Superstore",
-     "n": "HALAL CHICKEN BREAST",
+     "m": "Zehrs",
+     "n": "CHICKEN BREASTS",
      "p": 4.88,
      "u": "/lb"
     },
     {
-     "m": "Zehrs",
-     "n": "CHICKEN BREASTS",
+     "m": "Real Canadian Superstore",
+     "n": "HALAL CHICKEN BREAST",
      "p": 4.88,
      "u": "/lb"
     },
