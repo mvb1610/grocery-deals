@@ -1,6 +1,6 @@
 {
  "week": "2026-11-12",
- "generated": "2026-11-15T17:12:27.555Z",
+ "generated": "2026-11-16T20:30:06.508Z",
  "deals": 4441,
  "flyers": 26,
  "lines": [
@@ -10,14 +10,14 @@
    "hit": false,
    "deals": [
     {
-     "m": "Zehrs",
-     "n": "CHICKEN BREASTS",
+     "m": "Real Canadian Superstore",
+     "n": "HALAL CHICKEN BREAST",
      "p": 4.88,
      "u": "/lb"
     },
     {
-     "m": "Real Canadian Superstore",
-     "n": "HALAL CHICKEN BREAST",
+     "m": "Zehrs",
+     "n": "CHICKEN BREASTS",
      "p": 4.88,
      "u": "/lb"
     },
@@ -60,12 +60,6 @@
    "hit": false,
    "deals": [
     {
-     "m": "Shoppers Drug Mart",
-     "n": "GRADE \"A\" LARGE WHITE EGGS",
-     "p": 3.49,
-     "u": "/ea"
-    },
-    {
      "m": "Sobeys",
      "n": "Large White Eggs",
      "p": 4.44,
@@ -76,6 +70,12 @@
      "n": "LIFE SMART EGG WHITES",
      "p": 4.99,
      "u": "/ea"
+    },
+    {
+     "m": "Food Basics",
+     "n": "BURNBRAE HARD BOILED PEELED EGGS",
+     "p": 4.99,
+     "u": ""
     }
    ]
   },
@@ -136,13 +136,13 @@
    "deals": [
     {
      "m": "Real Canadian Superstore",
-     "n": "CEDAR PITA BREAD, 330 G",
+     "n": "FRENCH OR ITALIAN BREAD, 370-568 G",
      "p": 1.5,
      "u": ""
     },
     {
      "m": "Real Canadian Superstore",
-     "n": "FRENCH OR ITALIAN BREAD, 370-568 G",
+     "n": "CEDAR PITA BREAD, 330 G",
      "p": 1.5,
      "u": ""
     },

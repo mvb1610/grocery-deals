@@ -1,50 +1,10 @@
 {
- "scanned": "2026-11-15T17:12:25.719Z",
+ "scanned": "2026-11-16T20:30:04.596Z",
  "stores": [
   {
    "m": "Lococo's",
    "source": "https://www.lococos.ca/specials",
    "items": [
-    {
-     "id": 9002651594498,
-     "n": "Chicken Wings",
-     "b": "Ontario's Finest",
-     "p": 3.99,
-     "u": "lb",
-     "img": "https://portal.lococos.ca/images/flyer/front/chicken_wings_raw3.jpg",
-     "vf": "2026-11-11T00:00:00-05:00",
-     "vt": "2026-11-15T23:59:59-05:00"
-    },
-    {
-     "id": 9001301639932,
-     "n": "Pork Side Ribs",
-     "b": "Ontario's Finest",
-     "p": 2.99,
-     "u": "lb",
-     "img": "https://portal.lococos.ca/images/flyer/front/pork_side_ribs.jpg",
-     "vf": "2026-11-11T00:00:00-05:00",
-     "vt": "2026-11-15T23:59:59-05:00"
-    },
-    {
-     "id": 9003644291211,
-     "n": "Lean Ground Beef, Made with 100% Canadian Beef",
-     "b": "Lococo's Own",
-     "p": 5.99,
-     "u": "lb",
-     "img": "https://portal.lococos.ca/images/flyer/front/beef_ground_sirloin.jpg",
-     "vf": "2026-11-11T00:00:00-05:00",
-     "vt": "2026-11-15T23:59:59-05:00"
-    },
-    {
-     "id": 9001131570045,
-     "n": "Sliced Bacon, Assorted Varieties, 375g",
-     "b": "Mère Michel",
-     "p": 2.99,
-     "u": "",
-     "img": "https://portal.lococos.ca/images/flyer/front/sliced-bacon-1780068876.jpg",
-     "vf": "2026-11-06T00:00:00-05:00",
-     "vt": "2026-11-15T23:59:59-05:00"
-    },
     {
      "id": 9004152129930,
      "n": "Lamb Loin Chops, Frozen, 350g",
@@ -104,6 +64,36 @@
      "img": "https://portal.lococos.ca/images/flyer/front/turnip.jpg",
      "vf": "2026-11-06T00:00:00-05:00",
      "vt": "2026-11-17T23:59:59-05:00"
+    },
+    {
+     "id": 9001835561916,
+     "n": "Pork Back Ribs, BBQ or Honey Garlic, 680g",
+     "b": "Stampede",
+     "p": 8.99,
+     "u": "",
+     "img": "https://portal.lococos.ca/images/flyer/front/pork-back-ribs-1683813650.jpg",
+     "vf": "2026-11-16T00:00:00-05:00",
+     "vt": "2026-11-19T23:59:59-05:00"
+    },
+    {
+     "id": 9001255627811,
+     "n": "Chicken Burgers, Frozen, 800g BOX",
+     "b": "Watson Ridge",
+     "p": 5.99,
+     "u": "",
+     "img": "https://portal.lococos.ca/images/flyer/front/chicken-burgers-1763136599.jpg",
+     "vf": "2026-11-16T00:00:00-05:00",
+     "vt": "2026-11-19T23:59:59-05:00"
+    },
+    {
+     "id": 9003750256144,
+     "n": "Boneless",
+     "b": "Ontario's Finest",
+     "p": 2.99,
+     "u": "lb",
+     "img": "https://portal.lococos.ca/images/flyer/front/boneless-br-pork-loin-roast-1701446674.jpg",
+     "vf": "2026-11-16T00:00:00-05:00",
+     "vt": "2026-11-19T23:59:59-05:00"
     },
     {
      "id": 9003386729645,
@@ -304,6 +294,16 @@
      "img": "https://portal.lococos.ca/images/flyer/front/zucchini_squash.jpg",
      "vf": "2026-10-28T00:00:00-05:00",
      "vt": "2026-11-19T23:59:59-05:00"
+    },
+    {
+     "id": 9001377189460,
+     "n": "Mini Cucumbers, 6 Pack",
+     "b": "Ontario's Finest",
+     "p": 2.99,
+     "u": "ea",
+     "img": "https://portal.lococos.ca/images/flyer/front/cucumber_dill_mini.jpg",
+     "vf": "2026-11-16T00:00:00-05:00",
+     "vt": "2026-11-22T23:59:59-05:00"
     }
    ]
   }
