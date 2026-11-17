@@ -1,7 +1,7 @@
 {
  "week": "2026-11-12",
- "generated": "2026-11-16T20:30:06.508Z",
- "deals": 4441,
+ "generated": "2026-11-17T19:11:56.139Z",
+ "deals": 4454,
  "flyers": 26,
  "lines": [
   {
@@ -66,16 +66,16 @@
      "u": ""
     },
     {
+     "m": "Giant Tiger",
+     "n": "Smashers dino island nano egg",
+     "p": 4.75,
+     "u": ""
+    },
+    {
      "m": "Metro",
      "n": "LIFE SMART EGG WHITES",
      "p": 4.99,
      "u": "/ea"
-    },
-    {
-     "m": "Food Basics",
-     "n": "BURNBRAE HARD BOILED PEELED EGGS",
-     "p": 4.99,
-     "u": ""
     }
    ]
   },
@@ -110,9 +110,9 @@
    "hit": false,
    "deals": [
     {
-     "m": "Walmart",
-     "n": "Gay Lea salted or unsalted butter 454 g",
-     "p": 4.97,
+     "m": "Giant Tiger",
+     "n": "Giant Value salted butter",
+     "p": 4.87,
      "u": ""
     },
     {
@@ -122,9 +122,9 @@
      "u": ""
     },
     {
-     "m": "Commisso's Fresh Foods",
-     "n": "Lactantia Lactose Free or European Style Butter",
-     "p": 4.99,
+     "m": "Walmart",
+     "n": "Gay Lea salted or unsalted butter 454 g",
+     "p": 4.97,
      "u": ""
     }
    ]
