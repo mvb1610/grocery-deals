@@ -1,70 +1,10 @@
 {
- "scanned": "2026-11-17T19:11:54.044Z",
+ "scanned": "2026-11-18T18:52:38.992Z",
  "stores": [
   {
    "m": "Lococo's",
    "source": "https://www.lococos.ca/specials",
    "items": [
-    {
-     "id": 9004152129930,
-     "n": "Lamb Loin Chops, Frozen, 350g",
-     "b": "New Zealand",
-     "p": 12.99,
-     "u": "",
-     "img": "https://portal.lococos.ca/images/flyer/front/lamb_loin_chops.jpg",
-     "vf": "2026-11-13T00:00:00-05:00",
-     "vt": "2026-11-17T23:59:59-05:00"
-    },
-    {
-     "id": 9000378928456,
-     "n": "Bologna, 375g",
-     "b": "Schneiders",
-     "p": 1.99,
-     "u": "",
-     "img": "https://portal.lococos.ca/images/flyer/front/bologna-1692977530.jpg",
-     "vf": "2026-11-13T00:00:00-05:00",
-     "vt": "2026-11-17T23:59:59-05:00"
-    },
-    {
-     "id": 9002378813573,
-     "n": "AAA Sirloin Tip Steak, Aged to Perfection",
-     "b": "Cut From Canada AAA",
-     "p": 9.99,
-     "u": "lb",
-     "img": "https://portal.lococos.ca/images/flyer/front/aaa-sirloin-tip-steak-1646927843.jpg",
-     "vf": "2026-11-13T00:00:00-05:00",
-     "vt": "2026-11-17T23:59:59-05:00"
-    },
-    {
-     "id": 9001104621514,
-     "n": "Cremini Mushrooms, Sliced or Whole, 8oz PACK",
-     "b": "Ontario's Finest",
-     "p": 2.49,
-     "u": "",
-     "img": "https://portal.lococos.ca/images/flyer/front/mushroom_sliced_cremini.jpg",
-     "vf": "2026-11-11T00:00:00-05:00",
-     "vt": "2026-11-17T23:59:59-05:00"
-    },
-    {
-     "id": 9004256454327,
-     "n": "Inside Round Roast, Aged to Perfection",
-     "b": "Cut From Canada AA",
-     "p": 7.99,
-     "u": "lb",
-     "img": "https://portal.lococos.ca/images/flyer/front/inside_round_roast.jpg",
-     "vf": "2026-11-09T00:00:00-05:00",
-     "vt": "2026-11-17T23:59:59-05:00"
-    },
-    {
-     "id": 9000662353707,
-     "n": "Waxed Turnips, (Rutabagas)",
-     "b": "Ontario's Finest",
-     "p": 0.88,
-     "u": "lb",
-     "img": "https://portal.lococos.ca/images/flyer/front/turnip.jpg",
-     "vf": "2026-11-06T00:00:00-05:00",
-     "vt": "2026-11-17T23:59:59-05:00"
-    },
     {
      "id": 9001835561916,
      "n": "Pork Back Ribs, BBQ or Honey Garlic, 680g",
@@ -294,6 +234,76 @@
      "img": "https://portal.lococos.ca/images/flyer/front/zucchini_squash.jpg",
      "vf": "2026-10-28T00:00:00-05:00",
      "vt": "2026-11-19T23:59:59-05:00"
+    },
+    {
+     "id": 9000495222484,
+     "n": "Brussels Sprouts",
+     "b": "",
+     "p": 2.99,
+     "u": "lb",
+     "img": "https://portal.lococos.ca/images/flyer/front/brussels_sprouts3.jpg",
+     "vf": "2026-11-18T00:00:00-05:00",
+     "vt": "2026-11-22T23:59:59-05:00"
+    },
+    {
+     "id": 9002982350508,
+     "n": "Jumbo Honeydew",
+     "b": "",
+     "p": 4.99,
+     "u": "ea",
+     "img": "https://portal.lococos.ca/images/flyer/front/jumbo-honeydew-1794937379.jpg",
+     "vf": "2026-11-18T00:00:00-05:00",
+     "vt": "2026-11-22T23:59:59-05:00"
+    },
+    {
+     "id": 9001869189100,
+     "n": "Raspberries, Clamshell, 6oz PACK",
+     "b": "",
+     "p": 1.99,
+     "u": "",
+     "img": "https://portal.lococos.ca/images/flyer/front/raspberries-1637334858.jpeg",
+     "vf": "2026-11-18T00:00:00-05:00",
+     "vt": "2026-11-22T23:59:59-05:00"
+    },
+    {
+     "id": 9001760936612,
+     "n": "All Beef Wieners, Deli-Fresh, 375g",
+     "b": "Shopsy's",
+     "p": 2.99,
+     "u": "",
+     "img": "https://portal.lococos.ca/images/flyer/front/all-beef-wieners-1764957871.jpg",
+     "vf": "2026-11-18T00:00:00-05:00",
+     "vt": "2026-11-22T23:59:59-05:00"
+    },
+    {
+     "id": 9003870601730,
+     "n": "AAA Whole Beef Brisket, Aged to Perfection,",
+     "b": "Cut From Canada AAA",
+     "p": 5.99,
+     "u": "lb",
+     "img": "https://portal.lococos.ca/images/flyer/front/beef_brisket_whole.jpg",
+     "vf": "2026-11-18T00:00:00-05:00",
+     "vt": "2026-11-22T23:59:59-05:00"
+    },
+    {
+     "id": 9001445090824,
+     "n": "Inside Round Steaks, Aged to Perfection",
+     "b": "Cut From Canada AA",
+     "p": 8.99,
+     "u": "lb",
+     "img": "https://portal.lococos.ca/images/flyer/front/inside_round_steak2.jpg",
+     "vf": "2026-11-18T00:00:00-05:00",
+     "vt": "2026-11-22T23:59:59-05:00"
+    },
+    {
+     "id": 9003540220507,
+     "n": "Chicken Leg Quarters, Back Attached",
+     "b": "Ontario's Finest",
+     "p": 1.99,
+     "u": "lb",
+     "img": "https://portal.lococos.ca/images/flyer/front/chicken_leg_quarters3.jpg",
+     "vf": "2026-11-18T00:00:00-05:00",
+     "vt": "2026-11-22T23:59:59-05:00"
     },
     {
      "id": 9001377189460,

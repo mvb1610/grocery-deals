@@ -1,8 +1,8 @@
 {
  "week": "2026-11-12",
- "generated": "2026-11-17T19:11:56.139Z",
- "deals": 4454,
- "flyers": 26,
+ "generated": "2026-11-18T18:52:41.506Z",
+ "deals": 5895,
+ "flyers": 34,
  "lines": [
   {
    "q": "chicken breast",
@@ -22,10 +22,10 @@
      "u": "/lb"
     },
     {
-     "m": "Food Basics",
-     "n": "PRIME, MINA, FRESH FROM THE FARM OR ZABIHA HALAL FRESH BONELESS SKINLESS CHICKEN BREAST FAMILY PACK",
-     "p": 4.98,
-     "u": "/lb"
+     "m": "Pupo's Food Market",
+     "n": "FRESH AIR CHILLED BONELESS SKINLESS CHICKEN BREASTS",
+     "p": 4.99,
+     "u": ""
     }
    ]
   },
@@ -35,21 +35,21 @@
    "hit": false,
    "deals": [
     {
+     "m": "Sobeys",
+     "n": "Fresh Regular Ground Beef",
+     "p": 4.88,
+     "u": "/lb"
+    },
+    {
      "m": "Metro",
      "n": "LEAN GROUND BEEF VALUE PACK, HALAL LEAN GROUND BEEF OR LIFE SMART EXTRA LEAN GROUND CHICKEN OR TURKEY",
      "p": 5.44,
      "u": ""
     },
     {
-     "m": "Your Independent Grocer",
-     "n": "MEDIUM GROUND BEEF",
-     "p": 5.88,
-     "u": "/lb"
-    },
-    {
-     "m": "Walmart",
-     "n": "Our Promise lean ground beef",
-     "p": 5.98,
+     "m": "Real Canadian Superstore",
+     "n": "GRASS FED LEAN GROUND BEEF, 450 G",
+     "p": 5.44,
      "u": ""
     }
    ]
@@ -60,21 +60,21 @@
    "hit": false,
    "deals": [
     {
+     "m": "Farm Boy",
+     "n": "Burnbrae Farms Eggs2GO!",
+     "p": 1.5,
+     "u": "/pkg"
+    },
+    {
      "m": "Sobeys",
      "n": "Large White Eggs",
      "p": 4.44,
      "u": ""
     },
     {
-     "m": "Giant Tiger",
-     "n": "Smashers dino island nano egg",
-     "p": 4.75,
-     "u": ""
-    },
-    {
-     "m": "Metro",
-     "n": "LIFE SMART EGG WHITES",
-     "p": 4.99,
+     "m": "Food Basics",
+     "n": "SELECTION LARGE EGGS",
+     "p": 4.48,
      "u": "/ea"
     }
    ]
@@ -91,15 +91,15 @@
      "u": ""
     },
     {
-     "m": "Wholesale Club and Club Entrepôt",
-     "n": "ULTRAFILTERED MILK, 1 L",
-     "p": 3.99,
+     "m": "Sobeys",
+     "n": "Ice Milk",
+     "p": 3.49,
      "u": ""
     },
     {
-     "m": "No Frills",
-     "n": "NEILSON ULTRAFILTERED MILK, 1 L",
-     "p": 4.25,
+     "m": "Wholesale Club and Club Entrepôt",
+     "n": "ULTRAFILTERED MILK, 1 L",
+     "p": 3.99,
      "u": ""
     }
    ]
@@ -110,6 +110,12 @@
    "hit": false,
    "deals": [
     {
+     "m": "Sobeys",
+     "n": "Tray or Butter Topped Buns",
+     "p": 4,
+     "u": ""
+    },
+    {
      "m": "Giant Tiger",
      "n": "Giant Value salted butter",
      "p": 4.87,
@@ -118,12 +124,6 @@
     {
      "m": "Real Canadian Superstore",
      "n": "LACTANTIA BUTTER, 454 G",
-     "p": 4.97,
-     "u": ""
-    },
-    {
-     "m": "Walmart",
-     "n": "Gay Lea salted or unsalted butter 454 g",
      "p": 4.97,
      "u": ""
     }
@@ -172,9 +172,9 @@
      "u": "/ea"
     },
     {
-     "m": "Food Basics",
-     "n": "AURORA POTATO GNOCCHI",
-     "p": 1.49,
+     "m": "No Frills",
+     "n": "IDAHOAN MASHED POTATOES, 113 g",
+     "p": 1.5,
      "u": ""
     }
    ]
@@ -185,22 +185,22 @@
    "hit": false,
    "deals": [
     {
-     "m": "Lococo's",
-     "n": "Mutsu Apples",
+     "m": "No Frills",
+     "n": "AMBROSIA APPLES or SWEET POTATOES",
+     "p": 0.99,
+     "u": "/lb $2.18/kg"
+    },
+    {
+     "m": "Foodland",
+     "n": "Gala or Ambrosia Apples",
      "p": 0.99,
      "u": "/lb"
     },
     {
-     "m": "Pupo's Food Market",
-     "n": "AMBROSIA APPLES",
-     "p": 1,
-     "u": ""
-    },
-    {
-     "m": "Farm Boy",
-     "n": "Cortland, Empire, McIntosh, or Spartan Apples",
-     "p": 1.49,
-     "u": "/lb 3.28/kg"
+     "m": "Lococo's",
+     "n": "Mutsu Apples",
+     "p": 0.99,
+     "u": "/lb"
     }
    ]
   }

@@ -1,12 +1,12 @@
-Niagara grocery deals, week of Thu, Nov 12: 4454 deals from 26 flyers.
+Niagara grocery deals, week of Thu, Nov 12: 5895 deals from 34 flyers.
 
-chicken breast: $4.88/lb at Real Canadian Superstore (HALAL CHICKEN BREAST); $4.88/lb at Zehrs (CHICKEN BREASTS); $4.98/lb at Food Basics (PRIME, MINA, FRESH FROM THE FARM OR ZABI)
-ground beef: $5.44 at Metro (LEAN GROUND BEEF VALUE PACK, HALAL LEAN ); $5.88/lb at Your Independent Grocer (MEDIUM GROUND BEEF); $5.98 at Walmart (Our Promise lean ground beef)
-eggs: $4.44 at Sobeys (Large White Eggs); $4.75 at Giant Tiger (Smashers dino island nano egg); $4.99/ea at Metro (LIFE SMART EGG WHITES)
-milk: $2.00 at No Frills (NEILSON FLAVoured MILK, 1 L); $3.99 at Wholesale Club and Club Entrepôt (ULTRAFILTERED MILK, 1 L); $4.25 at No Frills (NEILSON ULTRAFILTERED MILK, 1 L)
-butter: $4.87 at Giant Tiger (Giant Value salted butter); $4.97 at Real Canadian Superstore (LACTANTIA BUTTER, 454 G); $4.97 at Walmart (Gay Lea salted or unsalted butter 454 g)
+chicken breast: $4.88/lb at Real Canadian Superstore (HALAL CHICKEN BREAST); $4.88/lb at Zehrs (CHICKEN BREASTS); $4.99 at Pupo's Food Market (FRESH AIR CHILLED BONELESS SKINLESS CHIC)
+ground beef: $4.88/lb at Sobeys (Fresh Regular Ground Beef); $5.44 at Metro (LEAN GROUND BEEF VALUE PACK, HALAL LEAN ); $5.44 at Real Canadian Superstore (GRASS FED LEAN GROUND BEEF, 450 G)
+eggs: $1.50/pkg at Farm Boy (Burnbrae Farms Eggs2GO!); $4.44 at Sobeys (Large White Eggs); $4.48/ea at Food Basics (SELECTION LARGE EGGS)
+milk: $2.00 at No Frills (NEILSON FLAVoured MILK, 1 L); $3.49 at Sobeys (Ice Milk); $3.99 at Wholesale Club and Club Entrepôt (ULTRAFILTERED MILK, 1 L)
+butter: $4.00 at Sobeys (Tray or Butter Topped Buns); $4.87 at Giant Tiger (Giant Value salted butter); $4.97 at Real Canadian Superstore (LACTANTIA BUTTER, 454 G)
 bread: $1.50 at Real Canadian Superstore (FRENCH OR ITALIAN BREAD, 370-568 G); $1.50 at Real Canadian Superstore (CEDAR PITA BREAD, 330 G); $1.99 at Foodland (Half Loaf White or Whole Wheat Bread)
-potatoes: $0.99/ea at Metro (BABY RUSSET POTATOES 1 LB PRODUCT OF CAN); $0.99/ea at Metro (BABY RUSSET POTATOES OR GARLIC); $1.49 at Food Basics (AURORA POTATO GNOCCHI)
-apples: $0.99/lb at Lococo's (Mutsu Apples); $1.00 at Pupo's Food Market (AMBROSIA APPLES); $1.49/lb 3.28/kg at Farm Boy (Cortland, Empire, McIntosh, or Spartan A)
+potatoes: $0.99/ea at Metro (BABY RUSSET POTATOES 1 LB PRODUCT OF CAN); $0.99/ea at Metro (BABY RUSSET POTATOES OR GARLIC); $1.50 at No Frills (IDAHOAN MASHED POTATOES, 113 g)
+apples: $0.99/lb $2.18/kg at No Frills (AMBROSIA APPLES or SWEET POTATOES); $0.99/lb at Foodland (Gala or Ambrosia Apples); $0.99/lb at Lococo's (Mutsu Apples)
 
 Open the app: https://mvb1610.github.io/grocery-deals/
