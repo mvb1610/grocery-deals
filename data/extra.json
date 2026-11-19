@@ -1,5 +1,5 @@
 {
- "scanned": "2026-11-18T18:52:38.992Z",
+ "scanned": "2026-11-19T18:59:43.681Z",
  "stores": [
   {
    "m": "Lococo's",
@@ -33,26 +33,6 @@
      "u": "lb",
      "img": "https://portal.lococos.ca/images/flyer/front/boneless-br-pork-loin-roast-1701446674.jpg",
      "vf": "2026-11-16T00:00:00-05:00",
-     "vt": "2026-11-19T23:59:59-05:00"
-    },
-    {
-     "id": 9003386729645,
-     "n": "Bag of Beets, 25lb BAG",
-     "b": "Ontario's Finest",
-     "p": 16,
-     "u": "",
-     "img": "https://portal.lococos.ca/images/flyer/front/beets_no_bag.jpg",
-     "vf": "2026-11-13T00:00:00-05:00",
-     "vt": "2026-11-19T23:59:59-05:00"
-    },
-    {
-     "id": 9002642515204,
-     "n": "Bag of Beets, 2lb BAG",
-     "b": "Ontario's Finest",
-     "p": 1.77,
-     "u": "",
-     "img": "https://portal.lococos.ca/images/flyer/front/beets_no_bag.jpg",
-     "vf": "2026-11-13T00:00:00-05:00",
      "vt": "2026-11-19T23:59:59-05:00"
     },
     {
@@ -136,16 +116,6 @@
      "vt": "2026-11-19T23:59:59-05:00"
     },
     {
-     "id": 9001010058951,
-     "n": "Bag of Beets, 5lb BAG",
-     "b": "Ontario's Finest",
-     "p": 3.99,
-     "u": "",
-     "img": "https://portal.lococos.ca/images/flyer/front/beets_no_bag.jpg",
-     "vf": "2026-11-13T00:00:00-05:00",
-     "vt": "2026-11-19T23:59:59-05:00"
-    },
-    {
      "id": 9002949799781,
      "n": "Mutsu Apples",
      "b": "Ontario's Finest",
@@ -153,16 +123,6 @@
      "u": "lb",
      "img": "https://portal.lococos.ca/images/flyer/front/mutsu-apples-1643834584.jpg",
      "vf": "2026-11-13T00:00:00-05:00",
-     "vt": "2026-11-19T23:59:59-05:00"
-    },
-    {
-     "id": 9003374815822,
-     "n": "Sweet Onions",
-     "b": "",
-     "p": 1.88,
-     "u": "lb",
-     "img": "https://portal.lococos.ca/images/flyer/front/onions_vidalia.jpg",
-     "vf": "2026-11-11T00:00:00-05:00",
      "vt": "2026-11-19T23:59:59-05:00"
     },
     {
@@ -176,26 +136,6 @@
      "vt": "2026-11-19T23:59:59-05:00"
     },
     {
-     "id": 9002513584299,
-     "n": "Heirloom Carrots, 2lb BAG",
-     "b": "Ontario's Finest",
-     "p": 2.88,
-     "u": "",
-     "img": "https://portal.lococos.ca/images/flyer/front/heirloom-carrots-1764699603.jpg",
-     "vf": "2026-11-11T00:00:00-05:00",
-     "vt": "2026-11-19T23:59:59-05:00"
-    },
-    {
-     "id": 9003038898145,
-     "n": "Clementines, 2lb BAG",
-     "b": "",
-     "p": 3.99,
-     "u": "",
-     "img": "https://portal.lococos.ca/images/flyer/front/clementines_loose.jpg",
-     "vf": "2026-11-09T00:00:00-05:00",
-     "vt": "2026-11-19T23:59:59-05:00"
-    },
-    {
      "id": 9000841440066,
      "n": "Large Navel Oranges",
      "b": "",
@@ -203,26 +143,6 @@
      "u": "lb",
      "img": "https://portal.lococos.ca/images/flyer/front/oranges_sunkist.jpg",
      "vf": "2026-11-09T00:00:00-05:00",
-     "vt": "2026-11-19T23:59:59-05:00"
-    },
-    {
-     "id": 9002185767501,
-     "n": "Boston Lettuce, Hydroponic",
-     "b": "Ontario's Finest",
-     "p": 2.49,
-     "u": "ea",
-     "img": "https://portal.lococos.ca/images/flyer/front/boston_lettuce2.jpg",
-     "vf": "2026-11-09T00:00:00-05:00",
-     "vt": "2026-11-19T23:59:59-05:00"
-    },
-    {
-     "id": 9000539373634,
-     "n": "Red Seedless Grapes",
-     "b": "",
-     "p": 2.99,
-     "u": "lb",
-     "img": "https://portal.lococos.ca/images/flyer/front/red_seedless_grapes.jpg",
-     "vf": "2026-11-04T00:00:00-05:00",
      "vt": "2026-11-19T23:59:59-05:00"
     },
     {
@@ -242,26 +162,6 @@
      "p": 2.99,
      "u": "lb",
      "img": "https://portal.lococos.ca/images/flyer/front/brussels_sprouts3.jpg",
-     "vf": "2026-11-18T00:00:00-05:00",
-     "vt": "2026-11-22T23:59:59-05:00"
-    },
-    {
-     "id": 9002982350508,
-     "n": "Jumbo Honeydew",
-     "b": "",
-     "p": 4.99,
-     "u": "ea",
-     "img": "https://portal.lococos.ca/images/flyer/front/jumbo-honeydew-1794937379.jpg",
-     "vf": "2026-11-18T00:00:00-05:00",
-     "vt": "2026-11-22T23:59:59-05:00"
-    },
-    {
-     "id": 9001869189100,
-     "n": "Raspberries, Clamshell, 6oz PACK",
-     "b": "",
-     "p": 1.99,
-     "u": "",
-     "img": "https://portal.lococos.ca/images/flyer/front/raspberries-1637334858.jpeg",
      "vf": "2026-11-18T00:00:00-05:00",
      "vt": "2026-11-22T23:59:59-05:00"
     },
@@ -314,6 +214,106 @@
      "img": "https://portal.lococos.ca/images/flyer/front/cucumber_dill_mini.jpg",
      "vf": "2026-11-16T00:00:00-05:00",
      "vt": "2026-11-22T23:59:59-05:00"
+    },
+    {
+     "id": 9003386729645,
+     "n": "Bag of Beets, 25lb BAG",
+     "b": "Ontario's Finest",
+     "p": 16,
+     "u": "",
+     "img": "https://portal.lococos.ca/images/flyer/front/beets_no_bag.jpg",
+     "vf": "2026-11-13T00:00:00-05:00",
+     "vt": "2026-11-22T23:59:59-05:00"
+    },
+    {
+     "id": 9002642515204,
+     "n": "Bag of Beets, 2lb BAG",
+     "b": "Ontario's Finest",
+     "p": 1.77,
+     "u": "",
+     "img": "https://portal.lococos.ca/images/flyer/front/beets_no_bag.jpg",
+     "vf": "2026-11-13T00:00:00-05:00",
+     "vt": "2026-11-22T23:59:59-05:00"
+    },
+    {
+     "id": 9001010058951,
+     "n": "Bag of Beets, 5lb BAG",
+     "b": "Ontario's Finest",
+     "p": 3.99,
+     "u": "",
+     "img": "https://portal.lococos.ca/images/flyer/front/beets_no_bag.jpg",
+     "vf": "2026-11-13T00:00:00-05:00",
+     "vt": "2026-11-22T23:59:59-05:00"
+    },
+    {
+     "id": 9003374815822,
+     "n": "Sweet Onions",
+     "b": "",
+     "p": 1.88,
+     "u": "lb",
+     "img": "https://portal.lococos.ca/images/flyer/front/onions_vidalia.jpg",
+     "vf": "2026-11-11T00:00:00-05:00",
+     "vt": "2026-11-22T23:59:59-05:00"
+    },
+    {
+     "id": 9002513584299,
+     "n": "Heirloom Carrots, 2lb BAG",
+     "b": "Ontario's Finest",
+     "p": 2.88,
+     "u": "",
+     "img": "https://portal.lococos.ca/images/flyer/front/heirloom-carrots-1764699603.jpg",
+     "vf": "2026-11-11T00:00:00-05:00",
+     "vt": "2026-11-22T23:59:59-05:00"
+    },
+    {
+     "id": 9003038898145,
+     "n": "Clementines, 2lb BAG",
+     "b": "",
+     "p": 3.99,
+     "u": "",
+     "img": "https://portal.lococos.ca/images/flyer/front/clementines_loose.jpg",
+     "vf": "2026-11-09T00:00:00-05:00",
+     "vt": "2026-11-22T23:59:59-05:00"
+    },
+    {
+     "id": 9002185767501,
+     "n": "Boston Lettuce, Hydroponic",
+     "b": "Ontario's Finest",
+     "p": 2.49,
+     "u": "ea",
+     "img": "https://portal.lococos.ca/images/flyer/front/boston_lettuce2.jpg",
+     "vf": "2026-11-09T00:00:00-05:00",
+     "vt": "2026-11-22T23:59:59-05:00"
+    },
+    {
+     "id": 9000539373634,
+     "n": "Red Seedless Grapes",
+     "b": "",
+     "p": 2.99,
+     "u": "lb",
+     "img": "https://portal.lococos.ca/images/flyer/front/red_seedless_grapes.jpg",
+     "vf": "2026-11-04T00:00:00-05:00",
+     "vt": "2026-11-22T23:59:59-05:00"
+    },
+    {
+     "id": 9002982350508,
+     "n": "Jumbo Honeydew",
+     "b": "",
+     "p": 4.99,
+     "u": "ea",
+     "img": "https://portal.lococos.ca/images/flyer/front/jumbo-honeydew-1794937379.jpg",
+     "vf": "2026-11-18T00:00:00-05:00",
+     "vt": "2026-11-24T23:59:59-05:00"
+    },
+    {
+     "id": 9001869189100,
+     "n": "Raspberries, Clamshell, 6oz PACK",
+     "b": "",
+     "p": 1.99,
+     "u": "",
+     "img": "https://portal.lococos.ca/images/flyer/front/raspberries-1637334858.jpeg",
+     "vf": "2026-11-18T00:00:00-05:00",
+     "vt": "2026-11-24T23:59:59-05:00"
     }
    ]
   }

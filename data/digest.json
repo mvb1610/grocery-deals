@@ -1,8 +1,8 @@
 {
- "week": "2026-11-12",
- "generated": "2026-11-18T18:52:41.506Z",
- "deals": 5895,
- "flyers": 34,
+ "week": "2026-11-19",
+ "generated": "2026-11-19T18:59:46.291Z",
+ "deals": 4094,
+ "flyers": 27,
  "lines": [
   {
    "q": "chicken breast",
@@ -10,22 +10,22 @@
    "hit": false,
    "deals": [
     {
-     "m": "Real Canadian Superstore",
-     "n": "HALAL CHICKEN BREAST",
+     "m": "Metro",
+     "n": "FRESH BONELESS SKINLESS CHICKEN BREAST",
      "p": 4.88,
      "u": "/lb"
     },
     {
-     "m": "Zehrs",
-     "n": "CHICKEN BREASTS",
-     "p": 4.88,
+     "m": "Sobeys",
+     "n": "COMPLIMENTS Fresh AIR-CHILLED Bone-In Chicken Breast Halves",
+     "p": 6.49,
      "u": "/lb"
     },
     {
-     "m": "Pupo's Food Market",
-     "n": "FRESH AIR CHILLED BONELESS SKINLESS CHICKEN BREASTS",
-     "p": 4.99,
-     "u": ""
+     "m": "Foodland",
+     "n": "AIR-CHILLED Split Chicken Breasts",
+     "p": 6.99,
+     "u": "/lb"
     }
    ]
   },
@@ -41,9 +41,9 @@
      "u": "/lb"
     },
     {
-     "m": "Metro",
-     "n": "LEAN GROUND BEEF VALUE PACK, HALAL LEAN GROUND BEEF OR LIFE SMART EXTRA LEAN GROUND CHICKEN OR TURKEY",
-     "p": 5.44,
+     "m": "Pupo's Food Market",
+     "n": "PUPO'S PORK-BEEF-VEAL GROUND COMBINATION",
+     "p": 4.99,
      "u": ""
     },
     {
@@ -66,16 +66,16 @@
      "u": "/pkg"
     },
     {
-     "m": "Sobeys",
-     "n": "Large White Eggs",
-     "p": 4.44,
-     "u": ""
+     "m": "Shoppers Drug Mart",
+     "n": "GRADE \"A\" LARGE WHITE EGGS",
+     "p": 3.49,
+     "u": "/ea"
     },
     {
-     "m": "Food Basics",
-     "n": "SELECTION LARGE EGGS",
-     "p": 4.48,
-     "u": "/ea"
+     "m": "Shoppers Drug Mart",
+     "n": "REESE'S PEANUT BUTTER TREES (34g) or CADBURY MINI EGGS (33g)",
+     "p": 4,
+     "u": ""
     }
    ]
   },
@@ -84,12 +84,6 @@
    "max": null,
    "hit": false,
    "deals": [
-    {
-     "m": "No Frills",
-     "n": "NEILSON FLAVoured MILK, 1 L",
-     "p": 2,
-     "u": ""
-    },
     {
      "m": "Sobeys",
      "n": "Ice Milk",
@@ -101,6 +95,12 @@
      "n": "ULTRAFILTERED MILK, 1 L",
      "p": 3.99,
      "u": ""
+    },
+    {
+     "m": "Commisso's Fresh Foods",
+     "n": "Lactantia PurFiltre Milk",
+     "p": 3.99,
+     "u": ""
     }
    ]
   },
@@ -110,21 +110,21 @@
    "hit": false,
    "deals": [
     {
+     "m": "Shoppers Drug Mart",
+     "n": "TWIZZLERS CHERRY TREES (200g) or WALKER'S ALL-BUTTER MINI FESTIVE SHORTBREAD TREES (125g)",
+     "p": 3.99,
+     "u": ""
+    },
+    {
+     "m": "Metro",
+     "n": "BEATRICE BUTTER MILK",
+     "p": 3.99,
+     "u": "/ea"
+    },
+    {
      "m": "Sobeys",
      "n": "Tray or Butter Topped Buns",
      "p": 4,
-     "u": ""
-    },
-    {
-     "m": "Giant Tiger",
-     "n": "Giant Value salted butter",
-     "p": 4.87,
-     "u": ""
-    },
-    {
-     "m": "Real Canadian Superstore",
-     "n": "LACTANTIA BUTTER, 454 G",
-     "p": 4.97,
      "u": ""
     }
    ]
@@ -135,22 +135,22 @@
    "hit": false,
    "deals": [
     {
-     "m": "Real Canadian Superstore",
-     "n": "FRENCH OR ITALIAN BREAD, 370-568 G",
-     "p": 1.5,
+     "m": "No Frills",
+     "n": "NO NAME® BREAD, 675 g",
+     "p": 2.48,
      "u": ""
     },
     {
-     "m": "Real Canadian Superstore",
-     "n": "CEDAR PITA BREAD, 330 G",
-     "p": 1.5,
+     "m": "Sobeys",
+     "n": "French or Italian Bread",
+     "p": 2.49,
      "u": ""
     },
     {
-     "m": "Foodland",
-     "n": "Half Loaf White or Whole Wheat Bread",
-     "p": 1.99,
-     "u": ""
+     "m": "Sobeys",
+     "n": "White or 100% Whole Wheat Bread",
+     "p": 2.49,
+     "u": "/ea when you buy 2 or more"
     }
    ]
   },
@@ -160,21 +160,21 @@
    "hit": false,
    "deals": [
     {
-     "m": "Metro",
-     "n": "BABY RUSSET POTATOES 1 LB PRODUCT OF CANADA GARLIC 5 PK PRODUCT OF CHINA",
-     "p": 0.99,
-     "u": "/ea"
-    },
-    {
-     "m": "Metro",
-     "n": "BABY RUSSET POTATOES OR GARLIC",
-     "p": 0.99,
-     "u": "/ea"
-    },
-    {
      "m": "No Frills",
      "n": "IDAHOAN MASHED POTATOES, 113 g",
      "p": 1.5,
+     "u": ""
+    },
+    {
+     "m": "Commisso's Fresh Foods",
+     "n": "Aurora Potato Gnocchi",
+     "p": 5,
+     "u": ""
+    },
+    {
+     "m": "Real Canadian Superstore",
+     "n": "FARMER'S MARKET™ RUSSET POTATOES, 10 LB",
+     "p": 2,
      "u": ""
     }
    ]
@@ -185,16 +185,16 @@
    "hit": false,
    "deals": [
     {
-     "m": "No Frills",
-     "n": "AMBROSIA APPLES or SWEET POTATOES",
-     "p": 0.99,
-     "u": "/lb $2.18/kg"
-    },
-    {
      "m": "Foodland",
      "n": "Gala or Ambrosia Apples",
      "p": 0.99,
      "u": "/lb"
+    },
+    {
+     "m": "No Frills",
+     "n": "AMBROSIA APPLES or SWEET POTATOES",
+     "p": 0.99,
+     "u": "/lb $2.18/kg"
     },
     {
      "m": "Lococo's",
