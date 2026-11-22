@@ -1,7 +1,7 @@
 {
  "week": "2026-11-19",
- "generated": "2026-11-21T17:34:05.675Z",
- "deals": 4095,
+ "generated": "2026-11-22T17:50:31.905Z",
+ "deals": 4072,
  "flyers": 27,
  "lines": [
   {
@@ -91,16 +91,16 @@
      "u": ""
     },
     {
-     "m": "Wholesale Club and Club Entrepôt",
-     "n": "ULTRAFILTERED MILK, 1 L",
-     "p": 3.99,
-     "u": ""
-    },
-    {
      "m": "Commisso's Fresh Foods",
      "n": "Lactantia PurFiltre Milk",
      "p": 3.99,
      "u": ""
+    },
+    {
+     "m": "Metro",
+     "n": "BEATRICE BUTTER MILK",
+     "p": 3.99,
+     "u": "/ea"
     }
    ]
   },
