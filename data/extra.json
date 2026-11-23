@@ -1,130 +1,10 @@
 {
- "scanned": "2026-11-22T17:50:29.438Z",
+ "scanned": "2026-11-23T22:03:48.433Z",
  "stores": [
   {
    "m": "Lococo's",
    "source": "https://www.lococos.ca/specials",
    "items": [
-    {
-     "id": 9000662353707,
-     "n": "Waxed Turnips, (Rutabagas)",
-     "b": "Ontario's Finest",
-     "p": 0.88,
-     "u": "lb",
-     "img": "https://portal.lococos.ca/images/flyer/front/turnip.jpg",
-     "vf": "2026-11-20T00:00:00-05:00",
-     "vt": "2026-11-22T23:59:59-05:00"
-    },
-    {
-     "id": 9000495222484,
-     "n": "Brussels Sprouts",
-     "b": "",
-     "p": 2.99,
-     "u": "lb",
-     "img": "https://portal.lococos.ca/images/flyer/front/brussels_sprouts3.jpg",
-     "vf": "2026-11-18T00:00:00-05:00",
-     "vt": "2026-11-22T23:59:59-05:00"
-    },
-    {
-     "id": 9001760936612,
-     "n": "All Beef Wieners, Deli-Fresh, 375g",
-     "b": "Shopsy's",
-     "p": 2.99,
-     "u": "",
-     "img": "https://portal.lococos.ca/images/flyer/front/all-beef-wieners-1764957871.jpg",
-     "vf": "2026-11-18T00:00:00-05:00",
-     "vt": "2026-11-22T23:59:59-05:00"
-    },
-    {
-     "id": 9001445090824,
-     "n": "Inside Round Steaks, Aged to Perfection",
-     "b": "Cut From Canada AA",
-     "p": 8.99,
-     "u": "lb",
-     "img": "https://portal.lococos.ca/images/flyer/front/inside_round_steak2.jpg",
-     "vf": "2026-11-18T00:00:00-05:00",
-     "vt": "2026-11-22T23:59:59-05:00"
-    },
-    {
-     "id": 9003540220507,
-     "n": "Chicken Leg Quarters, Back Attached",
-     "b": "Ontario's Finest",
-     "p": 1.99,
-     "u": "lb",
-     "img": "https://portal.lococos.ca/images/flyer/front/chicken_leg_quarters3.jpg",
-     "vf": "2026-11-18T00:00:00-05:00",
-     "vt": "2026-11-22T23:59:59-05:00"
-    },
-    {
-     "id": 9003386729645,
-     "n": "Bag of Beets, 25lb BAG",
-     "b": "Ontario's Finest",
-     "p": 16,
-     "u": "",
-     "img": "https://portal.lococos.ca/images/flyer/front/beets_no_bag.jpg",
-     "vf": "2026-11-13T00:00:00-05:00",
-     "vt": "2026-11-22T23:59:59-05:00"
-    },
-    {
-     "id": 9002642515204,
-     "n": "Bag of Beets, 2lb BAG",
-     "b": "Ontario's Finest",
-     "p": 1.77,
-     "u": "",
-     "img": "https://portal.lococos.ca/images/flyer/front/beets_no_bag.jpg",
-     "vf": "2026-11-13T00:00:00-05:00",
-     "vt": "2026-11-22T23:59:59-05:00"
-    },
-    {
-     "id": 9001010058951,
-     "n": "Bag of Beets, 5lb BAG",
-     "b": "Ontario's Finest",
-     "p": 3.99,
-     "u": "",
-     "img": "https://portal.lococos.ca/images/flyer/front/beets_no_bag.jpg",
-     "vf": "2026-11-13T00:00:00-05:00",
-     "vt": "2026-11-22T23:59:59-05:00"
-    },
-    {
-     "id": 9003374815822,
-     "n": "Sweet Onions",
-     "b": "",
-     "p": 1.88,
-     "u": "lb",
-     "img": "https://portal.lococos.ca/images/flyer/front/onions_vidalia.jpg",
-     "vf": "2026-11-11T00:00:00-05:00",
-     "vt": "2026-11-22T23:59:59-05:00"
-    },
-    {
-     "id": 9002513584299,
-     "n": "Heirloom Carrots, 2lb BAG",
-     "b": "Ontario's Finest",
-     "p": 2.88,
-     "u": "",
-     "img": "https://portal.lococos.ca/images/flyer/front/heirloom-carrots-1764699603.jpg",
-     "vf": "2026-11-11T00:00:00-05:00",
-     "vt": "2026-11-22T23:59:59-05:00"
-    },
-    {
-     "id": 9003038898145,
-     "n": "Clementines, 2lb BAG",
-     "b": "",
-     "p": 3.99,
-     "u": "",
-     "img": "https://portal.lococos.ca/images/flyer/front/clementines_loose.jpg",
-     "vf": "2026-11-09T00:00:00-05:00",
-     "vt": "2026-11-22T23:59:59-05:00"
-    },
-    {
-     "id": 9002185767501,
-     "n": "Boston Lettuce, Hydroponic",
-     "b": "Ontario's Finest",
-     "p": 2.49,
-     "u": "ea",
-     "img": "https://portal.lococos.ca/images/flyer/front/boston_lettuce2.jpg",
-     "vf": "2026-11-09T00:00:00-05:00",
-     "vt": "2026-11-22T23:59:59-05:00"
-    },
     {
      "id": 9002220577294,
      "n": "AAA Eye of Round Roast, Aged to Perfection",
@@ -154,6 +34,56 @@
      "img": "https://portal.lococos.ca/images/flyer/front/sasuages_italian_pork.jpg",
      "vf": "2026-11-20T00:00:00-05:00",
      "vt": "2026-11-24T23:59:59-05:00"
+    },
+    {
+     "id": 9001602895940,
+     "n": "Heirloom Tomatoes",
+     "b": "Ontario's Finest",
+     "p": 2.99,
+     "u": "lb",
+     "img": "https://portal.lococos.ca/images/flyer/front/heirloom-tomatoes-1743782007.jpg",
+     "vf": "2026-11-23T00:00:00-05:00",
+     "vt": "2026-11-26T23:59:59-05:00"
+    },
+    {
+     "id": 9001732671976,
+     "n": "Fast Fry Pork Loin Chops, Boneless",
+     "b": "Ontario's Finest",
+     "p": 5.99,
+     "u": "lb",
+     "img": "https://portal.lococos.ca/images/flyer/front/fast-fry-pork-loin-chops-1754065265.jpg",
+     "vf": "2026-11-23T00:00:00-05:00",
+     "vt": "2026-11-26T23:59:59-05:00"
+    },
+    {
+     "id": 9003012597314,
+     "n": "Black Forest Ham, 175g",
+     "b": "Greenfield",
+     "p": 2.99,
+     "u": "",
+     "img": "https://portal.lococos.ca/images/flyer/front/black-forest-ham-1795191034.jpg",
+     "vf": "2026-11-23T00:00:00-05:00",
+     "vt": "2026-11-26T23:59:59-05:00"
+    },
+    {
+     "id": 9000546035894,
+     "n": "Beef Stir Fry, Aged to Perfection",
+     "b": "Cut From Canada AA",
+     "p": 12.99,
+     "u": "lb",
+     "img": "https://portal.lococos.ca/images/flyer/front/beef_stirfry.jpg",
+     "vf": "2026-11-23T00:00:00-05:00",
+     "vt": "2026-11-26T23:59:59-05:00"
+    },
+    {
+     "id": 9000171961744,
+     "n": "Large Green Winter Cabbage",
+     "b": "Ontario's Finest",
+     "p": 2.99,
+     "u": "ea",
+     "img": "https://portal.lococos.ca/images/flyer/front/cabbage_green.jpg",
+     "vf": "2026-11-23T00:00:00-05:00",
+     "vt": "2026-11-26T23:59:59-05:00"
     },
     {
      "id": 9002379145352,

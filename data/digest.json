@@ -1,8 +1,8 @@
 {
  "week": "2026-11-19",
- "generated": "2026-11-22T17:50:31.905Z",
- "deals": 4072,
- "flyers": 27,
+ "generated": "2026-11-23T22:03:50.360Z",
+ "deals": 4062,
+ "flyers": 28,
  "lines": [
   {
    "q": "chicken breast",
@@ -67,15 +67,15 @@
     },
     {
      "m": "Shoppers Drug Mart",
-     "n": "GRADE \"A\" LARGE WHITE EGGS",
-     "p": 3.49,
-     "u": "/ea"
-    },
-    {
-     "m": "Shoppers Drug Mart",
      "n": "REESE'S PEANUT BUTTER TREES (34g) or CADBURY MINI EGGS (33g)",
      "p": 4,
      "u": ""
+    },
+    {
+     "m": "Food Basics",
+     "n": "SELECTION LARGE EGGS",
+     "p": 4.48,
+     "u": "/ea"
     }
    ]
   },
@@ -98,7 +98,7 @@
     },
     {
      "m": "Metro",
-     "n": "BEATRICE BUTTER MILK",
+     "n": "LACTANTIA PURFILTRE MILK 2 L OR CREAM 473 ML - 1 L",
      "p": 3.99,
      "u": "/ea"
     }
@@ -141,16 +141,16 @@
      "u": ""
     },
     {
-     "m": "Shoppers Drug Mart",
-     "n": "WONDER WHITE or WHOLE WHEAT BREAD",
-     "p": 2.49,
-     "u": "/ea saturday, november 21 & sunday, november 22 only!"
-    },
-    {
      "m": "Sobeys",
      "n": "French or Italian Bread",
      "p": 2.49,
      "u": ""
+    },
+    {
+     "m": "Sobeys",
+     "n": "White or 100% Whole Wheat Bread",
+     "p": 2.49,
+     "u": "/ea when you buy 2 or more"
     }
    ]
   },
