@@ -1,14 +1,20 @@
 {
  "week": "2026-11-19",
- "generated": "2026-11-24T20:40:22.333Z",
- "deals": 4082,
- "flyers": 28,
+ "generated": "2026-11-25T19:57:02.778Z",
+ "deals": 5836,
+ "flyers": 36,
  "lines": [
   {
    "q": "chicken breast",
    "max": null,
    "hit": false,
    "deals": [
+    {
+     "m": "No Frills",
+     "n": "CHICKEN BREAST",
+     "p": 4.88,
+     "u": "/lb"
+    },
     {
      "m": "Metro",
      "n": "FRESH BONELESS SKINLESS CHICKEN BREAST",
@@ -19,12 +25,6 @@
      "m": "Sobeys",
      "n": "COMPLIMENTS Fresh AIR-CHILLED Bone-In Chicken Breast Halves",
      "p": 6.49,
-     "u": "/lb"
-    },
-    {
-     "m": "Foodland",
-     "n": "AIR-CHILLED Split Chicken Breasts",
-     "p": 6.99,
      "u": "/lb"
     }
    ]
@@ -41,15 +41,15 @@
      "u": "/lb"
     },
     {
-     "m": "Pupo's Food Market",
-     "n": "PUPO'S PORK-BEEF-VEAL GROUND COMBINATION",
+     "m": "FreshCo",
+     "n": "Our Promise Grass Fed Halal Medium Ground Beef 450 g - FreshCo Scene+",
      "p": 4.99,
      "u": ""
     },
     {
-     "m": "Real Canadian Superstore",
-     "n": "GRASS FED LEAN GROUND BEEF, 450 G",
-     "p": 5.44,
+     "m": "Pupo's Food Market",
+     "n": "PUPO'S PORK-BEEF-VEAL GROUND COMBINATION",
+     "p": 4.99,
      "u": ""
     }
    ]
@@ -60,22 +60,22 @@
    "hit": false,
    "deals": [
     {
-     "m": "Farm Boy",
-     "n": "Burnbrae Farms Eggs2GO!",
-     "p": 1.5,
-     "u": "/pkg"
-    },
-    {
      "m": "Shoppers Drug Mart",
      "n": "REESE'S PEANUT BUTTER TREES (34g) or CADBURY MINI EGGS (33g)",
      "p": 4,
      "u": ""
     },
     {
-     "m": "Food Basics",
-     "n": "SELECTION LARGE EGGS",
-     "p": 4.48,
-     "u": "/ea"
+     "m": "Shoppers Drug Mart",
+     "n": "BURNBRAE LARGE BROWN EGGS (1 Dozen) or NEILSON ULTRAFILTERED MILK (1L)",
+     "p": 4.59,
+     "u": ""
+    },
+    {
+     "m": "No Frills",
+     "n": "GRAY RIDGE or PRESTIGE GRADE A LARGE WHITE EGGS, 18's",
+     "p": 4.99,
+     "u": ""
     }
    ]
   },
@@ -84,6 +84,12 @@
    "max": null,
    "hit": false,
    "deals": [
+    {
+     "m": "Farm Boy",
+     "n": "Neilson Milk",
+     "p": 2.79,
+     "u": "/ea"
+    },
     {
      "m": "Sobeys",
      "n": "Ice Milk",
@@ -95,12 +101,6 @@
      "n": "Lactantia PurFiltre Milk",
      "p": 3.99,
      "u": ""
-    },
-    {
-     "m": "Metro",
-     "n": "LACTANTIA PURFILTRE MILK 2 L OR CREAM 473 ML - 1 L",
-     "p": 3.99,
-     "u": "/ea"
     }
    ]
   },
@@ -110,21 +110,21 @@
    "hit": false,
    "deals": [
     {
-     "m": "Shoppers Drug Mart",
-     "n": "TWIZZLERS CHERRY TREES (200g) or WALKER'S ALL-BUTTER MINI FESTIVE SHORTBREAD TREES (125g)",
-     "p": 3.99,
+     "m": "Food Basics",
+     "n": "BUTTERBALL WHOLE TURKEY",
+     "p": 1.89,
      "u": ""
     },
     {
-     "m": "Metro",
-     "n": "BEATRICE BUTTER MILK",
+     "m": "Food Basics",
+     "n": "SELECTION BUTTER",
      "p": 3.99,
      "u": "/ea"
     },
     {
-     "m": "Sobeys",
-     "n": "Tray or Butter Topped Buns",
-     "p": 4,
+     "m": "Shoppers Drug Mart",
+     "n": "TWIZZLERS CHERRY TREES (200g) or WALKER'S ALL-BUTTER MINI FESTIVE SHORTBREAD TREES (125g)",
+     "p": 3.99,
      "u": ""
     }
    ]
@@ -160,22 +160,22 @@
    "hit": false,
    "deals": [
     {
-     "m": "No Frills",
-     "n": "IDAHOAN MASHED POTATOES, 113 g",
-     "p": 1.5,
+     "m": "Giant Tiger",
+     "n": "1 lb Steam & Go mini potatoes",
+     "p": 0.77,
      "u": ""
     },
     {
-     "m": "Commisso's Fresh Foods",
-     "n": "Aurora Potato Gnocchi",
-     "p": 5,
-     "u": ""
+     "m": "Food Basics",
+     "n": "RUSSET PEI POTATOES OR GOURMET MINI YELLOW POTATOES OR CARROTS OR YELLOW ONIONS",
+     "p": 0.99,
+     "u": "/ea"
     },
     {
-     "m": "Real Canadian Superstore",
-     "n": "FARMER'S MARKET™ RUSSET POTATOES, 10 LB",
-     "p": 2,
-     "u": ""
+     "m": "Food Basics",
+     "n": "RUSSET PEI POTATOES OR GOURMET MINI YELLOW POTATOES, CARROTS OR YELLOW ONIONS",
+     "p": 0.99,
+     "u": "/ea"
     }
    ]
   },
@@ -185,16 +185,16 @@
    "hit": false,
    "deals": [
     {
-     "m": "Foodland",
-     "n": "Gala or Ambrosia Apples",
-     "p": 0.99,
-     "u": "/lb"
-    },
-    {
      "m": "No Frills",
      "n": "AMBROSIA APPLES or SWEET POTATOES",
      "p": 0.99,
      "u": "/lb $2.18/kg"
+    },
+    {
+     "m": "Foodland",
+     "n": "Gala or Ambrosia Apples",
+     "p": 0.99,
+     "u": "/lb"
     },
     {
      "m": "Lococo's",

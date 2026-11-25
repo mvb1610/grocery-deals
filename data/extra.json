@@ -1,40 +1,10 @@
 {
- "scanned": "2026-11-24T20:40:19.942Z",
+ "scanned": "2026-11-25T19:57:00.355Z",
  "stores": [
   {
    "m": "Lococo's",
    "source": "https://www.lococos.ca/specials",
    "items": [
-    {
-     "id": 9002220577294,
-     "n": "AAA Eye of Round Roast, Aged to Perfection",
-     "b": "Cut From Canada AAA",
-     "p": 7.99,
-     "u": "lb",
-     "img": "https://portal.lococos.ca/images/flyer/front/eye_of_round.jpg",
-     "vf": "2026-11-20T00:00:00-05:00",
-     "vt": "2026-11-24T23:59:59-05:00"
-    },
-    {
-     "id": 9001384420572,
-     "n": "Pork Button Bones, Back Rib Tails",
-     "b": "Ontario's Finest",
-     "p": 2.99,
-     "u": "lb",
-     "img": "https://portal.lococos.ca/images/flyer/front/button_bones.jpg",
-     "vf": "2026-11-20T00:00:00-05:00",
-     "vt": "2026-11-24T23:59:59-05:00"
-    },
-    {
-     "id": 9000259838430,
-     "n": "Italian Sausage, Lococo's Own, Assorted Varieties",
-     "b": "Ontario's Finest",
-     "p": 4.99,
-     "u": "lb",
-     "img": "https://portal.lococos.ca/images/flyer/front/sasuages_italian_pork.jpg",
-     "vf": "2026-11-20T00:00:00-05:00",
-     "vt": "2026-11-24T23:59:59-05:00"
-    },
     {
      "id": 9001602895940,
      "n": "Heirloom Tomatoes",
@@ -194,6 +164,56 @@
      "img": "https://portal.lococos.ca/images/flyer/front/cucumber_dill_mini.jpg",
      "vf": "2026-11-16T00:00:00-05:00",
      "vt": "2026-11-26T23:59:59-05:00"
+    },
+    {
+     "id": 9000852238802,
+     "n": "Fresh Atlantic",
+     "b": "",
+     "p": 11.99,
+     "u": "lb",
+     "img": "https://portal.lococos.ca/images/flyer/front/salmon-fillets-1637694322.jpeg",
+     "vf": "2026-11-25T00:00:00-05:00",
+     "vt": "2026-11-27T23:59:59-05:00"
+    },
+    {
+     "id": 9003110187663,
+     "n": "Angus Beef Burgers, Frozen, 852g BOX",
+     "b": "Cardinal Roadhouse",
+     "p": 13.99,
+     "u": "",
+     "img": "https://portal.lococos.ca/images/flyer/front/angus-beef-burgers-1771601189.jpg",
+     "vf": "2026-11-25T00:00:00-05:00",
+     "vt": "2026-11-29T23:59:59-05:00"
+    },
+    {
+     "id": 9004216810110,
+     "n": "Stewing Beef, Aged to Perfection",
+     "b": "Cut From Canada AA",
+     "p": 9.99,
+     "u": "lb",
+     "img": "https://portal.lococos.ca/images/flyer/front/stewing_beef.jpg",
+     "vf": "2026-11-25T00:00:00-05:00",
+     "vt": "2026-11-29T23:59:59-05:00"
+    },
+    {
+     "id": 9000124108751,
+     "n": "Bacon, Lazy Maple, 375g",
+     "b": "Maple Leaf",
+     "p": 4.99,
+     "u": "",
+     "img": "https://portal.lococos.ca/images/flyer/front/bacon-1782484221.jpg",
+     "vf": "2026-11-25T00:00:00-05:00",
+     "vt": "2026-11-29T23:59:59-05:00"
+    },
+    {
+     "id": 9002780672106,
+     "n": "Bone-in Chicken Thighs",
+     "b": "Ontario's Finest",
+     "p": 3.69,
+     "u": "lb",
+     "img": "https://portal.lococos.ca/images/flyer/front/bone-in-chicken-thighs-1636742870.jpeg",
+     "vf": "2026-11-25T00:00:00-05:00",
+     "vt": "2026-11-29T23:59:59-05:00"
     },
     {
      "id": 9000539373634,
