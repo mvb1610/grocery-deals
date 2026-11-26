@@ -1,5 +1,5 @@
 {
- "scanned": "2026-11-25T19:57:00.355Z",
+ "scanned": "2026-11-26T19:38:07.675Z",
  "stores": [
   {
    "m": "Lococo's",
@@ -42,16 +42,6 @@
      "p": 12.99,
      "u": "lb",
      "img": "https://portal.lococos.ca/images/flyer/front/beef_stirfry.jpg",
-     "vf": "2026-11-23T00:00:00-05:00",
-     "vt": "2026-11-26T23:59:59-05:00"
-    },
-    {
-     "id": 9000171961744,
-     "n": "Large Green Winter Cabbage",
-     "b": "Ontario's Finest",
-     "p": 2.99,
-     "u": "ea",
-     "img": "https://portal.lococos.ca/images/flyer/front/cabbage_green.jpg",
      "vf": "2026-11-23T00:00:00-05:00",
      "vt": "2026-11-26T23:59:59-05:00"
     },
@@ -126,26 +116,6 @@
      "vt": "2026-11-26T23:59:59-05:00"
     },
     {
-     "id": 9002982350508,
-     "n": "Jumbo Honeydew",
-     "b": "",
-     "p": 4.99,
-     "u": "ea",
-     "img": "https://portal.lococos.ca/images/flyer/front/jumbo-honeydew-1794937379.jpg",
-     "vf": "2026-11-18T00:00:00-05:00",
-     "vt": "2026-11-26T23:59:59-05:00"
-    },
-    {
-     "id": 9001869189100,
-     "n": "Raspberries, Clamshell, 6oz PACK",
-     "b": "",
-     "p": 1.99,
-     "u": "",
-     "img": "https://portal.lococos.ca/images/flyer/front/raspberries-1637334858.jpeg",
-     "vf": "2026-11-18T00:00:00-05:00",
-     "vt": "2026-11-26T23:59:59-05:00"
-    },
-    {
      "id": 9003870601730,
      "n": "AAA Whole Beef Brisket, Aged to Perfection,",
      "b": "Cut From Canada AAA",
@@ -216,6 +186,16 @@
      "vt": "2026-11-29T23:59:59-05:00"
     },
     {
+     "id": 9000171961744,
+     "n": "Large Green Winter Cabbage",
+     "b": "Ontario's Finest",
+     "p": 2.99,
+     "u": "ea",
+     "img": "https://portal.lococos.ca/images/flyer/front/cabbage_green.jpg",
+     "vf": "2026-11-23T00:00:00-05:00",
+     "vt": "2026-11-29T23:59:59-05:00"
+    },
+    {
      "id": 9000539373634,
      "n": "Red Seedless Grapes",
      "b": "",
@@ -224,6 +204,26 @@
      "img": "https://portal.lococos.ca/images/flyer/front/red_seedless_grapes.jpg",
      "vf": "2026-11-04T00:00:00-05:00",
      "vt": "2026-11-29T23:59:59-05:00"
+    },
+    {
+     "id": 9002982350508,
+     "n": "Jumbo Honeydew",
+     "b": "",
+     "p": 4.99,
+     "u": "ea",
+     "img": "https://portal.lococos.ca/images/flyer/front/jumbo-honeydew-1794937379.jpg",
+     "vf": "2026-11-18T00:00:00-05:00",
+     "vt": "2026-12-01T23:59:59-05:00"
+    },
+    {
+     "id": 9001869189100,
+     "n": "Raspberries, Clamshell, 6oz PACK",
+     "b": "",
+     "p": 1.99,
+     "u": "",
+     "img": "https://portal.lococos.ca/images/flyer/front/raspberries-1637334858.jpeg",
+     "vf": "2026-11-18T00:00:00-05:00",
+     "vt": "2026-12-01T23:59:59-05:00"
     }
    ]
   }

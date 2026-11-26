@@ -1,8 +1,8 @@
 {
- "week": "2026-11-19",
- "generated": "2026-11-25T19:57:02.778Z",
- "deals": 5836,
- "flyers": 36,
+ "week": "2026-11-26",
+ "generated": "2026-11-26T19:38:09.994Z",
+ "deals": 4387,
+ "flyers": 29,
  "lines": [
   {
    "q": "chicken breast",
@@ -17,14 +17,14 @@
     },
     {
      "m": "Metro",
-     "n": "FRESH BONELESS SKINLESS CHICKEN BREAST",
-     "p": 4.88,
-     "u": "/lb"
+     "n": "MAPLE LEAF PRIME RAISED WITHOUT ANTIBIOTICS FRESH BONELESS SKINLESS CHICKEN BREAST VALUE PACK 5.99/LB, 13.21/KG OR EXTRA LEAN GROUND CHICKEN 454 G, 5.99 EA.",
+     "p": 5.99,
+     "u": "/lb or ea"
     },
     {
-     "m": "Sobeys",
-     "n": "COMPLIMENTS Fresh AIR-CHILLED Bone-In Chicken Breast Halves",
-     "p": 6.49,
+     "m": "Your Independent Grocer",
+     "n": "CHICKEN BREASTS",
+     "p": 7,
      "u": "/lb"
     }
    ]
@@ -35,21 +35,21 @@
    "hit": false,
    "deals": [
     {
-     "m": "Sobeys",
-     "n": "Fresh Regular Ground Beef",
-     "p": 4.88,
-     "u": "/lb"
-    },
-    {
      "m": "FreshCo",
      "n": "Our Promise Grass Fed Halal Medium Ground Beef 450 g - FreshCo Scene+",
      "p": 4.99,
      "u": ""
     },
     {
-     "m": "Pupo's Food Market",
-     "n": "PUPO'S PORK-BEEF-VEAL GROUND COMBINATION",
-     "p": 4.99,
+     "m": "Farm Boy",
+     "n": "Blue Ribbon Lean Ground Beef",
+     "p": 5.45,
+     "u": "/pkg"
+    },
+    {
+     "m": "Walmart",
+     "n": "Our Promise lean ground beef",
+     "p": 5.98,
      "u": ""
     }
    ]
@@ -72,8 +72,8 @@
      "u": ""
     },
     {
-     "m": "No Frills",
-     "n": "GRAY RIDGE or PRESTIGE GRADE A LARGE WHITE EGGS, 18's",
+     "m": "Commisso's Fresh Foods",
+     "n": "Conestoga Free Run Omega-3 Large White or Brown Eggs",
      "p": 4.99,
      "u": ""
     }
@@ -91,14 +91,14 @@
      "u": "/ea"
     },
     {
-     "m": "Sobeys",
-     "n": "Ice Milk",
-     "p": 3.49,
+     "m": "Commisso's Fresh Foods",
+     "n": "Lactantia PurFiltre Milk",
+     "p": 3.99,
      "u": ""
     },
     {
-     "m": "Commisso's Fresh Foods",
-     "n": "Lactantia PurFiltre Milk",
+     "m": "FreshCo",
+     "n": "Tropicana Orange Juice 1.36 L or Natrel Fine Filtered Milk Skim, 1% or 2%, 2 L - FreshCo Scene+",
      "p": 3.99,
      "u": ""
     }
@@ -135,22 +135,22 @@
    "hit": false,
    "deals": [
     {
-     "m": "No Frills",
-     "n": "NO NAME® BREAD, 675 g",
-     "p": 2.48,
-     "u": ""
+     "m": "Metro",
+     "n": "VILLAGGIO ITALIAN STYLE BREADS",
+     "p": 2.44,
+     "u": "/ea"
     },
     {
      "m": "Sobeys",
-     "n": "French or Italian Bread",
+     "n": "COMPLIMENTS White or Whole Wheat Bread",
      "p": 2.49,
      "u": ""
     },
     {
-     "m": "Sobeys",
-     "n": "White or 100% Whole Wheat Bread",
-     "p": 2.49,
-     "u": "/ea when you buy 2 or more"
+     "m": "Commisso's Fresh Foods",
+     "n": "Rudolph's Bavarian Market Bread with a touch of Sourdough & Rye",
+     "p": 5,
+     "u": ""
     }
    ]
   },
@@ -185,21 +185,21 @@
    "hit": false,
    "deals": [
     {
-     "m": "No Frills",
-     "n": "AMBROSIA APPLES or SWEET POTATOES",
-     "p": 0.99,
-     "u": "/lb $2.18/kg"
-    },
-    {
-     "m": "Foodland",
-     "n": "Gala or Ambrosia Apples",
+     "m": "Lococo's",
+     "n": "McIntosh Apples",
      "p": 0.99,
      "u": "/lb"
     },
     {
-     "m": "Lococo's",
-     "n": "McIntosh Apples",
-     "p": 0.99,
+     "m": "Pupo's Food Market",
+     "n": "AMBROSIA APPLES",
+     "p": 1,
+     "u": ""
+    },
+    {
+     "m": "FreshCo",
+     "n": "Ambrosia or Red Delicious Apples Product of Ontario Extra Fancy Grade 3.95/kg",
+     "p": 1.79,
      "u": "/lb"
     }
    ]
