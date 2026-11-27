@@ -1,12 +1,12 @@
-Niagara grocery deals, week of Thu, Nov 26: 4387 deals from 29 flyers.
+Niagara grocery deals, week of Thu, Nov 26: 4403 deals from 29 flyers.
 
-chicken breast: $4.88/lb at No Frills (CHICKEN BREAST); $5.99/lb or ea at Metro (MAPLE LEAF PRIME RAISED WITHOUT ANTIBIOT); $7.00/lb at Your Independent Grocer (CHICKEN BREASTS)
+chicken breast: $2.99 at Commisso's Fresh Foods (Fresh Ontario Poultry Whole Back Attache); $4.88/lb at No Frills (CHICKEN BREAST); $4.99/lb at Commisso's Fresh Foods (Fresh Ontario Poultry Split No Back Chic)
 ground beef: $4.99 at FreshCo (Our Promise Grass Fed Halal Medium Groun); $5.45/pkg at Farm Boy (Blue Ribbon Lean Ground Beef); $5.98 at Walmart (Our Promise lean ground beef)
-eggs: $4.00 at Shoppers Drug Mart (REESE'S PEANUT BUTTER TREES (34g) or CAD); $4.59 at Shoppers Drug Mart (BURNBRAE LARGE BROWN EGGS (1 Dozen) or N); $4.99 at Commisso's Fresh Foods (Conestoga Free Run Omega-3 Large White o)
-milk: $2.79/ea at Farm Boy (Neilson Milk); $3.99 at Commisso's Fresh Foods (Lactantia PurFiltre Milk); $3.99 at FreshCo (Tropicana Orange Juice 1.36 L or Natrel )
-butter: $1.89 at Food Basics (BUTTERBALL WHOLE TURKEY); $3.99/ea at Food Basics (SELECTION BUTTER); $3.99 at Shoppers Drug Mart (TWIZZLERS CHERRY TREES (200g) or WALKER')
-bread: $2.44/ea at Metro (VILLAGGIO ITALIAN STYLE BREADS); $2.49 at Sobeys (COMPLIMENTS White or Whole Wheat Bread); $5.00 at Commisso's Fresh Foods (Rudolph's Bavarian Market Bread with a t)
+eggs: $4.00 at Shoppers Drug Mart (REESE'S PEANUT BUTTER TREES (34g) or CAD); $4.59 at Shoppers Drug Mart (BURNBRAE LARGE BROWN EGGS (1 Dozen) or N); $4.99/ea at Metro (LIFE SMART EGG WHITES)
+milk: $2.79/ea at Farm Boy (Neilson Milk); $3.99 at Wholesale Club and Club Entrepôt (ULTRAFILTERED MILK, 1 L); $3.99 at FreshCo (Tropicana Orange Juice 1.36 L or Natrel )
+butter: $1.89 at Food Basics (BUTTERBALL WHOLE TURKEY); $3.99 at Shoppers Drug Mart (TWIZZLERS CHERRY TREES (200g) or WALKER'); $3.99/ea at Food Basics (SELECTION BUTTER)
+bread: $2.44/ea at Metro (VILLAGGIO ITALIAN STYLE BREADS); $2.49 at Sobeys (COMPLIMENTS White or Whole Wheat Bread); $2.50 at Wholesale Club and Club Entrepôt (BREAD, 675 G)
 potatoes: $0.77 at Giant Tiger (1 lb Steam & Go mini potatoes); $0.99/ea at Food Basics (RUSSET PEI POTATOES OR GOURMET MINI YELL); $0.99/ea at Food Basics (RUSSET PEI POTATOES OR GOURMET MINI YELL)
-apples: $0.99/lb at Lococo's (McIntosh Apples); $1.00 at Pupo's Food Market (AMBROSIA APPLES); $1.79/lb at FreshCo (Ambrosia or Red Delicious Apples Product)
+apples: $0.99/lb at Lococo's (Royal Gala Apples); $1.00 at Pupo's Food Market (AMBROSIA APPLES); $1.79/lb at FreshCo (Ambrosia or Red Delicious Apples Product)
 
 Open the app: https://mvb1610.github.io/grocery-deals/

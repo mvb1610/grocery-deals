@@ -1,7 +1,7 @@
 {
  "week": "2026-11-26",
- "generated": "2026-11-26T19:38:09.994Z",
- "deals": 4387,
+ "generated": "2026-11-27T19:29:03.109Z",
+ "deals": 4403,
  "flyers": 29,
  "lines": [
   {
@@ -10,21 +10,21 @@
    "hit": false,
    "deals": [
     {
+     "m": "Commisso's Fresh Foods",
+     "n": "Fresh Ontario Poultry Whole Back Attached Chicken Breast",
+     "p": 2.99,
+     "u": ""
+    },
+    {
      "m": "No Frills",
      "n": "CHICKEN BREAST",
      "p": 4.88,
      "u": "/lb"
     },
     {
-     "m": "Metro",
-     "n": "MAPLE LEAF PRIME RAISED WITHOUT ANTIBIOTICS FRESH BONELESS SKINLESS CHICKEN BREAST VALUE PACK 5.99/LB, 13.21/KG OR EXTRA LEAN GROUND CHICKEN 454 G, 5.99 EA.",
-     "p": 5.99,
-     "u": "/lb or ea"
-    },
-    {
-     "m": "Your Independent Grocer",
-     "n": "CHICKEN BREASTS",
-     "p": 7,
+     "m": "Commisso's Fresh Foods",
+     "n": "Fresh Ontario Poultry Split No Back Chicken Breast",
+     "p": 4.99,
      "u": "/lb"
     }
    ]
@@ -72,10 +72,10 @@
      "u": ""
     },
     {
-     "m": "Commisso's Fresh Foods",
-     "n": "Conestoga Free Run Omega-3 Large White or Brown Eggs",
+     "m": "Metro",
+     "n": "LIFE SMART EGG WHITES",
      "p": 4.99,
-     "u": ""
+     "u": "/ea"
     }
    ]
   },
@@ -91,8 +91,8 @@
      "u": "/ea"
     },
     {
-     "m": "Commisso's Fresh Foods",
-     "n": "Lactantia PurFiltre Milk",
+     "m": "Wholesale Club and Club Entrepôt",
+     "n": "ULTRAFILTERED MILK, 1 L",
      "p": 3.99,
      "u": ""
     },
@@ -116,16 +116,16 @@
      "u": ""
     },
     {
-     "m": "Food Basics",
-     "n": "SELECTION BUTTER",
-     "p": 3.99,
-     "u": "/ea"
-    },
-    {
      "m": "Shoppers Drug Mart",
      "n": "TWIZZLERS CHERRY TREES (200g) or WALKER'S ALL-BUTTER MINI FESTIVE SHORTBREAD TREES (125g)",
      "p": 3.99,
      "u": ""
+    },
+    {
+     "m": "Food Basics",
+     "n": "SELECTION BUTTER",
+     "p": 3.99,
+     "u": "/ea"
     }
    ]
   },
@@ -147,9 +147,9 @@
      "u": ""
     },
     {
-     "m": "Commisso's Fresh Foods",
-     "n": "Rudolph's Bavarian Market Bread with a touch of Sourdough & Rye",
-     "p": 5,
+     "m": "Wholesale Club and Club Entrepôt",
+     "n": "BREAD, 675 G",
+     "p": 2.5,
      "u": ""
     }
    ]
@@ -186,7 +186,7 @@
    "deals": [
     {
      "m": "Lococo's",
-     "n": "McIntosh Apples",
+     "n": "Royal Gala Apples",
      "p": 0.99,
      "u": "/lb"
     },

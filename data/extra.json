@@ -1,140 +1,10 @@
 {
- "scanned": "2026-11-26T19:38:07.675Z",
+ "scanned": "2026-11-27T19:29:00.735Z",
  "stores": [
   {
    "m": "Lococo's",
    "source": "https://www.lococos.ca/specials",
    "items": [
-    {
-     "id": 9001602895940,
-     "n": "Heirloom Tomatoes",
-     "b": "Ontario's Finest",
-     "p": 2.99,
-     "u": "lb",
-     "img": "https://portal.lococos.ca/images/flyer/front/heirloom-tomatoes-1743782007.jpg",
-     "vf": "2026-11-23T00:00:00-05:00",
-     "vt": "2026-11-26T23:59:59-05:00"
-    },
-    {
-     "id": 9001732671976,
-     "n": "Fast Fry Pork Loin Chops, Boneless",
-     "b": "Ontario's Finest",
-     "p": 5.99,
-     "u": "lb",
-     "img": "https://portal.lococos.ca/images/flyer/front/fast-fry-pork-loin-chops-1754065265.jpg",
-     "vf": "2026-11-23T00:00:00-05:00",
-     "vt": "2026-11-26T23:59:59-05:00"
-    },
-    {
-     "id": 9003012597314,
-     "n": "Black Forest Ham, 175g",
-     "b": "Greenfield",
-     "p": 2.99,
-     "u": "",
-     "img": "https://portal.lococos.ca/images/flyer/front/black-forest-ham-1795191034.jpg",
-     "vf": "2026-11-23T00:00:00-05:00",
-     "vt": "2026-11-26T23:59:59-05:00"
-    },
-    {
-     "id": 9000546035894,
-     "n": "Beef Stir Fry, Aged to Perfection",
-     "b": "Cut From Canada AA",
-     "p": 12.99,
-     "u": "lb",
-     "img": "https://portal.lococos.ca/images/flyer/front/beef_stirfry.jpg",
-     "vf": "2026-11-23T00:00:00-05:00",
-     "vt": "2026-11-26T23:59:59-05:00"
-    },
-    {
-     "id": 9002379145352,
-     "n": "McIntosh Apples",
-     "b": "Ontario's Finest",
-     "p": 0.99,
-     "u": "lb",
-     "img": "https://portal.lococos.ca/images/flyer/front/mcintosh-apples-1643834384.jpg",
-     "vf": "2026-11-20T00:00:00-05:00",
-     "vt": "2026-11-26T23:59:59-05:00"
-    },
-    {
-     "id": 9000773479502,
-     "n": "Oval Hashbrowns, Frozen, 3lb BAG",
-     "b": "",
-     "p": 4.99,
-     "u": "",
-     "img": "https://portal.lococos.ca/images/flyer/front/hashbrown2.jpg",
-     "vf": "2026-11-20T00:00:00-05:00",
-     "vt": "2026-11-26T23:59:59-05:00"
-    },
-    {
-     "id": 9002197696829,
-     "n": "Tater Tots, Pom Pom Hashbrowns, 5lb BAG",
-     "b": "Frozen",
-     "p": 8.99,
-     "u": "",
-     "img": "https://portal.lococos.ca/images/flyer/front/hashbrown_pom_pom2.jpg",
-     "vf": "2026-11-20T00:00:00-05:00",
-     "vt": "2026-11-26T23:59:59-05:00"
-    },
-    {
-     "id": 9000591999985,
-     "n": "Roasted Red Peppers, 1L",
-     "b": "Martelli",
-     "p": 8.99,
-     "u": "",
-     "img": "https://portal.lococos.ca/images/flyer/front/roasted-red-peppers-1795102736.jpg",
-     "vf": "2026-11-20T00:00:00-05:00",
-     "vt": "2026-11-26T23:59:59-05:00"
-    },
-    {
-     "id": 9000644344807,
-     "n": "Baby Genoa Salami, Hot or Mild, 500g",
-     "b": "Mastro",
-     "p": 8.99,
-     "u": "",
-     "img": "https://portal.lococos.ca/images/flyer/front/baby-genoa-salami-1795099716.jpg",
-     "vf": "2026-11-20T00:00:00-05:00",
-     "vt": "2026-11-26T23:59:59-05:00"
-    },
-    {
-     "id": 9000363641503,
-     "n": "Olives, Green Bella Cerignola or Mixed, 1L",
-     "b": "Pastore",
-     "p": 7.99,
-     "u": "",
-     "img": "https://portal.lococos.ca/images/flyer/front/olives-1702524186.jpg",
-     "vf": "2026-11-20T00:00:00-05:00",
-     "vt": "2026-11-26T23:59:59-05:00"
-    },
-    {
-     "id": 9000964243078,
-     "n": "Cooked Beets, 500g",
-     "b": "Jesse Tree",
-     "p": 1.99,
-     "u": "",
-     "img": "https://portal.lococos.ca/images/flyer/front/cooked-beets-1736446474.jpg",
-     "vf": "2026-11-20T00:00:00-05:00",
-     "vt": "2026-11-26T23:59:59-05:00"
-    },
-    {
-     "id": 9003870601730,
-     "n": "AAA Whole Beef Brisket, Aged to Perfection,",
-     "b": "Cut From Canada AAA",
-     "p": 5.99,
-     "u": "lb",
-     "img": "https://portal.lococos.ca/images/flyer/front/beef_brisket_whole.jpg",
-     "vf": "2026-11-18T00:00:00-05:00",
-     "vt": "2026-11-26T23:59:59-05:00"
-    },
-    {
-     "id": 9001377189460,
-     "n": "Mini Cucumbers, 6 Pack",
-     "b": "Ontario's Finest",
-     "p": 2.99,
-     "u": "ea",
-     "img": "https://portal.lococos.ca/images/flyer/front/cucumber_dill_mini.jpg",
-     "vf": "2026-11-16T00:00:00-05:00",
-     "vt": "2026-11-26T23:59:59-05:00"
-    },
     {
      "id": 9000852238802,
      "n": "Fresh Atlantic",
@@ -186,16 +56,6 @@
      "vt": "2026-11-29T23:59:59-05:00"
     },
     {
-     "id": 9000171961744,
-     "n": "Large Green Winter Cabbage",
-     "b": "Ontario's Finest",
-     "p": 2.99,
-     "u": "ea",
-     "img": "https://portal.lococos.ca/images/flyer/front/cabbage_green.jpg",
-     "vf": "2026-11-23T00:00:00-05:00",
-     "vt": "2026-11-29T23:59:59-05:00"
-    },
-    {
      "id": 9000539373634,
      "n": "Red Seedless Grapes",
      "b": "",
@@ -204,6 +64,56 @@
      "img": "https://portal.lococos.ca/images/flyer/front/red_seedless_grapes.jpg",
      "vf": "2026-11-04T00:00:00-05:00",
      "vt": "2026-11-29T23:59:59-05:00"
+    },
+    {
+     "id": 9002661946946,
+     "n": "Juicy Jumbos, All Beef, 375g",
+     "b": "Schneiders",
+     "p": 3.99,
+     "u": "",
+     "img": "https://portal.lococos.ca/images/flyer/front/juicy-jumbos-1787925391.jpg",
+     "vf": "2026-11-27T00:00:00-05:00",
+     "vt": "2026-12-01T23:59:59-05:00"
+    },
+    {
+     "id": 9003292063941,
+     "n": "AAA Beef, Aged to Perfection",
+     "b": "Cut From Canada AAA",
+     "p": 26.99,
+     "u": "lb",
+     "img": "https://portal.lococos.ca/images/flyer/front/beef_tenderloin_steak6.jpg",
+     "vf": "2026-11-27T00:00:00-05:00",
+     "vt": "2026-12-01T23:59:59-05:00"
+    },
+    {
+     "id": 9003274278890,
+     "n": "Lean Ground Pork, Lococo's Own",
+     "b": "Ontario's Finest",
+     "p": 2.99,
+     "u": "lb",
+     "img": "https://portal.lococos.ca/images/flyer/front/pork_ground2.jpg",
+     "vf": "2026-11-27T00:00:00-05:00",
+     "vt": "2026-12-01T23:59:59-05:00"
+    },
+    {
+     "id": 9003750256144,
+     "n": "Boneless",
+     "b": "Ontario's Finest",
+     "p": 2.99,
+     "u": "lb",
+     "img": "https://portal.lococos.ca/images/flyer/front/pork_chops_boneless.jpg",
+     "vf": "2026-11-27T00:00:00-05:00",
+     "vt": "2026-12-01T23:59:59-05:00"
+    },
+    {
+     "id": 9000171961744,
+     "n": "Large Green Winter Cabbage",
+     "b": "Ontario's Finest",
+     "p": 2.99,
+     "u": "ea",
+     "img": "https://portal.lococos.ca/images/flyer/front/cabbage_green.jpg",
+     "vf": "2026-11-23T00:00:00-05:00",
+     "vt": "2026-12-01T23:59:59-05:00"
     },
     {
      "id": 9002982350508,
@@ -224,6 +134,126 @@
      "img": "https://portal.lococos.ca/images/flyer/front/raspberries-1637334858.jpeg",
      "vf": "2026-11-18T00:00:00-05:00",
      "vt": "2026-12-01T23:59:59-05:00"
+    },
+    {
+     "id": 9004155110012,
+     "n": "Spring Mix, Washed & Ready, 1lb BAG",
+     "b": "",
+     "p": 4.99,
+     "u": "",
+     "img": "https://portal.lococos.ca/images/flyer/front/spring_mix.jpg",
+     "vf": "2026-11-27T00:00:00-05:00",
+     "vt": "2026-12-03T23:59:59-05:00"
+    },
+    {
+     "id": 9000260118991,
+     "n": "Grated Parmesan or Mozzarella Ball, 200g or 340g",
+     "b": "Tre Stelle",
+     "p": 5.99,
+     "u": "ea",
+     "img": "https://portal.lococos.ca/images/flyer/front/grated-parmesan-or-mozzarella-ball-1795708331.jpg",
+     "vf": "2026-11-27T00:00:00-05:00",
+     "vt": "2026-12-03T23:59:59-05:00"
+    },
+    {
+     "id": 9004197091686,
+     "n": "Perogies, Select Varieties, 454-500g",
+     "b": "Pelmen",
+     "p": 4.77,
+     "u": "",
+     "img": "https://portal.lococos.ca/images/flyer/front/perogies-1795707042.jpg",
+     "vf": "2026-11-27T00:00:00-05:00",
+     "vt": "2026-12-03T23:59:59-05:00"
+    },
+    {
+     "id": 9003718732916,
+     "n": "Paper Towels, 6 = 12",
+     "b": "Bounty",
+     "p": 14.99,
+     "u": "ea",
+     "img": "https://portal.lococos.ca/images/flyer/front/paper-towels-1773930070.jpg",
+     "vf": "2026-11-27T00:00:00-05:00",
+     "vt": "2026-12-03T23:59:59-05:00"
+    },
+    {
+     "id": 9000352610242,
+     "n": "Broccoli Florets, Frozen, 2Kg BAG",
+     "b": "",
+     "p": 8.99,
+     "u": "",
+     "img": "https://portal.lococos.ca/images/flyer/front/broccoli_florets3.jpg",
+     "vf": "2026-11-27T00:00:00-05:00",
+     "vt": "2026-12-03T23:59:59-05:00"
+    },
+    {
+     "id": 9000867941649,
+     "n": "Apple Cider Vinegar, 946mL",
+     "b": "Bragg's",
+     "p": 7.99,
+     "u": "",
+     "img": "https://portal.lococos.ca/images/flyer/front/bragg_apple_cider_vinegar.jpg",
+     "vf": "2026-11-27T00:00:00-05:00",
+     "vt": "2026-12-03T23:59:59-05:00"
+    },
+    {
+     "id": 9000775115171,
+     "n": "Lemon or Lime Juice, 946mL",
+     "b": "Monterey",
+     "p": 1.88,
+     "u": "",
+     "img": "https://portal.lococos.ca/images/flyer/front/lemon-or-lime-juice-1786027533.jpeg",
+     "vf": "2026-11-27T00:00:00-05:00",
+     "vt": "2026-12-03T23:59:59-05:00"
+    },
+    {
+     "id": 9002656876285,
+     "n": "White Vinegar, 4L",
+     "b": "Monterey",
+     "p": 2.99,
+     "u": "",
+     "img": "https://portal.lococos.ca/images/flyer/front/white-vinegar-1692030247.jpg",
+     "vf": "2026-11-27T00:00:00-05:00",
+     "vt": "2026-12-03T23:59:59-05:00"
+    },
+    {
+     "id": 9002269526888,
+     "n": "Jumbo Iceberg Lettuce",
+     "b": "",
+     "p": 1.99,
+     "u": "ea",
+     "img": "https://portal.lococos.ca/images/flyer/front/iceberg_lettuce.jpg",
+     "vf": "2026-11-27T00:00:00-05:00",
+     "vt": "2026-12-03T23:59:59-05:00"
+    },
+    {
+     "id": 9001562699857,
+     "n": "Apple Cider, Bennett's, 2L",
+     "b": "Ontario's Finest",
+     "p": 4.99,
+     "u": "",
+     "img": "https://portal.lococos.ca/images/flyer/front/apple-cider-1767887155.jpg",
+     "vf": "2026-11-27T00:00:00-05:00",
+     "vt": "2026-12-03T23:59:59-05:00"
+    },
+    {
+     "id": 9002580461244,
+     "n": "Large Seedless Cucumbers",
+     "b": "Ontario's Finest",
+     "p": 1.99,
+     "u": "ea",
+     "img": "https://portal.lococos.ca/images/flyer/front/cucumber_seedless2.jpg",
+     "vf": "2026-11-27T00:00:00-05:00",
+     "vt": "2026-12-03T23:59:59-05:00"
+    },
+    {
+     "id": 9001335753003,
+     "n": "Royal Gala Apples",
+     "b": "Ontario's Finest",
+     "p": 0.99,
+     "u": "lb",
+     "img": "https://portal.lococos.ca/images/flyer/front/apples_royal_gala2.jpg",
+     "vf": "2026-11-27T00:00:00-05:00",
+     "vt": "2026-12-03T23:59:59-05:00"
     }
    ]
   }
