@@ -1,7 +1,7 @@
 {
  "week": "2026-11-26",
- "generated": "2026-11-27T19:29:03.109Z",
- "deals": 4403,
+ "generated": "2026-11-28T18:15:38.513Z",
+ "deals": 4375,
  "flyers": 29,
  "lines": [
   {
@@ -61,21 +61,21 @@
    "deals": [
     {
      "m": "Shoppers Drug Mart",
-     "n": "REESE'S PEANUT BUTTER TREES (34g) or CADBURY MINI EGGS (33g)",
-     "p": 4,
-     "u": ""
-    },
-    {
-     "m": "Shoppers Drug Mart",
-     "n": "BURNBRAE LARGE BROWN EGGS (1 Dozen) or NEILSON ULTRAFILTERED MILK (1L)",
-     "p": 4.59,
-     "u": ""
+     "n": "GRADE \"A\" LARGE WHITE EGGS",
+     "p": 3.49,
+     "u": "/ea, saturday, november 28 & sunday, november 29 only!"
     },
     {
      "m": "Metro",
      "n": "LIFE SMART EGG WHITES",
      "p": 4.99,
      "u": "/ea"
+    },
+    {
+     "m": "No Frills",
+     "n": "GRAY RIDGE or PRESTIGE GRADE A LARGE WHITE EGGS, 18's",
+     "p": 4.99,
+     "u": ""
     }
    ]
   },
@@ -117,8 +117,8 @@
     },
     {
      "m": "Shoppers Drug Mart",
-     "n": "TWIZZLERS CHERRY TREES (200g) or WALKER'S ALL-BUTTER MINI FESTIVE SHORTBREAD TREES (125g)",
-     "p": 3.99,
+     "n": "WALKER'S ALL-BUTTER SHORTBREAD (150g) or LOACKER WAFERS (175g)",
+     "p": 3.29,
      "u": ""
     },
     {
@@ -141,15 +141,15 @@
      "u": "/ea"
     },
     {
+     "m": "Shoppers Drug Mart",
+     "n": "WONDER WHITE or WHOLE WHEAT BREAD 675g",
+     "p": 2.49,
+     "u": "/ea saturday, november 28 & sunday, november 29 only!"
+    },
+    {
      "m": "Sobeys",
      "n": "COMPLIMENTS White or Whole Wheat Bread",
      "p": 2.49,
-     "u": ""
-    },
-    {
-     "m": "Wholesale Club and Club Entrepôt",
-     "n": "BREAD, 675 G",
-     "p": 2.5,
      "u": ""
     }
    ]

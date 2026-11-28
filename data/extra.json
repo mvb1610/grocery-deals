@@ -1,20 +1,10 @@
 {
- "scanned": "2026-11-27T19:29:00.735Z",
+ "scanned": "2026-11-28T18:15:36.245Z",
  "stores": [
   {
    "m": "Lococo's",
    "source": "https://www.lococos.ca/specials",
    "items": [
-    {
-     "id": 9000852238802,
-     "n": "Fresh Atlantic",
-     "b": "",
-     "p": 11.99,
-     "u": "lb",
-     "img": "https://portal.lococos.ca/images/flyer/front/salmon-fillets-1637694322.jpeg",
-     "vf": "2026-11-25T00:00:00-05:00",
-     "vt": "2026-11-27T23:59:59-05:00"
-    },
     {
      "id": 9003110187663,
      "n": "Angus Beef Burgers, Frozen, 852g BOX",
